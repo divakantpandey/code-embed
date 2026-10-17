@@ -1,0 +1,31 @@
+# W&B Sweep Configuration for Hyperparameter Search
+# Usage: wandb sweep configs/sweep_config.yaml
+
+program: scripts/train.py
+method: bayes
+metric:
+  name: eval/MRR@10
+  goal: maximize
+
+parameters:
+  model.pooling:
+    values: ["cls", "mean"]
+  model.embedding_dim:
+    values: [128, 256, 384]
+  training.stage2.learning_rate:
+    distribution: log_uniform_values
+    min: 1.0e-6
+    max: 5.0e-5
+  training.stage2.batch_size:
+    values: [8, 16, 32]
+  training.stage1.temperature:
+    distribution: uniform
+    min: 0.01
+    max: 0.1
+  training.stage2.weight_decay:
+    values: [0.0, 0.001, 0.01, 0.1]
+
+early_terminate:
+  type: hyperband
+  min_iter: 2
+  eta: 3

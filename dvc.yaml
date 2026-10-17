@@ -1,0 +1,72 @@
+# DVC Pipeline Definition
+# Tracks data processing and training stages for reproducibility
+
+stages:
+  download:
+    cmd: uv run python scripts/download_data.py
+    deps:
+      - scripts/download_data.py
+    outs:
+      - data/raw:
+          cache: true
+          persist: true
+
+  preprocess:
+    cmd: uv run python scripts/preprocess.py
+    deps:
+      - scripts/preprocess.py
+      - src/data/preprocessing.py
+      - data/raw
+    params:
+      - configs/train_config.yaml:
+          - data.preprocessing
+    outs:
+      - data/processed:
+          cache: true
+
+  train:
+    cmd: uv run python scripts/train.py --config configs/train_config.yaml
+    deps:
+      - scripts/train.py
+      - src/model
+      - src/training
+      - data/processed
+    params:
+      - configs/train_config.yaml:
+          - model
+          - training
+    outs:
+      - outputs/best_model:
+          cache: true
+          persist: true
+    metrics:
+      - outputs/metrics.json:
+          cache: false
+
+  evaluate:
+    cmd: uv run python scripts/evaluate.py --config configs/eval_config.yaml
+    deps:
+      - scripts/evaluate.py
+      - src/evaluation
+      - outputs/best_model
+    params:
+      - configs/eval_config.yaml:
+          - benchmarks
+          - quality_gates
+    metrics:
+      - evaluation_reports/results.json:
+          cache: false
+    plots:
+      - evaluation_reports/plots:
+          cache: false
+
+  export:
+    cmd: uv run python scripts/export.py --model outputs/best_model --output outputs/onnx
+    deps:
+      - scripts/export.py
+      - src/export
+      - outputs/best_model
+    outs:
+      - outputs/onnx:
+          cache: true
+          persist: true
