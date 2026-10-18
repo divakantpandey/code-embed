@@ -123,6 +123,7 @@ configs/best_tuned_config.yaml
 outputs/tuning/
 docs/
 GEMINI.md
+mteb_results/
 
 # ==============================================================================
 # Profiling (Scalene)
