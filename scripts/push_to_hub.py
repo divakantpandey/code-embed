@@ -50,14 +50,17 @@ def generate_model_card(repo_id: str, results_path: Path | None = None) -> str:
 
     return f"""---
 language:
-  - python
+  - en
+  - code
 tags:
+  - python
   - code-search
   - code-embeddings
   - sentence-transformers
   - unixcoder
   - matryoshka
   - onnx
+  - mteb
 license: cc-by-nc-4.0
 pipeline_tag: feature-extraction
 library_name: sentence-transformers
@@ -65,6 +68,41 @@ metrics:
   - mrr
   - ndcg
   - recall
+model-index:
+  - name: Code-Embed
+    results:
+      - task:
+          type: feature-extraction
+          name: Code Search
+        dataset:
+          name: CodeSearchNet (Python)
+          type: code_search_net
+          config: python
+          split: test
+        metrics:
+          - type: mrr@10
+            value: 0.7514
+            name: MRR@10 (100-pool)
+          - type: mrr@10
+            value: 0.8241
+            name: MRR@10 (15k-corpus)
+          - type: recall@10
+            value: 0.9230
+            name: Recall@10 (15k-corpus)
+      - task:
+          type: feature-extraction
+          name: Code Question Answering
+        dataset:
+          name: CoSQA
+          type: cosqa
+          split: validation
+        metrics:
+          - type: mrr@10
+            value: 0.7509
+            name: MRR@10
+          - type: recall@10
+            value: 0.8600
+            name: Recall@10
 ---
 
 # 💻 {repo_id.split("/")[-1]}
