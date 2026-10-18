@@ -1,0 +1,29 @@
+# Language Preset: Unified Multilingual (Python, JavaScript, Java, Go)
+language: "multilingual"
+languages:
+  - "python"
+  - "javascript"
+  - "java"
+  - "go"
+sampling_strategy: "balanced"  # Sample equally across language splits
+dataset:
+  name: "code-search-net/code_search_net"
+  code_column: "func_code_string"
+  docstring_column: "func_documentation_string"
+  min_tokens: 16
+  max_tokens: 512
+  comment_ratio_threshold: 0.35
+  dedup_threshold: 0.85
+benchmarks:
+  - name: "CodeSearchNet-Python"
+    dataset: "code_search_net"
+    language: "python"
+  - name: "CodeSearchNet-Javascript"
+    dataset: "code_search_net"
+    language: "javascript"
+  - name: "CodeSearchNet-Java"
+    dataset: "code_search_net"
+    language: "java"
+  - name: "CodeSearchNet-Go"
+    dataset: "code_search_net"
+    language: "go"

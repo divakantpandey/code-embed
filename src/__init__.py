@@ -1,4 +1,4 @@
-"""PyCodeEmbed: Small Python Code Embedding Model."""
+"""CodeEmbed: Small Code Embedding Model."""
 
 import os
 import sys

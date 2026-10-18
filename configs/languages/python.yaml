@@ -1,0 +1,17 @@
+# Language Preset: Python
+language: "python"
+dataset:
+  name: "code-search-net/code_search_net"
+  subset: "python"
+  code_column: "func_code_string"
+  docstring_column: "func_documentation_string"
+  file_extensions: [".py", ".pyw"]
+  min_tokens: 16
+  max_tokens: 512
+  comment_ratio_threshold: 0.3
+  dedup_threshold: 0.85
+benchmarks:
+  - name: "CodeSearchNet-Python"
+    dataset: "code_search_net"
+    language: "python"
+  - name: "CoSQA"

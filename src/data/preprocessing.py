@@ -53,13 +53,11 @@ def filter_by_length(
     return min_tokens <= len(token_ids) <= max_tokens
 
 
-def has_valid_syntax(code: str) -> bool:
-    """Return ``True`` if *code* parses as valid Python via :func:`ast.parse`."""
-    try:
-        ast.parse(code)
-    except SyntaxError:
-        return False
-    return True
+def has_valid_syntax(code: str, language: str = "python") -> bool:
+    """Return ``True`` if *code* parses as valid syntax in *language* via Tree-sitter / AST."""
+    from src.data.languages.registry import LanguageRegistry
+
+    return LanguageRegistry.get(language).has_valid_syntax(code)
 
 
 def has_function_definition(code: str) -> bool:

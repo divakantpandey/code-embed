@@ -88,35 +88,35 @@ class Benchmark(ABC):
 
 
 class CodeSearchNetBenchmark(Benchmark):
-    """Natural-language → Python code retrieval on the CodeSearchNet test set.
+    """Natural-language → Code retrieval on the CodeSearchNet test set.
 
-    Uses the ``code_search_net`` dataset from HuggingFace, filtered to the
-    ``python`` language split.  Queries are docstrings and documents are the
-    corresponding code snippets.
+    Uses the ``code_search_net`` dataset from HuggingFace for any supported
+    language split (``python``, ``javascript``, ``java``, ``go``, ``php``, ``ruby``).
     """
-
-    name: str = "CodeSearchNet-Python"
 
     def __init__(
         self,
+        language: str = "python",
         max_queries: int | None = 1000,
         ks: list[int] | None = None,
     ) -> None:
+        self.language = language.lower()
+        self.name = f"CodeSearchNet-{self.language.capitalize()}"
         self.max_queries = max_queries
         self.ks = ks or [1, 5, 10, 100]
 
     # -- internal helpers ---------------------------------------------------
 
     @staticmethod
-    def _load_data(max_queries: int | None) -> tuple[list[str], list[str]]:
-        """Load queries (docstrings) and documents (code) from CSN-Python."""
+    def _load_data(language: str, max_queries: int | None) -> tuple[list[str], list[str]]:
+        """Load queries (docstrings) and documents (code) from CSN for specified language."""
         from datasets import load_dataset
 
-        logger.info("Loading CodeSearchNet Python test split …")
+        logger.info("Loading CodeSearchNet %s test split …", language)
         ds = None
         for name in ["code-search-net/code_search_net", "code_search_net"]:
             try:
-                ds = load_dataset(name, "python", split="test")
+                ds = load_dataset(name, language, split="test")
                 break
             except Exception as exc:
                 logger.debug("Could not load from %s: %s", name, exc)
@@ -134,7 +134,7 @@ class CodeSearchNetBenchmark(Benchmark):
                     break
 
         if not queries:
-            logger.warning("Using synthetic fallback data for CodeSearchNet.")
+            logger.warning("Using synthetic fallback data for CodeSearchNet (%s).", language)
             fallback_pairs = [
                 (
                     "Extract video ID from URL string",
@@ -160,14 +160,14 @@ class CodeSearchNetBenchmark(Benchmark):
             queries = [q for q, _ in fallback_pairs]
             docs = [d for _, d in fallback_pairs]
 
-        logger.info("Loaded %d query–document pairs from CSN-Python", len(queries))
+        logger.info("Loaded %d query–document pairs from CSN-%s", len(queries), language.capitalize())
         return queries, docs
 
     # -- public API ---------------------------------------------------------
 
     def run(self, encode_fn: EncodeFn, batch_size: int = 32) -> BenchmarkResult:
-        """Encode CSN-Python data and compute retrieval metrics."""
-        queries, docs = self._load_data(self.max_queries)
+        """Encode CSN data and compute retrieval metrics."""
+        queries, docs = self._load_data(self.language, self.max_queries)
 
         t0 = time.perf_counter()
         query_embs = encode_fn(queries, batch_size=batch_size, show_progress=True)

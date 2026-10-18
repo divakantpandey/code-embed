@@ -1,4 +1,4 @@
-"""ONNX export for PyCodeEmbed models.
+"""ONNX export for CodeEmbed models.
 
 Exports a trained PyTorch CodeEncoder to ONNX format with dynamic batch
 and sequence length axes, validates the graph, and verifies numerical parity.

@@ -41,6 +41,8 @@ dependencies = [
     "onnxscript>=0.7.2",
     "optuna>=5.0.0",
     "scalene>=2.3.0",
+    "tree-sitter<0.22",
+    "tree-sitter-languages>=1.10.2",
 ]
 
 [dependency-groups]

@@ -28,7 +28,7 @@ def to_sentence_transformer(model: CodeEncoder) -> SentenceTransformer:
     Parameters
     ----------
     model : CodeEncoder
-        The PyCodeEmbed encoder instance.
+        The CodeEmbed encoder instance.
 
     Returns
     -------

@@ -36,7 +36,7 @@ logging.basicConfig(level=logging.INFO, handlers=[RichHandler()])
 logger = logging.getLogger(__name__)
 console = Console()
 
-app = typer.Typer(help="PyCodeEmbed Hyperparameter Tuning CLI")
+app = typer.Typer(help="CodeEmbed Hyperparameter Tuning CLI")
 
 
 def set_seed(seed: int) -> None:

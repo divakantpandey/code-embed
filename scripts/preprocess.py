@@ -23,7 +23,7 @@ logging.basicConfig(level=logging.INFO, handlers=[RichHandler()])
 logger = logging.getLogger(__name__)
 console = Console()
 
-app = typer.Typer(help="PyCodeEmbed Data Preprocessing CLI")
+app = typer.Typer(help="CodeEmbed Data Preprocessing CLI")
 
 
 @app.command()

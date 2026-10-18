@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.INFO, handlers=[RichHandler()])
 logger = logging.getLogger(__name__)
 console = Console()
 
-app = typer.Typer(help="Publish PyCodeEmbed model to Hugging Face Hub")
+app = typer.Typer(help="Publish CodeEmbed model to Hugging Face Hub")
 
 
 def generate_model_card(repo_id: str, results_path: Path | None = None) -> str:
@@ -62,9 +62,9 @@ metrics:
   - recall
 ---
 
-# 🐍 {repo_id.split("/")[-1]}
+# 💻 {repo_id.split("/")[-1]}
 
-PyCodeEmbed is a lightweight, high-performance Python code embedding model (≤130M parameters) designed for fast natural language code retrieval, semantic search, and code similarity on consumer hardware (CPU or GPU).
+CodeEmbed is a lightweight, high-performance code embedding model (≤130M parameters) designed for fast natural language code retrieval, semantic search, and code similarity on consumer hardware (CPU or GPU).
 
 ## 🚀 Key Features
 
@@ -144,12 +144,12 @@ def push(
         help="Whether to make the repository private",
     ),
     commit_message: str = typer.Option(
-        "Upload PyCodeEmbed model weights and configuration",
+        "Upload CodeEmbed model weights and configuration",
         "--message",
         help="Git commit message for the upload",
     ),
 ) -> None:
-    """Upload trained PyCodeEmbed model, configuration, and model card to Hugging Face Hub."""
+    """Upload trained CodeEmbed model, configuration, and model card to Hugging Face Hub."""
     console.print(f"[bold green]🚀 Preparing to upload to Hugging Face Hub: {repo_id}...[/]")
 
     hf_token = token or os.environ.get("HF_TOKEN")

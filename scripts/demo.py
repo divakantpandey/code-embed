@@ -1,4 +1,4 @@
-"""Interactive demo for code search and semantic similarity using PyCodeEmbed."""
+"""Interactive demo for code search and semantic similarity using CodeEmbed."""
 
 from __future__ import annotations
 
@@ -19,7 +19,7 @@ logging.basicConfig(level=logging.INFO, handlers=[RichHandler()])
 logger = logging.getLogger(__name__)
 console = Console()
 
-app = typer.Typer(help="PyCodeEmbed Interactive Demo CLI")
+app = typer.Typer(help="CodeEmbed Interactive Demo CLI")
 
 SAMPLE_CORPUS = [
     {
@@ -103,7 +103,7 @@ def demo(
     """Run interactive semantic code search demo."""
     console.print(
         Panel.fit(
-            "[bold cyan]🐍 PyCodeEmbed: Python Code Semantic Search Demo[/]\n"
+            "[bold cyan]💻 CodeEmbed: Code Semantic Search Demo[/]\n"
             "[dim]Lightweight, local-first code embeddings for laptop inference[/]",
             border_style="cyan",
         )
