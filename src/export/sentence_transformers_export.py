@@ -14,7 +14,16 @@ from typing import TYPE_CHECKING
 
 import torch
 from sentence_transformers import SentenceTransformer
-from sentence_transformers.models import Dense, Normalize, Pooling, Transformer
+
+try:
+    from sentence_transformers.sentence_transformer.modules import (
+        Dense,
+        Normalize,
+        Pooling,
+        Transformer,
+    )
+except ImportError:
+    from sentence_transformers.models import Dense, Normalize, Pooling, Transformer
 
 if TYPE_CHECKING:
     from src.model.encoder import CodeEncoder
@@ -42,6 +51,9 @@ def to_sentence_transformer(model: CodeEncoder) -> SentenceTransformer:
         model.base_model_name_or_path,
         max_seq_length=model.max_seq_length,
     )
+    # Ensure the transformer module uses the full tokenizer from CodeEncoder
+    if hasattr(model, "tokenizer") and model.tokenizer is not None:
+        transformer.processor = model.tokenizer
 
     # Sync position embeddings extension if needed
     if hasattr(transformer.auto_model, "config") and hasattr(transformer.auto_model, "embeddings"):
@@ -53,8 +65,15 @@ def to_sentence_transformer(model: CodeEncoder) -> SentenceTransformer:
     transformer.auto_model.load_state_dict(model.backbone.state_dict())
 
     # 2. Pooling module
+    if hasattr(transformer, "get_embedding_dimension"):
+        dim = transformer.get_embedding_dimension()
+    elif hasattr(transformer, "get_word_embedding_dimension"):
+        dim = transformer.get_word_embedding_dimension()
+    else:
+        dim = transformer.auto_model.config.hidden_size
+
     pooling = Pooling(
-        transformer.get_word_embedding_dimension(),
+        dim,
         pooling_mode=model.pooling_strategy,
     )
 
@@ -117,6 +136,13 @@ def export_to_sentence_transformer(
 
     st = to_sentence_transformer(model)
     st.save(str(out_path))
+
+    # Also save the tokenizer directly into out_path to ensure complete tokenizer files
+    if hasattr(model, "tokenizer") and model.tokenizer is not None:
+        try:
+            model.tokenizer.save_pretrained(str(out_path))
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("Could not save tokenizer to %s: %s", out_path, exc)
 
     logger.info("Successfully exported SentenceTransformer model to %s", out_path)
     return out_path

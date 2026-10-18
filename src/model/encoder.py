@@ -321,6 +321,7 @@ class CodeEncoder(nn.Module):
         self.backbone.save_pretrained(backbone_dir)
         try:
             self.tokenizer.save_pretrained(save_dir)
+            self.tokenizer.save_pretrained(backbone_dir)
         except Exception as exc:  # noqa: BLE001
             logger.warning("Could not save tokenizer: %s", exc)
 

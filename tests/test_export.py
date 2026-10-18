@@ -64,5 +64,10 @@ class TestExport:
             assert (out_path / "model.safetensors").exists()
 
             st = SentenceTransformer(str(out_path))
+            assert len(st.tokenizer) == len(model.tokenizer)
             embs = st.encode(["def foo(): pass"])
             assert embs.shape == (1, model.embedding_dim)
+
+            import numpy as np
+            ce_embs = model.encode(["def foo(): pass"])
+            np.testing.assert_allclose(embs, ce_embs, atol=1e-4)

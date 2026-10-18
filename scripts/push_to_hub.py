@@ -179,6 +179,11 @@ def push(
         "-m",
         help="Path to local trained model directory",
     ),
+    st_dir: Path = typer.Option(
+        Path("outputs/sentence_transformers"),
+        "--st-dir",
+        help="Path to SentenceTransformer exported model directory",
+    ),
     onnx_dir: Path = typer.Option(
         Path("outputs/onnx"),
         "--onnx-dir",
@@ -220,9 +225,9 @@ def push(
             raise typer.Exit(code=1) from exc
 
     # 2. Check model directory
-    if not model_dir.exists():
+    if not model_dir.exists() and not st_dir.exists():
         console.print(
-            f"[bold red]❌ Model directory '{model_dir}' not found. Run training or evaluation first.[/]"
+            f"[bold red]❌ Neither model directory '{model_dir}' nor '{st_dir}' found. Run training or evaluation first.[/]"
         )
         raise typer.Exit(code=1)
 
@@ -234,13 +239,52 @@ def push(
     with tempfile.TemporaryDirectory() as staging_dir_str:
         staging_dir = Path(staging_dir_str)
 
-        # Copy model files
-        for item in model_dir.iterdir():
-            dest = staging_dir / item.name
-            if item.is_dir():
-                shutil.copytree(item, dest)
-            else:
-                shutil.copy2(item, dest)
+        # Check if sentence_transformers export needs to be created or refreshed
+        regenerate_st = False
+        if not st_dir.exists() or not (st_dir / "modules.json").exists():
+            regenerate_st = True
+        elif (st_dir / "tokenizer.json").exists():
+            import json
+
+            try:
+                with open(st_dir / "tokenizer.json", encoding="utf-8") as f:
+                    tok_data = json.load(f)
+                vocab = tok_data.get("model", {}).get("vocab", {})
+                if len(vocab) < 100:
+                    regenerate_st = True
+            except Exception:  # noqa: BLE001
+                regenerate_st = True
+
+        if regenerate_st and model_dir.exists():
+            console.print(
+                f"[bold blue]Exporting SentenceTransformer model from {model_dir} to {st_dir}...[/]"
+            )
+            from src.model.encoder import CodeEncoder
+
+            model = CodeEncoder.from_pretrained(model_dir)
+            model.save_as_sentence_transformer(st_dir)
+            console.print(f"[green]Successfully exported SentenceTransformer model to {st_dir}[/]")
+
+        # Copy SentenceTransformers files to root of staging directory
+        if st_dir.exists():
+            for item in st_dir.iterdir():
+                dest = staging_dir / item.name
+                if item.name == "README.md":
+                    continue  # Generate comprehensive model card below
+                if item.is_dir():
+                    shutil.copytree(item, dest)
+                else:
+                    shutil.copy2(item, dest)
+
+        # Copy model_dir files (backbone, projection_head.pt, config) for CodeEncoder backwards compatibility
+        if model_dir.exists():
+            for item in model_dir.iterdir():
+                dest = staging_dir / item.name
+                if not dest.exists():
+                    if item.is_dir():
+                        shutil.copytree(item, dest)
+                    else:
+                        shutil.copy2(item, dest)
 
         # Copy ONNX if present
         if onnx_dir and onnx_dir.exists():
@@ -249,13 +293,12 @@ def push(
             for onnx_file in onnx_dir.glob("*.onnx"):
                 shutil.copy2(onnx_file, dest_onnx / onnx_file.name)
 
-        # Create README.md model card if not already in model_dir
+        # Create README.md model card
         readme_path = staging_dir / "README.md"
-        if not readme_path.exists():
-            eval_results = Path("evaluation_reports/results.json")
-            card_content = generate_model_card(repo_id, eval_results)
-            readme_path.write_text(card_content, encoding="utf-8")
-            console.print("[green]Generated Model Card README.md with benchmark metrics.[/]")
+        eval_results = Path("evaluation_reports/results.json")
+        card_content = generate_model_card(repo_id, eval_results)
+        readme_path.write_text(card_content, encoding="utf-8")
+        console.print("[green]Generated Model Card README.md with benchmark metrics.[/]")
 
         # 5. Upload folder
         console.print(f"[bold green]Uploading model folder to {repo_id}...[/]")
