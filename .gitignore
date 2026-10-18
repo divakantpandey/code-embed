@@ -121,7 +121,7 @@ optuna_study.db
 *.sqlite3-journal
 configs/best_tuned_config.yaml
 outputs/tuning/
-docs/plan.md
+docs/
 GEMINI.md
 
 # ==============================================================================
