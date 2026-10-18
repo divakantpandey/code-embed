@@ -75,3 +75,4 @@ jobs:
 
       - name: Run quality gate tests
         run: uv run pytest tests/ -m quality_gate -v
+

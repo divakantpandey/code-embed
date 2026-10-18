@@ -1,0 +1,53 @@
+{
+  "model_name": "outputs/best_model",
+  "timestamp": "2026-10-18T15:00:00.000000+00:00",
+  "retrieval_metrics": {
+    "CodeSearchNet-Python": {
+      "MRR@1": 0.68,
+      "Recall@1": 0.68,
+      "MAP@1": 0.68,
+      "NDCG@1": 0.68,
+      "MRR@5": 0.751,
+      "Recall@5": 0.87,
+      "MAP@5": 0.751,
+      "NDCG@5": 0.7806,
+      "MRR@10": 0.7591,
+      "Recall@10": 0.93,
+      "MAP@10": 0.7591,
+      "NDCG@10": 0.8001,
+      "MRR@100": 0.7613,
+      "Recall@100": 1.0,
+      "MAP@100": 0.7613,
+      "NDCG@100": 0.8137
+    },
+    "CoSQA": {
+      "MRR@1": 0.66,
+      "Recall@1": 0.66,
+      "MAP@1": 0.66,
+      "NDCG@1": 0.66,
+      "MRR@5": 0.729,
+      "Recall@5": 0.83,
+      "MAP@5": 0.729,
+      "NDCG@5": 0.7544,
+      "MRR@10": 0.7304,
+      "Recall@10": 0.84,
+      "MAP@10": 0.7304,
+      "NDCG@10": 0.7578,
+      "MRR@100": 0.7373,
+      "Recall@100": 1.0,
+      "MAP@100": 0.7373,
+      "NDCG@100": 0.792
+    }
+  },
+  "embedding_metrics": {
+    "uniformity": -2.018,
+    "isotropy": 0.0,
+    "intrinsic_dim": 67.0
+  },
+  "metadata": {
+    "latency": {
+      "mean_ms": 20.37,
+      "p95_ms": 21.58
+    }
+  }
+}

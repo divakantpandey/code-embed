@@ -1,0 +1,76 @@
+/Users/divakant01/Repository/pycode-embed/scripts/download_data.py: % of time =
+                        98.16% (7.311s) out of 7.448s.                         
+        ╷       ╷       ╷       ╷       ╷                                      
+        │Time   │–––––– │–––––– │Await  │                                      
+  Line  │Python │native │system │%      │/Users/divakant01/Repository/pycode…  
+╺━━━━━━━┿━━━━━━━┿━━━━━━━┿━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+      1 │       │       │       │       │"""Download and cache all required …  
+      2 │       │       │       │       │                                      
+      3 │       │       │       │       │from __future__ import annotations    
+      4 │       │       │       │       │                                      
+      5 │       │       │       │       │import logging                        
+      6 │       │       │       │       │from pathlib import Path              
+      7 │       │       │       │       │                                      
+      8 │    4% │    4% │   1%  │       │from datasets import load_dataset     
+      9 │       │       │       │       │from rich.console import Console      
+     10 │       │       │       │       │from rich.logging import RichHandler  
+     11 │       │       │       │       │                                      
+     12 │       │       │       │       │logging.basicConfig(level=logging.I…  
+     13 │       │       │       │       │logger = logging.getLogger(__name__)  
+     14 │       │       │       │       │console = Console()                   
+     15 │       │       │       │       │                                      
+     16 │       │       │       │       │                                      
+     17 │       │       │       │       │def download_codesearchnet(output_d…  
+     18 │       │       │       │       │    """Download CodeSearchNet Pytho…  
+     19 │       │       │       │       │    console.print("[bold blue]Downl…  
+     20 │       │       │       │       │    try:                              
+     21 │    3% │       │  44%  │       │        ds = load_dataset("code-sea…  
+     22 │       │       │       │       │    except Exception:                 
+     23 │       │       │       │       │        try:                          
+     24 │       │       │       │       │            ds = load_dataset("code…  
+     25 │       │       │       │       │        except Exception as exc:  #…  
+     26 │       │       │       │       │            logger.warning("Could n…  
+     27 │       │       │       │       │            return                    
+     28 │       │       │       │       │    output_dir.mkdir(parents=True, …  
+     29 │    3% │       │   5%  │       │    ds.save_to_disk(str(output_dir))  
+     30 │       │       │       │       │    logger.info("CodeSearchNet Pyth…  
+     31 │       │       │       │       │                                      
+     32 │       │       │       │       │                                      
+     33 │       │       │       │       │def download_cosqa() -\u003e None:    
+     34 │       │       │       │       │    """Download CoSQA dataset."""     
+     35 │       │       │       │       │    console.print("[bold blue]Downl…  
+     36 │       │       │       │       │    try:                              
+     37 │    2% │       │  30%  │       │        ds = load_dataset("gongliny…  
+     38 │       │       │       │       │        logger.info("CoSQA loaded: …  
+     39 │       │       │       │       │    except Exception:                 
+     40 │       │       │       │       │        try:                          
+     41 │       │       │       │       │            ds = load_dataset("code…  
+     42 │       │       │       │       │            logger.info("CoSQA load…  
+     43 │       │       │       │       │        except Exception as exc:  #…  
+     44 │       │       │       │       │            logger.warning("Could n…  
+     45 │       │       │       │       │                                      
+     46 │       │       │       │       │                                      
+     47 │       │       │       │       │def main() -\u003e None:              
+     48 │       │       │       │       │    """Download all datasets."""      
+     49 │       │       │       │       │    console.print("[bold green]📦 D…  
+     50 │       │       │       │       │    download_codesearchnet(Path("da…  
+     51 │       │       │       │       │    download_cosqa()                  
+     52 │       │       │       │       │    console.print("[bold green]✅ D…  
+     53 │       │       │       │       │                                      
+     54 │       │       │       │       │                                      
+     55 │       │       │       │       │if __name__ == "__main__":            
+     56 │       │       │       │       │    main()                            
+        ╵       ╵       ╵       ╵       ╵                                      
+
+Function summaries:
+  download_codesearchnet (line 17): 6% Python, 1% native
+  download_cosqa (line 33): 2% Python, 0% native
+
+    <exec@_internal.py:64>: % of time =   1.84% (137.308ms) out of 7.448s.     
+        ╷       ╷       ╷       ╷       ╷                                      
+        │Time   │–––––– │–––––– │Await  │                                      
+  Line  │Python │native │system │%      │<exec@_internal.py:64>                
+╺━━━━━━━┿━━━━━━━┿━━━━━━━┿━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+      1 │    1% │       │       │       │from numpy.fft import *               
+        ╵       ╵       ╵       ╵       ╵                                      
+

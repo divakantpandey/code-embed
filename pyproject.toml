@@ -1,7 +1,7 @@
 [project]
-name = "pycode-embed"
+name = "code-embed"
 version = "0.1.0"
-description = "Train a small embedding model for Python code that runs on a laptop"
+description = "Train small embedding models for code that run on a laptop"
 readme = "README.md"
 authors = [
     { name = "Divakant Pandey", email = "divakant01@gmail.com" }
@@ -38,6 +38,9 @@ dependencies = [
     "rich>=13.0",
     "typer>=0.9",
     "datasketch>=1.6",
+    "onnxscript>=0.7.2",
+    "optuna>=5.0.0",
+    "scalene>=2.3.0",
 ]
 
 [dependency-groups]
@@ -52,14 +55,25 @@ dev = [
 ]
 
 [project.scripts]
+code-embed-train = "scripts.train:main"
+code-embed-tune = "scripts.tune:main"
+code-embed-eval = "scripts.evaluate:main"
+code-embed-export = "scripts.export:main"
+code-embed-demo = "scripts.demo:main"
+code-embed-profile = "scripts.profile_runner:main"
 pycode-embed-train = "scripts.train:main"
+pycode-embed-tune = "scripts.tune:main"
 pycode-embed-eval = "scripts.evaluate:main"
 pycode-embed-export = "scripts.export:main"
 pycode-embed-demo = "scripts.demo:main"
+pycode-embed-profile = "scripts.profile_runner:main"
 
 [build-system]
-requires = ["uv_build>=0.12.5,<0.13.0"]
-build-backend = "uv_build"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src", "scripts"]
 
 [tool.ruff]
 target-version = "py310"
@@ -67,7 +81,7 @@ line-length = 100
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "N", "UP", "B", "A", "SIM", "TCH"]
-ignore = ["E501"]
+ignore = ["E501", "B905", "TCH", "B008", "N812"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["src"]
@@ -83,6 +97,6 @@ addopts = "-v --tb=short"
 
 [tool.mypy]
 python_version = "3.10"
-warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
+ignore_missing_imports = true

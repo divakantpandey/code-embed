@@ -1,0 +1,15 @@
+# Scalene Profiler Configuration for PyCodeEmbed
+# High-precision CPU, GPU, and Memory profiler
+
+# Use CPU-only and disable stack tracing by default on macOS to avoid PyTorch OpenMP deadlock
+cpu-only: true
+stacks: false
+
+# Restrict profiling to the repository source modules and scripts
+profile-only: "src,scripts"
+
+# Minimum percentage of CPU time to display in the breakdown
+cpu-percent-threshold: 1
+
+# Profiling report interval (default: inf outputs at program termination)
+profile-interval: inf

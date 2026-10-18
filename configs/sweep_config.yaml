@@ -11,7 +11,7 @@ parameters:
   model.pooling:
     values: ["cls", "mean"]
   model.embedding_dim:
-    values: [128, 256, 384]
+    values: [128, 256, 384, 768, 1500, 1536, 3000, 3072]
   training.stage2.learning_rate:
     distribution: log_uniform_values
     min: 1.0e-6
@@ -29,3 +29,4 @@ early_terminate:
   type: hyperband
   min_iter: 2
   eta: 3
+

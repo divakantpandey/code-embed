@@ -1,0 +1,8 @@
+      <exec@_internal.py:64>: % of time =  86.08% (7.357s) out of 8.546s.      
+        ╷       ╷       ╷       ╷       ╷                                      
+        │Time   │–––––– │–––––– │Await  │                                      
+  Line  │Python │native │system │%      │<exec@_internal.py:64>                
+╺━━━━━━━┿━━━━━━━┿━━━━━━━┿━━━━━━━┿━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+      1 │    4% │   59% │  23%  │       │from numpy.fft import *               
+        ╵       ╵       ╵       ╵       ╵                                      
+

@@ -361,7 +361,7 @@ Create W&B dashboard panels for:
 ## 7. Project Structure
 
 ```
-pycode-embed/
+code-embed/
 ├── configs/
 │   ├── train_config.yaml          # Main training config
 │   ├── eval_config.yaml           # Evaluation settings
@@ -442,13 +442,13 @@ pycode-embed/
 ## 8. Milestone Plan
 
 ### Phase 1: Foundation (Week 1–2)
-- [ ] Set up project structure, linting, CI
-- [ ] Download and preprocess CodeSearchNet Python
-- [ ] Implement data pipeline (dedup, filter, parse)
-- [ ] Implement base bi-encoder model with CLS pooling
-- [ ] Set up W&B + DVC integration
-- [ ] Write unit tests for data pipeline and model forward pass
-- [ ] **Gate**: Data pipeline tests pass, model produces embeddings
+- [x] Set up project structure, linting, CI
+- [x] Download and preprocess CodeSearchNet Python
+- [x] Implement data pipeline (dedup, filter, parse)
+- [x] Implement base bi-encoder model with CLS pooling
+- [x] Set up W&B + DVC integration
+- [x] Write unit tests for data pipeline and model forward pass
+- [x] **Gate**: Data pipeline tests pass, model produces embeddings
 
 ### Phase 2: Training v1 (Week 3–4)
 - [ ] Implement Stage 1 (SimCSE contrastive pre-training)
@@ -499,3 +499,4 @@ pycode-embed/
 | All quality gate tests | ✅ Pass |
 | Experiment tracking coverage | 100% of runs logged |
 | Test coverage (unit + integration) | ≥ 80% |
+
