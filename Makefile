@@ -99,8 +99,8 @@ profile-list: ## List all generated profiling reports
 profile-view: ## View profiling report in web browser (usage: make profile-view RUN=train)
 	uv run python scripts/profile_runner.py view $(RUN)
 
-push-to-hub: ## Push model to Hugging Face Hub (usage: make push-to-hub REPO=username/code-embed)
-	@if [ -z "$(REPO)" ]; then echo "❌ Error: Please specify REPO=username/repo-name (e.g. make push-to-hub REPO=divakant01/code-embed)"; exit 1; fi
+REPO ?= divakantpandey/code-embed
+push-to-hub: ## Push model to Hugging Face Hub (usage: make push-to-hub REPO=divakantpandey/code-embed)
 	uv run python scripts/push_to_hub.py --repo-id $(REPO)
 
 test: ## Run all tests

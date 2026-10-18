@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import pytest
-
 from src.data.languages import LanguageRegistry
 from src.data.preprocessing import has_valid_syntax
 

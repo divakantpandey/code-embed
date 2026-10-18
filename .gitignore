@@ -1,67 +1,201 @@
-# Python
+# ==============================================================================
+# Python & Bytecode
+# ==============================================================================
 __pycache__/
 *.py[cod]
 *$py.class
-*.egg-info/
+*.so
+*.dylib
+*.dll
+
+# ==============================================================================
+# Packaging, Builds & Package Managers
+# ==============================================================================
 dist/
 build/
+*.egg-info/
 *.egg
+.eggs/
+develop-eggs/
+pip-wheel-metadata/
+*.whl
+*.tar.gz
+*.spec
+.installed.cfg
 
-# Virtual environments
+# uv & pip caches
+.uv/
+.uv_cache/
+uv.cache/
+.pip_cache/
+pip-log.txt
+
+# ==============================================================================
+# Virtual Environments
+# ==============================================================================
 .venv/
 venv/
 env/
+ENV/
+env.bak/
+venv.bak/
 
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Environment
+# ==============================================================================
+# Environment Variables & Secrets
+# ==============================================================================
 .env
+.env.*
+!.env.example
+secrets.yaml
+secrets.json
+*.pem
+*.key
 
-# Testing
+# ==============================================================================
+# Testing & Code Quality
+# ==============================================================================
 .pytest_cache/
 htmlcov/
 .coverage
+.coverage.*
 coverage.xml
+coverage.json
+.testmondata*
+.hypothesis/
 
 # Type checking & linting
 .mypy_cache/
+.dmypy.json
+dmypy.json
 .ruff_cache/
+.pytype/
+.pyre/
 
-# Jupyter
+# ==============================================================================
+# Jupyter Notebooks
+# ==============================================================================
 .ipynb_checkpoints/
+*-checkpoint.ipynb
+.virtual_documents/
 
-# ML artifacts
+# ==============================================================================
+# Machine Learning Artifacts & Models
+# ==============================================================================
+# Model weights & serialized formats
 *.pt
 *.pth
-*.onnx
 *.bin
+*.safetensors
+*.onnx
+*.onnx.data
+*.onnx_data
+*.ckpt
+*.h5
+*.hdf5
+*.tflite
+*.pkl
+*.pickle
+*.joblib
+
+# Directories containing trained models, checkpoints & outputs
 checkpoints/
 outputs/
 runs/
 mlruns/
 wandb/
+lightning_logs/
+events.out.tfevents.*
 
-# Data
+# Hugging Face & PyTorch local caches
+.cache/
+hf_cache/
+
+# ==============================================================================
+# Tuning & Databases (Optuna / SQLite)
+# ==============================================================================
+optuna_study.db
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.sqlite3-journal
+configs/best_tuned_config.yaml
+outputs/tuning/
+docs/plan.md
+GEMINI.md
+
+# ==============================================================================
+# Profiling (Scalene)
+# ==============================================================================
+scalene-profile.html
+scalene-profile.json
+scalene.html
+scalene.json
+*.scalene
+
+# ==============================================================================
+# Data & Datasets
+# ==============================================================================
 data/raw/
 data/processed/
 data/cache/
+data/interim/
+data/splits/
 *.parquet
 *.arrow
+*.feather
+*.zarr/
 
-# DVC
+# ==============================================================================
+# DVC (Data Version Control)
+# ==============================================================================
+/.dvc/cache/
+/.dvc/tmp/
+/.dvc/*.local
+/.dvc/plots/
 /data/*.dvc
-*.dvc.lock
 
-# Misc
+# ==============================================================================
+# IDEs & Text Editors
+# ==============================================================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.#*
+#*#
+*.sublime-project
+*.sublime-workspace
+*.iml
+*.iws
+*.ipr
+.cursor/
+
+# ==============================================================================
+# Operating System Files
+# ==============================================================================
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ==============================================================================
+# Miscellaneous & Temporary Files
+# ==============================================================================
 *.log
 tmp/
-
+temp/
+*.tmp
+*.bak
+*.orig

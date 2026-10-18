@@ -57,9 +57,15 @@ def load_dataset_samples(data_dir: str | Path) -> tuple[list[str], list[str]]:
     path = Path(data_dir)
     if path.exists() and (path / "dataset_info.json").exists():
         ds = load_from_disk(str(path))
-        queries = [ex.get("docstring_summary") or ex.get("docstring") or "" for ex in ds]
+        queries = [
+            ex.get("docstring_summary")
+            or ex.get("func_documentation_string")
+            or ex.get("docstring")
+            or ""
+            for ex in ds
+        ]
         codes = [ex.get("func_code_string") or ex.get("code") or "" for ex in ds]
-        valid = [(q, c) for q, c in zip(queries, codes) if q and c]
+        valid = [(q.strip(), c.strip()) for q, c in zip(queries, codes) if q.strip() and c.strip()]
         if valid:
             return [q for q, _ in valid], [c for _, c in valid]
 
@@ -156,6 +162,21 @@ def train(
         codes = codes[:max_samples]
         logger.info("Restricted dataset to %d samples for fast execution/profiling.", max_samples)
 
+    # Train / validation split
+    val_ratio = 0.1
+    if queries and codes:
+        val_size = (
+            min(100, max(2, int(len(queries) * val_ratio)))
+            if len(queries) > 2
+            else min(1, len(queries))
+        )
+        val_queries = queries[:val_size]
+        val_codes = codes[:val_size]
+        train_queries = queries[val_size:] if len(queries) > val_size else queries
+        train_codes = codes[val_size:] if len(codes) > val_size else codes
+    else:
+        val_queries, val_codes, train_queries, train_codes = [], [], [], []
+
     stages_to_run = [stage] if stage else [1, 2, 3]
 
     final_metrics: dict[str, Any] = {}
@@ -208,22 +229,35 @@ def train(
                 )
             )
 
+        eval_dataloader: DataLoader[Any] | None = None
+        eval_fn = None
+
         # Build Stage DataLoader and Loss
         if s == 1:
-            dataset = ContrastiveDataset(codes)
+            dataset = ContrastiveDataset(train_codes)
             collator = EmbeddingCollator(tokenizer=model.tokenizer, max_length=max_seq_length)
             dataloader = DataLoader(
                 dataset, batch_size=batch_size, shuffle=True, collate_fn=collator
             )
+            if val_codes:
+                val_dataset = ContrastiveDataset(val_codes)
+                eval_dataloader = DataLoader(
+                    val_dataset, batch_size=batch_size, shuffle=False, collate_fn=collator
+                )
             loss_fn = InfoNCELoss(temperature=stage_cfg.get("temperature", 0.05))
             trainer_model = model
 
         elif s == 2:
-            dataset = CodeSearchNetDataset(queries=queries, codes=codes)
+            dataset = CodeSearchNetDataset(queries=train_queries, codes=train_codes)
             collator = PairCollator(tokenizer=model.tokenizer, max_length=max_seq_length)
             dataloader = DataLoader(
                 dataset, batch_size=batch_size, shuffle=True, collate_fn=collator
             )
+            if val_queries and val_codes:
+                val_dataset = CodeSearchNetDataset(queries=val_queries, codes=val_codes)
+                eval_dataloader = DataLoader(
+                    val_dataset, batch_size=batch_size, shuffle=False, collate_fn=collator
+                )
             scale = float(stage_cfg.get("scale", 20.0))
             loss_fn = MultipleNegativesRankingLoss(scale=scale)
             trainer_model = model
@@ -251,23 +285,22 @@ def train(
             mrl_encoder = MatryoshkaEncoder(model, dimensions=dimensions)
             trainer_model = mrl_encoder
 
-            dataset = CodeSearchNetDataset(queries=queries, codes=codes)
+            dataset = CodeSearchNetDataset(queries=train_queries, codes=train_codes)
             collator = PairCollator(tokenizer=model.tokenizer, max_length=max_seq_length)
             dataloader = DataLoader(
                 dataset, batch_size=batch_size, shuffle=True, collate_fn=collator
             )
+            if val_queries and val_codes:
+                val_dataset = CodeSearchNetDataset(queries=val_queries, codes=val_codes)
+                eval_dataloader = DataLoader(
+                    val_dataset, batch_size=batch_size, shuffle=False, collate_fn=collator
+                )
             scale = float(stage_cfg.get("scale", 20.0))
             base_loss = MultipleNegativesRankingLoss(scale=scale)
             loss_fn = MatryoshkaLoss(base_loss=base_loss, dimensions=dimensions, weights=weights)
 
         # Build validation evaluation function if queries/codes are available
-        eval_fn = None
-        if s in (2, 3) and queries and codes:
-            val_size = min(
-                100, max(len(queries) if len(queries) < 10 else 5, int(len(queries) * 0.1))
-            )
-            val_queries = queries[:val_size]
-            val_codes = codes[:val_size]
+        if s in (2, 3) and val_queries and val_codes:
 
             def _build_evaluator(target_m: Any, v_q: list[str], v_c: list[str]) -> Any:
                 def _eval() -> dict[str, float]:
@@ -276,9 +309,7 @@ def train(
                         q_embs = enc.encode(v_q, batch_size=32, convert_to_numpy=True)
                         c_embs = enc.encode(v_c, batch_size=32, convert_to_numpy=True)
                         res = compute_retrieval_metrics(q_embs, c_embs, ks=[1, 5, 10])
-                        out = {f"eval/{k}": float(v) for k, v in res.items()}
-                        out["loss"] = 0.0
-                        return out
+                        return {f"eval/{k}": float(v) for k, v in res.items()}
 
                 return _eval
 
@@ -288,6 +319,7 @@ def train(
             model=trainer_model,
             loss_fn=loss_fn,
             train_dataloader=dataloader,
+            eval_dataloader=eval_dataloader,
             eval_fn=eval_fn,
             learning_rate=lr,
             epochs=epochs,

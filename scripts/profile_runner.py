@@ -160,7 +160,9 @@ def build_scalene_cmd(
     target_args: list[str],
     json_output_path: Path,
     *,
-    cpu_only: bool = True,
+    cpu_only: bool = False,
+    memory: bool = True,
+    gpu: bool = True,
     no_stacks: bool = True,
     profile_only: str = "src,scripts",
 ) -> list[str]:
@@ -169,9 +171,16 @@ def build_scalene_cmd(
 
     if CONFIG_FILE.exists():
         cmd.extend(["-c", str(CONFIG_FILE)])
-    else:
-        if cpu_only or sys.platform == "darwin":
+        if cpu_only:
             cmd.append("--cpu-only")
+    else:
+        if cpu_only:
+            cmd.append("--cpu-only")
+        else:
+            if memory:
+                cmd.append("--memory")
+            if gpu:
+                cmd.append("--gpu")
         if no_stacks or sys.platform == "darwin":
             cmd.append("--no-stacks")
         if profile_only:
@@ -388,6 +397,9 @@ def profile_run(
     extra_args: list[str] | None = None,
     reports_dir: Path = REPORTS_DIR,
     *,
+    cpu_only: bool = False,
+    memory: bool = True,
+    gpu: bool = True,
     view_after: bool = False,
 ) -> int:
     """Execute a profiled run and generate all local reports."""
@@ -406,7 +418,13 @@ def profile_run(
         )
         stages = ["preprocess", "train", "evaluate", "export"]
         for st in stages:
-            code = profile_run(st, reports_dir=reports_dir)
+            code = profile_run(
+                st,
+                reports_dir=reports_dir,
+                cpu_only=cpu_only,
+                memory=memory,
+                gpu=gpu,
+            )
             if code != 0:
                 console.print(
                     f"[bold red]❌ Pipeline stage '{st}' failed with code {code}. Stopping.[/]"
@@ -436,6 +454,9 @@ def profile_run(
         target_script=script,
         target_args=args,
         json_output_path=json_output,
+        cpu_only=cpu_only,
+        memory=memory,
+        gpu=gpu,
     )
 
     env = os.environ.copy()
@@ -504,6 +525,17 @@ def view_profile(
             return 1
         json_path = json_files[0]
         run_name = json_path.stem.replace("_profile", "")
+    elif run_name in ("all", "dashboard", "index"):
+        update_reports_index(reports_dir)
+        index_html = reports_dir / "index.html"
+        if index_html.exists():
+            console.print(
+                f"[bold green]🌐 Opening profiling dashboard for all reports in web browser: {index_html}[/]"
+            )
+            webbrowser.open(index_html.resolve().as_uri())
+            return 0
+        console.print(f"[bold red]❌ Dashboard not found in '{reports_dir}'.[/]")
+        return 1
     else:
         json_path = reports_dir / f"{run_name}_profile.json"
         if not json_path.exists():
@@ -610,6 +642,24 @@ def main() -> None:
         help="Directory to save profiling reports",
     )
     run_parser.add_argument(
+        "--cpu-only",
+        action="store_true",
+        default=False,
+        help="Only profile CPU time (disables memory and GPU profiling)",
+    )
+    run_parser.add_argument(
+        "--no-gpu",
+        action="store_true",
+        default=False,
+        help="Disable GPU profiling",
+    )
+    run_parser.add_argument(
+        "--no-memory",
+        action="store_true",
+        default=False,
+        help="Disable memory profiling",
+    )
+    run_parser.add_argument(
         "extra_args",
         nargs=argparse.REMAINDER,
         help="Extra arguments passed to the script (prefix with ---)",
@@ -658,7 +708,13 @@ def main() -> None:
             extra = extra[1:]
         sys.exit(
             profile_run(
-                args.run_name, extra_args=extra, reports_dir=args.reports_dir, view_after=args.view
+                args.run_name,
+                extra_args=extra,
+                reports_dir=args.reports_dir,
+                cpu_only=args.cpu_only,
+                memory=not args.no_memory,
+                gpu=not args.no_gpu,
+                view_after=args.view,
             )
         )
 

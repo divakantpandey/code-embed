@@ -85,7 +85,9 @@ class WandBCallback(Callback):
     def on_eval_end(self, trainer: CodeEmbeddingTrainer, metrics: dict[str, float]) -> None:
         if not self.enabled or self._wandb is None:
             return
-        prefixed = {f"eval/{k}": v for k, v in metrics.items()}
+        prefixed = {
+            k if k.startswith("eval/") else f"eval/{k}": v for k, v in metrics.items()
+        }
         self._wandb.log(prefixed, step=trainer.global_step)
 
     def on_train_end(self, trainer: CodeEmbeddingTrainer) -> None:
@@ -124,7 +126,8 @@ class TensorBoardCallback(Callback):
         if not self.enabled or self.writer is None:
             return
         for k, v in metrics.items():
-            self.writer.add_scalar(f"eval/{k}", v, trainer.global_step)
+            tag = k if k.startswith("eval/") else f"eval/{k}"
+            self.writer.add_scalar(tag, v, trainer.global_step)
 
     def on_train_end(self, trainer: CodeEmbeddingTrainer) -> None:
         if self.writer is not None:

@@ -149,3 +149,55 @@ class TestCodeEmbeddingTrainer:
         assert (ckpt_dir / "projection_head.pt").exists()
         assert (ckpt_dir / "optimizer.pt").exists()
         assert (ckpt_dir / "scheduler.pt").exists()
+
+    def test_evaluation_with_eval_dataloader(self, base_encoder: CodeEncoder) -> None:
+        """Verify that evaluate() computes true non-zero validation loss when eval_dataloader is provided."""
+        train_ds = SyntheticPairDataset(size=8, seq_len=8)
+        val_ds = SyntheticPairDataset(size=4, seq_len=8)
+        train_loader = DataLoader(train_ds, batch_size=4, collate_fn=_collate_batch)
+        val_loader = DataLoader(val_ds, batch_size=4, collate_fn=_collate_batch)
+        loss_fn = MultipleNegativesRankingLoss(scale=20.0)
+
+        trainer = CodeEmbeddingTrainer(
+            model=base_encoder,
+            loss_fn=loss_fn,
+            train_dataloader=train_loader,
+            eval_dataloader=val_loader,
+            epochs=1,
+            device="cpu",
+            fp16=False,
+        )
+        metrics = trainer.evaluate()
+        assert "eval_loss" in metrics
+        assert "loss" in metrics
+        assert metrics["eval_loss"] > 0.0
+        assert metrics["loss"] == metrics["eval_loss"]
+
+    def test_evaluation_with_eval_dataloader_and_eval_fn(
+        self, base_encoder: CodeEncoder
+    ) -> None:
+        """Verify that evaluate() merges both validation loss and custom eval_fn metrics."""
+        train_ds = SyntheticPairDataset(size=8, seq_len=8)
+        val_ds = SyntheticPairDataset(size=4, seq_len=8)
+        train_loader = DataLoader(train_ds, batch_size=4, collate_fn=_collate_batch)
+        val_loader = DataLoader(val_ds, batch_size=4, collate_fn=_collate_batch)
+        loss_fn = MultipleNegativesRankingLoss(scale=20.0)
+
+        def mock_eval_fn() -> dict[str, float]:
+            return {"eval/MRR@10": 0.75, "eval/NDCG@10": 0.85}
+
+        trainer = CodeEmbeddingTrainer(
+            model=base_encoder,
+            loss_fn=loss_fn,
+            train_dataloader=train_loader,
+            eval_dataloader=val_loader,
+            eval_fn=mock_eval_fn,
+            epochs=1,
+            device="cpu",
+            fp16=False,
+        )
+        metrics = trainer.evaluate()
+        assert metrics["loss"] > 0.0
+        assert metrics["eval_loss"] > 0.0
+        assert metrics["eval/MRR@10"] == 0.75
+        assert metrics["eval/NDCG@10"] == 0.85

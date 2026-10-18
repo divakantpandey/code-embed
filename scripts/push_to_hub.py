@@ -22,9 +22,10 @@ app = typer.Typer(help="Publish CodeEmbed model to Hugging Face Hub")
 
 def generate_model_card(repo_id: str, results_path: Path | None = None) -> str:
     """Generate a GitHub-flavored Markdown model card with HF YAML metadata."""
-    mrr_csn = "0.7315"
-    mrr_cosqa = "0.6483"
-    latency = "16.6 ms"
+    mrr_csn = "0.7514"
+    mrr_cosqa = "0.7509"
+    uniformity = "-1.9758"
+    latency = "20.8 ms"
 
     if results_path and results_path.exists():
         import json
@@ -38,9 +39,12 @@ def generate_model_card(repo_id: str, results_path: Path | None = None) -> str:
                 mrr_csn = f"{csn['MRR@10']:.4f}"
             if "MRR@10" in cosqa:
                 mrr_cosqa = f"{cosqa['MRR@10']:.4f}"
+            u = data.get("embedding_metrics", {}).get("uniformity")
+            if u is not None:
+                uniformity = f"{u:.4f}"
             lat = data.get("metadata", {}).get("latency", {}).get("mean_ms")
             if lat:
-                latency = f"{lat:.2f} ms"
+                latency = f"{lat:.1f} ms"
         except Exception as exc:  # noqa: BLE001
             logger.debug("Could not parse results.json: %s", exc)
 
@@ -50,12 +54,13 @@ language:
 tags:
   - code-search
   - code-embeddings
+  - sentence-transformers
   - unixcoder
   - matryoshka
   - onnx
-license: mit
+license: cc-by-nc-4.0
 pipeline_tag: feature-extraction
-library_name: transformers
+library_name: sentence-transformers
 metrics:
   - mrr
   - ndcg
@@ -64,15 +69,16 @@ metrics:
 
 # 💻 {repo_id.split("/")[-1]}
 
-CodeEmbed is a lightweight, high-performance code embedding model (≤130M parameters) designed for fast natural language code retrieval, semantic search, and code similarity on consumer hardware (CPU or GPU).
+CodeEmbed is a lightweight, high-performance code embedding model (≤130M parameters) developed by **[Divakant Pandey](https://github.com/divakantpandey)**. Specialized for semantic code search, code retrieval, and repository navigation with **8,192 token context** and **Matryoshka representation learning**.
 
 ## 🚀 Key Features
 
+- **Author / Maintainer**: [Divakant Pandey](https://github.com/divakantpandey)
 - **Backbone**: UniXcoder bi-encoder architecture with a 2-layer MLP projection head and unit-sphere L2 normalization.
 - **3-Stage Curriculum**:
   1. *SimCSE Unsupervised Contrastive Learning* (uniformity on hypersphere).
   2. *Supervised Fine-Tuning* (MNRL with BM25 lexical hard negatives).
-  3. *Matryoshka Representation Learning (MRL)* (nested dimensions: 64, 128, 256, 384).
+  3. *Matryoshka Representation Learning (MRL)* (nested dimensions: 64, 128, 256, 384, 768, 1536).
 - **Fast CPU Inference**: ~{latency} per code snippet on standard laptop CPU.
 - **Production-Ready**: Exportable to ONNX with dynamic axes and dynamic INT8 quantization.
 
@@ -82,16 +88,17 @@ CodeEmbed is a lightweight, high-performance code embedding model (≤130M param
 | :--- | :--- | :---: | :---: |
 | **CodeSearchNet (Python)** | **MRR@10** | **{mrr_csn}** | **PASS** (≥ 0.65) |
 | **CoSQA (Code Search QA)** | **MRR@10** | **{mrr_cosqa}** | **PASS** (≥ 0.50) |
-| **Hypersphere Uniformity** | **Uniformity** | **-1.3066** | **PASS** (≤ -1.0) |
+| **Hypersphere Uniformity** | **Uniformity** | **{uniformity}** | **PASS** (≤ -1.0) |
 | **Single-Snippet Latency** | **CPU Latency** | **{latency}** | **PASS** (< 100 ms) |
 
 ## 💻 Quickstart Usage
 
+### With Sentence-Transformers:
 ```python
-from src.model.encoder import CodeEncoder
+from sentence_transformers import SentenceTransformer
 
 # Automatically downloads from Hugging Face Hub
-model = CodeEncoder.from_pretrained("{repo_id}")
+model = SentenceTransformer("{repo_id}")
 
 queries = ["binary search in sorted list", "read json file"]
 snippets = [
@@ -99,17 +106,24 @@ snippets = [
     "import json\\ndef load_json(path): return json.load(open(path))"
 ]
 
-query_embeddings = model.encode(queries)
-code_embeddings = model.encode(snippets)
+query_embeddings = model.encode(queries, normalize_embeddings=True)
+code_embeddings = model.encode(snippets, normalize_embeddings=True)
 
 # Compute cosine similarity
 similarities = query_embeddings @ code_embeddings.T
 print(similarities)
 ```
 
-## 📜 License
+## 📜 License & Commercial Inquiries
 
-MIT License.
+This model and its weights are released under the **Creative Commons Attribution-NonCommercial 4.0 International (CC-BY-NC 4.0)** license.
+
+- **Non-Commercial Use:** Free for academic research, education, benchmarking, and non-commercial projects with attribution.
+- **Attribution:** Please cite **Divakant Pandey** and link to [https://github.com/divakantpandey/code-embed](https://github.com/divakantpandey/code-embed).
+- **Commercial Licensing:** To use this model in commercial applications, proprietary software, enterprise APIs, or SaaS products, please contact:
+  - **Maintainer:** Divakant Pandey
+  - **Email:** `divakant01@gmail.com`
+  - **GitHub:** [@divakantpandey](https://github.com/divakantpandey)
 """
 
 

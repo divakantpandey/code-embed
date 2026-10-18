@@ -55,9 +55,15 @@ def load_dataset_samples(data_dir: str | Path) -> tuple[list[str], list[str]]:
         from datasets import load_from_disk
 
         ds = load_from_disk(str(path))
-        queries = [ex.get("docstring_summary") or ex.get("docstring") or "" for ex in ds]
+        queries = [
+            ex.get("docstring_summary")
+            or ex.get("func_documentation_string")
+            or ex.get("docstring")
+            or ""
+            for ex in ds
+        ]
         codes = [ex.get("func_code_string") or ex.get("code") or "" for ex in ds]
-        valid = [(q, c) for q, c in zip(queries, codes) if q and c]
+        valid = [(q.strip(), c.strip()) for q, c in zip(queries, codes) if q.strip() and c.strip()]
         if valid:
             return [q for q, _ in valid], [c for _, c in valid]
 
@@ -295,6 +301,9 @@ def tune(
         "auto", "--device", "-d", help="Compute device ('auto', 'cpu', 'mps', 'cuda')"
     ),
     seed: int = typer.Option(42, "--seed", help="Random seed for search reproducibility"),
+    max_samples: int | None = typer.Option(
+        None, "--max-samples", "-m", help="Limit number of dataset samples for fast tuning sweeps"
+    ),
 ) -> None:
     """Automate hyperparameter optimization using Optuna to find the best configuration."""
     console.print(f"[bold green]🔎 Initializing hyperparameter search for Stage {stage}...[/]")
@@ -315,6 +324,9 @@ def tune(
         )
 
     queries, codes = load_dataset_samples("data/processed")
+    if max_samples is not None and max_samples > 0:
+        queries = queries[:max_samples]
+        codes = codes[:max_samples]
     console.print(f"Loaded {len(queries)} samples for training and validation.")
 
     # Create or resume persistent Optuna study

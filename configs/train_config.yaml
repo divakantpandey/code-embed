@@ -1,5 +1,5 @@
-# PyCodeEmbed Training Configuration
-# See docs/plan.md for full details
+# CodeEmbed Training Configuration
+# Model, data, curriculum stages, and logging configuration
 
 model:
   base: "microsoft/unixcoder-base"

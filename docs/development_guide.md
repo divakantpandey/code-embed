@@ -154,11 +154,11 @@ Authenticate with Hugging Face and upload your trained model weights, SentenceTr
 uv run huggingface-cli login
 
 # 2. Push model to Hub (creates repo if not exists)
-uv run python scripts/push_to_hub.py --repo-id your-username/code-embed
+uv run python scripts/push_to_hub.py --repo-id divakantpandey/code-embed
 
 # Or using the Makefile / run.sh shortcut:
-make push-to-hub REPO=your-username/code-embed
-# Or: ./run.sh push --repo-id your-username/code-embed
+make push-to-hub REPO=divakantpandey/code-embed
+# Or: ./run.sh push --repo-id divakantpandey/code-embed
 ```
 
 ---
@@ -261,7 +261,6 @@ code-embed/
 │   ├── test_export.py         # ONNX export and INT8 quantization tests
 │   └── test_embedding_quality.py # CI Quality gate regression assertions
 └── docs/
-    ├── plan.md                # Comprehensive technical specification & roadmap
     └── development_guide.md   # Setup, training pipeline, and CLI guide
 ```
 

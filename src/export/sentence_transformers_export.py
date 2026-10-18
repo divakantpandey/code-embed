@@ -3,7 +3,7 @@
 Allows any downstream user or vector database (Chroma, Qdrant, LangChain, LlamaIndex)
 to load and run the model via:
     from sentence_transformers import SentenceTransformer
-    model = SentenceTransformer("your-username/code-embed")
+    model = SentenceTransformer("divakantpandey/code-embed")
 """
 
 from __future__ import annotations

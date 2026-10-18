@@ -335,29 +335,35 @@ class CodeEmbeddingTrainer:
     # ------------------------------------------------------------------
 
     def evaluate(self) -> dict[str, float]:
-        """Run evaluation using either custom eval_fn or eval_dataloader."""
+        """Run evaluation using custom eval_fn and/or eval_dataloader."""
         self.model.eval()
+        metrics: dict[str, float] = {}
+
+        if self.eval_dataloader is not None:
+            total_loss = 0.0
+            num_batches = 0
+            with torch.no_grad():
+                for batch in self.eval_dataloader:
+                    loss = self._training_step(batch)
+                    total_loss += loss.item()
+                    num_batches += 1
+            if num_batches > 0:
+                avg_loss = total_loss / num_batches
+                metrics["eval_loss"] = avg_loss
+                metrics["loss"] = avg_loss
 
         if self.eval_fn is not None:
-            metrics = self.eval_fn()
-            if "loss" not in metrics:
-                metrics["loss"] = metrics.get("eval_loss", 0.0)
-            return metrics
+            custom_metrics = self.eval_fn()
+            metrics.update(custom_metrics)
 
-        if self.eval_dataloader is None:
+        if not metrics:
             return {"loss": 0.0}
 
-        total_loss = 0.0
-        num_batches = 0
+        if "loss" not in metrics and "eval_loss" in metrics:
+            metrics["loss"] = metrics["eval_loss"]
+        elif "eval_loss" not in metrics and "loss" in metrics:
+            metrics["eval_loss"] = metrics["loss"]
 
-        with torch.no_grad():
-            for batch in self.eval_dataloader:
-                loss = self._training_step(batch)
-                total_loss += loss.item()
-                num_batches += 1
-
-        avg_loss = total_loss / max(1, num_batches)
-        metrics = {"eval_loss": avg_loss}
         logger.info("Evaluation results: %s", metrics)
         return metrics
 
