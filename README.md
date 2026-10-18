@@ -8,7 +8,7 @@ tags:
   - onnx
   - matryoshka
   - unixcoder
-license: mit
+license: cc-by-nc-4.0
 pipeline_tag: feature-extraction
 library_name: sentence-transformers
 metrics:
@@ -25,7 +25,7 @@ metrics:
 [![Sentence-Transformers](https://img.shields.io/badge/Sentence--Transformers-Compatible-orange.svg)](https://sbert.net)
 [![ONNX Runtime](https://img.shields.io/badge/ONNX-INT8%20Quantized-blue.svg)](https://onnxruntime.ai/)
 [![Context Length: 8192](https://img.shields.io/badge/Context%20Length-8192%20tokens-brightgreen.svg)]()
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![License: CC-BY-NC-4.0](https://img.shields.io/badge/License-CC--BY--NC--4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 
 ---
 
@@ -112,7 +112,7 @@ Evaluated on the CoSQA validation/test split:
 from sentence_transformers import SentenceTransformer
 
 # Load directly from Hugging Face Hub (or local directory)
-model = SentenceTransformer("your-username/code-embed")
+model = SentenceTransformer("divakantpandey/code-embed")
 
 queries = ["binary search algorithm", "read json file safely"]
 code_snippets = [
@@ -135,7 +135,7 @@ import numpy as np
 import onnxruntime as ort
 from transformers import AutoTokenizer
 
-tokenizer = AutoTokenizer.from_pretrained("your-username/code-embed")
+tokenizer = AutoTokenizer.from_pretrained("divakantpandey/code-embed")
 session = ort.InferenceSession("outputs/onnx/model_int8.onnx")
 
 inputs = tokenizer(["def add(a, b): return a + b"], padding=True, return_tensors="np")
@@ -155,7 +155,7 @@ print("ONNX Embedding shape:", embedding.shape)  # (1, 1536)
 from sentence_transformers import SentenceTransformer
 import numpy as np
 
-model = SentenceTransformer("your-username/code-embed")
+model = SentenceTransformer("divakantpandey/code-embed")
 full_embeddings = model.encode(["def add(a, b): return a + b"])  # (1, 1536)
 
 # Truncate to 64 dimensions for ultra-compact indexing
@@ -192,10 +192,16 @@ print("64-dim Compact Embedding:", dim_64.shape)  # (1, 64)
 For detailed setup, environment instructions, and reproduction pipelines, refer to the project documentation:
 
 - 📖 **[Development & Pipeline Guide](docs/development_guide.md)**: One-click runner, 3-stage training, ONNX export, and test suite.
-- 📐 **[Technical Specification & Plan](docs/plan.md)**: Architecture design, data curation formulas, and quality criteria.
 
 ---
 
-## 📄 License
+## 📄 License & Commercial Inquiries
 
-MIT License. See [LICENSE](LICENSE) for details.
+This project and its model weights are licensed under the **Creative Commons Attribution-NonCommercial 4.0 International (CC-BY-NC 4.0)** license. See [LICENSE](LICENSE) for the full text.
+
+- **Non-Commercial & Academic Use:** Free for research, personal study, evaluation, and community benchmarking with appropriate attribution.
+- **Attribution:** When using CodeEmbed in research or projects, please credit **Divakant Pandey** and cite: `https://github.com/divakantpandey/code-embed`.
+- **Commercial Licensing:** For commercial applications, proprietary software integration, or enterprise support, please reach out to:
+  - **Maintainer:** Divakant Pandey
+  - **Email:** `divakant01@gmail.com`
+  - **GitHub:** [@divakantpandey](https://github.com/divakantpandey)
