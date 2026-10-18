@@ -103,7 +103,7 @@ def export_to_sentence_transformer(
     Parameters
     ----------
     model : CodeEncoder
-        The PyCodeEmbed encoder instance.
+        The CodeEmbed encoder instance.
     output_dir : str | Path
         Directory where standard SentenceTransformer files will be written.
 

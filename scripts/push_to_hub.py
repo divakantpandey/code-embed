@@ -1,4 +1,4 @@
-"""CLI script to package and push PyCodeEmbed model to Hugging Face Hub."""
+"""CLI script to package and push CodeEmbed model to Hugging Face Hub."""
 
 from __future__ import annotations
 
