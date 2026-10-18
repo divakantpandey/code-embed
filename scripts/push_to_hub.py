@@ -300,6 +300,26 @@ def push(
         readme_path.write_text(card_content, encoding="utf-8")
         console.print("[green]Generated Model Card README.md with benchmark metrics.[/]")
 
+        # Ensure model_max_length is strictly capped to 8192 for RoBERTa position embeddings
+        for tok_path in [
+            staging_dir / "tokenizer_config.json",
+            staging_dir / "backbone" / "tokenizer_config.json",
+        ]:
+            if tok_path.exists():
+                with open(tok_path, encoding="utf-8") as f:
+                    tcfg = json.load(f)
+                tcfg["model_max_length"] = 8192
+                with open(tok_path, "w", encoding="utf-8") as f:
+                    json.dump(tcfg, f, indent=2)
+
+        sbert_path = staging_dir / "sentence_bert_config.json"
+        if sbert_path.exists():
+            with open(sbert_path, encoding="utf-8") as f:
+                scfg = json.load(f)
+            scfg["max_seq_length"] = 8192
+            with open(sbert_path, "w", encoding="utf-8") as f:
+                json.dump(scfg, f, indent=2)
+
         # 5. Upload folder
         console.print(f"[bold green]Uploading model folder to {repo_id}...[/]")
         api.upload_folder(

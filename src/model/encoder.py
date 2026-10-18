@@ -160,6 +160,8 @@ class CodeEncoder(nn.Module):
         """Return the HuggingFace tokenizer, loading it if not already present."""
         if self._tokenizer is None:
             self._tokenizer = AutoTokenizer.from_pretrained(self.base_model_name_or_path)
+        if hasattr(self._tokenizer, "model_max_length"):
+            self._tokenizer.model_max_length = self.max_seq_length
         return self._tokenizer
 
     # ------------------------------------------------------------------
@@ -320,8 +322,16 @@ class CodeEncoder(nn.Module):
         backbone_dir = save_dir / "backbone"
         self.backbone.save_pretrained(backbone_dir)
         try:
+            self.tokenizer.model_max_length = self.max_seq_length
             self.tokenizer.save_pretrained(save_dir)
             self.tokenizer.save_pretrained(backbone_dir)
+            for p in (save_dir / "tokenizer_config.json", backbone_dir / "tokenizer_config.json"):
+                if p.exists():
+                    with open(p, encoding="utf-8") as f:
+                        tcfg = json.load(f)
+                    tcfg["model_max_length"] = self.max_seq_length
+                    with open(p, "w", encoding="utf-8") as f:
+                        json.dump(tcfg, f, indent=2)
         except Exception as exc:  # noqa: BLE001
             logger.warning("Could not save tokenizer: %s", exc)
 

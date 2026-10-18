@@ -8,6 +8,7 @@ to load and run the model via:
 
 from __future__ import annotations
 
+import json
 import logging
 from pathlib import Path
 from typing import TYPE_CHECKING
@@ -51,9 +52,12 @@ def to_sentence_transformer(model: CodeEncoder) -> SentenceTransformer:
         model.base_model_name_or_path,
         max_seq_length=model.max_seq_length,
     )
-    # Ensure the transformer module uses the full tokenizer from CodeEncoder
+    # Ensure the transformer module uses the full tokenizer from CodeEncoder and sets model_max_length
     if hasattr(model, "tokenizer") and model.tokenizer is not None:
+        model.tokenizer.model_max_length = model.max_seq_length
         transformer.processor = model.tokenizer
+
+    transformer.max_seq_length = model.max_seq_length
 
     # Sync position embeddings extension if needed
     if hasattr(transformer.auto_model, "config") and hasattr(transformer.auto_model, "embeddings"):
@@ -135,14 +139,40 @@ def export_to_sentence_transformer(
     out_path.mkdir(parents=True, exist_ok=True)
 
     st = to_sentence_transformer(model)
+    st.max_seq_length = model.max_seq_length
     st.save(str(out_path))
 
     # Also save the tokenizer directly into out_path to ensure complete tokenizer files
     if hasattr(model, "tokenizer") and model.tokenizer is not None:
+        model.tokenizer.model_max_length = model.max_seq_length
         try:
             model.tokenizer.save_pretrained(str(out_path))
         except Exception as exc:  # noqa: BLE001
             logger.warning("Could not save tokenizer to %s: %s", out_path, exc)
+
+    # Ensure sentence_bert_config.json explicitly stores max_seq_length
+    sbert_config_path = out_path / "sentence_bert_config.json"
+    if sbert_config_path.exists():
+        try:
+            with open(sbert_config_path, encoding="utf-8") as f:
+                sbert_cfg = json.load(f)
+            sbert_cfg["max_seq_length"] = model.max_seq_length
+            with open(sbert_config_path, "w", encoding="utf-8") as f:
+                json.dump(sbert_cfg, f, indent=2)
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("Could not update max_seq_length in %s: %s", sbert_config_path, exc)
+
+    # Ensure tokenizer_config.json explicitly has model_max_length = model.max_seq_length
+    tok_config_path = out_path / "tokenizer_config.json"
+    if tok_config_path.exists():
+        try:
+            with open(tok_config_path, encoding="utf-8") as f:
+                tok_cfg = json.load(f)
+            tok_cfg["model_max_length"] = model.max_seq_length
+            with open(tok_config_path, "w", encoding="utf-8") as f:
+                json.dump(tok_cfg, f, indent=2)
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("Could not update model_max_length in %s: %s", tok_config_path, exc)
 
     logger.info("Successfully exported SentenceTransformer model to %s", out_path)
     return out_path
