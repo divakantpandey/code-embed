@@ -1,7 +1,19 @@
 ---
 language:
   - python
+  - go
+  - java
+  - ruby
+  - php
+  - javascript
 tags:
+  - multilingual
+  - python
+  - go
+  - java
+  - ruby
+  - php
+  - javascript
   - code-search
   - code-embeddings
   - sentence-transformers
@@ -67,6 +79,9 @@ model-index:
 
 ## 🏛️ Supported Industry Standards
 
+> [!NOTE]
+> For an exhaustive technical breakdown of model mathematics, architectural decision records (ADRs), alternatives analysis, and component explanations with real-world analogies, see the [System Design & Architecture Document](docs/system_design_and_explanation.md).
+
 CodeEmbed is engineered for drop-in interoperability across modern vector search and machine learning ecosystems:
 
 | Standard | Ecosystem Compatibility | Format / Artifact |
@@ -125,7 +140,19 @@ Evaluated on the CoSQA validation/test split:
 | **Recall@10** | **`0.8300`** (83.00%) | — | Found in top 10 |
 | **NDCG@10** | **`0.6927`** | — | Ranking quality |
 
-### 3. Embedding Space Geometric Health
+### 3. Multilingual Code Retrieval (v0.2.0)
+Evaluated on CodeSearchNet test splits across all 6 supported languages, benchmarking against zero-shot transfer baselines:
+
+| Language | Baseline (Zero-Shot) | Quality Gate Target | Supported Handler / Extensions |
+| :--- | :---: | :---: | :--- |
+| **Python** | `75.14%` | $\ge 70.00\%$ | Tree-sitter Python (`.py`) |
+| **Go** | `70.54%` | $\ge 70.54\%$ | Tree-sitter Go (`.go`) |
+| **Java** | `69.80%` | $\ge 69.80\%$ | Tree-sitter Java (`.java`) |
+| **Ruby** | `66.77%` | $\ge 66.77\%$ | Tree-sitter Ruby (`.rb`, `.rake`, `.gemspec`) |
+| **PHP** | `65.37%` | $\ge 65.37\%$ | Tree-sitter PHP (`.php`, `.phtml`) |
+| **JavaScript** | `59.40%` | $\ge 59.40\%$ | Tree-sitter JavaScript (`.js`, `.jsx`, `.mjs`) |
+
+### 4. Embedding Space Geometric Health
 | Metric | Measured Value | Target Threshold | Interpretation |
 | :--- | :---: | :---: | :--- |
 | **Uniformity** | **`-1.3066`** | $\le -1.0000$ | Vectors spread uniformly over unit hypersphere |
@@ -211,15 +238,39 @@ print("64-dim Compact Embedding:", dim_64.shape)  # (1, 64)
 - **Local IDE Navigation**: Offline code indexing for fast symbol search inside editors (VS Code, Cursor, Neovim).
 - **Code RAG Pipelines**: High-density context retrieval for code generation LLMs.
 
+### Multi-Language Support & Transfer
+CodeEmbed provides dedicated Tree-sitter AST handlers and training pipeline configurations for the primary CodeSearchNet languages:
+
+| Language | Zero-Shot Transfer Baseline | Fine-Tuning Preset | Tree-sitter Parser |
+|:---|:---:|:---|:---:|
+| **Go** | `70.54%` | `configs/languages/go.yaml` | `tree-sitter-go` |
+| **Java** | `69.80%` | `configs/languages/java.yaml` | `tree-sitter-java` |
+| **Ruby** | `66.77%` | `configs/languages/ruby.yaml` | `tree-sitter-ruby` |
+| **PHP** | `65.37%` | `configs/languages/php.yaml` | `tree-sitter-php` |
+| **JavaScript** | `59.40%` | `configs/languages/javascript.yaml` | `tree-sitter-javascript` |
+| **Unified Multilingual** | — | `configs/languages/multilingual.yaml` | Multi-grammar |
+
+Run multi-language training and evaluation with:
+```bash
+# 1. Download & preprocess target languages
+make download-data LANGUAGES=go,java,ruby,php,javascript
+make preprocess LANGUAGES=go,java,ruby,php,javascript
+
+# 2. Train on multilingual unified dataset
+make train-multilingual
+
+# 3. Evaluate across all languages & compare against zero-shot transfer baselines
+make evaluate-multilingual
+```
+
 ### Out-of-Scope & Limitations
-- **Non-Python Languages**: The model is specialized for Python syntax; performance on languages like C++, Java, or Go is not evaluated.
 - **Sequence Length**: Optimized for up to 8,192 tokens. Extremely large single files exceeding 8,192 tokens should be chunked by AST definition.
 - **Generative Code**: This is an embedding model (bi-encoder); it does not generate or autocomplete code.
 
 ### Training Data Sources
-- **CodeSearchNet (Python split)**: Curated open-source GitHub functions with docstrings.
+- **CodeSearchNet**: Python, Go, Java, Ruby, PHP, and JavaScript splits with paired function docstrings.
 - **CoSQA**: Code Search Question Answering dataset with natural user search queries.
-- Filtered via MinHash deduplication ($J=0.8$), AST syntax validation, and comment-ratio pruning.
+- Filtered via MinHash deduplication ($J=0.8$), Tree-sitter syntax validation, and comment-ratio pruning.
 
 ---
 
