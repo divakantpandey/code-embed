@@ -189,6 +189,7 @@ model-index:
 > On the official **MTEB (Massive Text Embedding Benchmark)**, CodeEmbed v2 ranks in the **Top 5 worldwide in the $\le$ 250M parameter class** while delivering competitive retrieval quality against multi-billion parameter LLMs at a fraction of the compute and memory cost.
 
 [![Hugging Face Model](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-divakantpandey%2Fcode--embed--v2-blue)](https://huggingface.co/divakantpandey/code-embed-v2)
+[![Context Length: 8192](https://img.shields.io/badge/Context%20Length-8192%20tokens-brightgreen.svg)]()
 [![MTEB Results PR #803](https://img.shields.io/badge/MTEB%20PR-%23803%20Passing%20(CI%20Verified)-brightgreen)](https://github.com/embeddings-benchmark/results/pull/803)
 [![MTEB Benchmark Comment](https://img.shields.io/badge/MTEB%20Scores-Verified%20Bot%20Report-success)](https://github.com/embeddings-benchmark/results/pull/803#issuecomment-6335973746)
 [![MTEB Code Leaderboard](https://img.shields.io/badge/Leaderboard-MTEB(Code%2C%20v1)-orange)](https://mteb-leaderboard.hf.space/benchmarks/MTEB(Code,%20v1))
@@ -199,7 +200,7 @@ model-index:
 
 ## 🌟 Key Product Capabilities
 
-* **1,024-Token Context Window**: Ingests complete functions, multi-file code snippets, docstrings, and detailed error tracebacks without truncation.
+* **8,192-Token Long Context Window**: Ingests complete repository files, large multi-function modules, complex classes, and detailed error tracebacks without truncation (via Position Interpolation).
 * **Multilingual Programming Support**: First-class embedding support for **Python, JavaScript, TypeScript, Go, Java, Ruby, PHP, SQL**, and natural language technical English.
 * **Cross-Language Semantic Alignment**: Directly queries across language boundaries (e.g. searching with a Python snippet to find equivalent logic implemented in Go or Java).
 * **Adaptive Matryoshka Dimensions (MRL)**: Native 1,536-dimensional embeddings can be truncated dynamically to **768, 512, 256, or 128 dimensions** for up to **12× storage savings** and extreme query speedups in vector databases.
