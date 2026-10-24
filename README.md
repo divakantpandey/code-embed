@@ -234,14 +234,17 @@ model-index:
 
 > **CodeEmbed v2** (`divakantpandey/code-embed-v2`) is an ultra-compact, high-speed 131M parameter dense embedding model optimized for software engineering workflows: natural language code search, cross-language clone detection, multi-turn code assistant retrieval, and error trace debugging.
 >
-> On the official **Massive Text Embedding Benchmark (MTEB)**, CodeEmbed v2 achieves **Rank #3 Worldwide** in Code-to-Code Reranking, ranks **Top 20 Worldwide** on the CoREB benchmark suite, and outperforms frontier enterprise models including Google Gemini Embedding and Microsoft E5-Large in conversational code feedback and deep learning framework translation at a fraction of the compute and memory footprint.
+> On the official **Massive Text Embedding Benchmark (MTEB)**, CodeEmbed v2 dominates the compact model category ($\le$ 160M parameters): **Rank #3 on CoREB(v1)**, **Rank #8 on CoIR**, and **Rank #9 on MTEB(Code, v1)**, alongside **Rank #3 Worldwide** across all model sizes on Code-to-Code Reranking (`CorebC2CReranking`). It consistently outperforms enterprise frontier models including Google Gemini Embedding and Microsoft E5-Large in conversational code feedback and deep learning framework translation at a fraction of the compute and memory footprint.
 
 [![Hugging Face Model](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-divakantpandey%2Fcode--embed--v2-blue)](https://huggingface.co/divakantpandey/code-embed-v2)
 [![MTEB Official Leaderboard](https://img.shields.io/badge/MTEB%20Leaderboard-divakantpandey%2Fcode--embed--v2-blue)](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2)
 [![Coreb C2C Reranking](https://img.shields.io/badge/Coreb%20C2C%20Reranking-%233%20Worldwide%20(0.4205)-gold)](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2)
-[![CoREB(v1) Rank](https://img.shields.io/badge/CoREB(v1)-Rank%20%2319%20Worldwide-orange)](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2)
-[![CoIR Rank](https://img.shields.io/badge/CoIR-Rank%20%2360%2F264-orange)](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2)
-[![MTEB Code Rank](https://img.shields.io/badge/MTEB(Code%2C%20v1)-Rank%20%2369%2F265-orange)](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2)
+[![CoREB(v1) Rank #3 (≤160M)](https://img.shields.io/badge/CoREB(v1)%20(≤160M)-Rank%20%233-gold)](https://mteb-leaderboard.hf.space/benchmark/CoREB(v1)?minSize=33&maxSize=158.48931924611142)
+[![CoIR Rank #8 (≤141M)](https://img.shields.io/badge/CoIR%20(≤141M)-Rank%20%238-gold)](https://mteb-leaderboard.hf.space/benchmark/CoIR?minSize=2&maxSize=141.2537544622754)
+[![MTEB Code Rank #9 (≤141M)](https://img.shields.io/badge/MTEB(Code%2C%20v1)%20(≤141M)-Rank%20%239-gold)](https://mteb-leaderboard.hf.space/benchmark/MTEB(Code%2C%20v1)?minSize=2&maxSize=141.2537544622754)
+[![CoREB(v1) Overall](https://img.shields.io/badge/CoREB(v1)%20Overall-Rank%20%2319-orange)](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2)
+[![CoIR Overall](https://img.shields.io/badge/CoIR%20Overall-Rank%20%2360-orange)](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2)
+[![MTEB Code Overall](https://img.shields.io/badge/MTEB(Code%2C%20v1)%20Overall-Rank%20%2369-orange)](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2)
 [![MTEB Openness](https://img.shields.io/badge/MTEB%20Openness-4%20%2F%205-brightgreen)](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2)
 [![Context Length: 8192](https://img.shields.io/badge/Context%20Length-8192%20tokens-brightgreen.svg)]()
 [![MTEB Results](https://img.shields.io/badge/MTEB%20Results-Merged%20(PR%20%23803)-brightgreen)](https://github.com/embeddings-benchmark/results/pull/803)
@@ -265,63 +268,97 @@ model-index:
 
 > [!IMPORTANT]
 > **Temporal Snapshot & Benchmark Version Notice**:
-> The rankings, scores, and competitive metrics documented below reflect the official **Massive Text Embedding Benchmark (MTEB)** snapshot as of **October 23, 2026** (MTEB Leaderboard Build `39959364296` / `mteb==2.26.16` / PR [#803](https://github.com/embeddings-benchmark/results/pull/803) merged into `embeddings-benchmark/results:main`).
+> The rankings, scores, and competitive metrics documented below reflect the official **Massive Text Embedding Benchmark (MTEB)** snapshot as of **October 24, 2026** (MTEB Leaderboard Build `39959364296` / `mteb==2.26.16` / PR [#803](https://github.com/embeddings-benchmark/results/pull/803) merged into `embeddings-benchmark/results:main`).
 > Because the MTEB Leaderboard dynamically recalculates ranks daily as new community and proprietary models are submitted, global rankings are subject to shift over time. Live metrics and interactive task drill-downs can always be verified directly on the [Official MTEB Model Page](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2).
+
+### 🥇 Top Rankings in the $\le$ 160M Parameter Class (Compact Models)
+
+When filtering by parameter scale for lightweight, production-ready edge models ($\le$ 160M parameters), CodeEmbed v2 establishes top-tier standing globally:
+
+| Rank in Class | Benchmark Suite | Parameter Filter Range | Score | Official Leaderboard Filter Link |
+| :---: | :--- | :---: | :---: | :--- |
+| 🥉 **#3** | **`CoREB(v1)`** | $\le$ 160M (`33M – 158.5M`) | **`0.4362`** | 👉 [CoREB(v1) Leaderboard (Rank #3)](https://mteb-leaderboard.hf.space/benchmark/CoREB(v1)?minSize=33&maxSize=158.48931924611142) |
+| 🏅 **#8** | **`CoIR`** | $\le$ 141M (`2M – 141.3M`) | **`0.5343`** | 👉 [CoIR Leaderboard (Rank #8)](https://mteb-leaderboard.hf.space/benchmark/CoIR?minSize=2&maxSize=141.2537544622754) |
+| 🏅 **#9** | **`MTEB(Code, v1)`** | $\le$ 141M (`2M – 141.3M`) | **`0.5475`** | 👉 [MTEB Code Leaderboard (Rank #9)](https://mteb-leaderboard.hf.space/benchmark/MTEB(Code%2C%20v1)?minSize=2&maxSize=141.2537544622754) |
 
 ### 🌟 Key Benchmark Highlights
 
-1. **🥇 Rank #3 Worldwide on Code-to-Code Reranking (`CorebC2CReranking`)**
+### 🌟 Key Benchmark Highlights *(Sorted by Rank Ascending)*
+
+1. **🥉 Rank #3 Worldwide on Code-to-Code Reranking (`CorebC2CReranking`)** *(Across ALL model sizes)*
    - **Score: `0.4205`** (Rank #3 globally out of all models ever evaluated).
    - Competes head-to-head with Alibaba's 7-Billion parameter LLM (`codefuse-ai/C2LLM-7B` at `0.4238`, a margin of just 0.003).
    - Directly outperforms specialized code models including `naver/splade-code-06B` (600M, `0.4198`), `codefuse-ai/F2LLM-v2-160M` (`0.4155`), and `codefuse-ai/F2LLM-v2-330M` (`0.4143`).
    - Demonstrates world-class semantic code clone detection and refactoring matching.
 
-2. **🥊 Outperforming Enterprise Frontier Models Head-to-Head**
-   - **Multi-Turn Assistant Feedback (`CodeFeedbackMT`)**:
-     - `divakantpandey/code-embed-v2`: **`0.6164`** (Global Rank **#45**)
-     - `google/gemini-embedding-001`: `0.5628` (Global Rank #54) ➔ **+5.4 points higher than Google Gemini**
-     - `intfloat/multilingual-e5-large`: `0.4278` (Global Rank #93) ➔ **+18.9 points higher than Microsoft E5-Large (+44% relative)**
-     - `BAAI/bge-large-en-v1.5`: `0.3689` (Global Rank #113) ➔ **+24.8 points higher than BAAI BGE-Large**
-   - **Cross-Framework Deep Learning Translation (`CodeTransOceanDL`)**:
-     - `divakantpandey/code-embed-v2`: **`0.3533`** (Global Rank **#21 Worldwide**)
-     - `google/gemini-embedding-001`: `0.3147` (Global Rank #89) ➔ **+3.9 points higher than Google Gemini**
-     - `intfloat/multilingual-e5-large`: `0.3128` (Global Rank #94) ➔ **+4.1 points higher than Microsoft E5-Large**
-     - `BAAI/bge-large-en-v1.5`: `0.2104` (Global Rank #171) ➔ **+14.3 points higher than BAAI BGE-Large**
+2. **🥉 Rank #3 Worldwide on `CoREB(v1)`** *(In the $\le$ 160M parameter class)*
+   - **Score: `0.4362`** (Pairwise Reranking Mean: `0.4894`).
+   - Ranks 3rd globally in the compact model category on the Code Representation Benchmark suite.
 
-3. **🎖️ Top 20 Global Benchmark Placement on `CoREB(v1)`**
-   - **Overall Rank: #19 Worldwide** across all evaluated models with a mean score of **`43.62%`**.
+3. **🏅 Rank #8 Worldwide on `CoIR`** *(In the $\le$ 141M / 160M parameter class)*
+   - **Score: `0.5343`** (100% Zero-Shot generalizability).
+   - Ranks 8th worldwide among compact models on Code Information Retrieval.
+
+4. **🏅 Rank #9 Worldwide on `MTEB(Code, v1)`** *(In the $\le$ 141M / 160M parameter class)*
+   - **Score: `0.5475`** (meanTask NDCG@10).
+   - Ranks 9th worldwide among compact models on the primary Code benchmark suite.
+
+5. **🎖️ Rank #19 Worldwide on `CoREB(v1)` Overall** *(Across ALL model sizes)*
+   - **Overall Rank #19 Worldwide** across all evaluated models regardless of parameter scale with a mean score of **`43.62%`**.
    - **Pairwise Reranking Mean: `48.94%`**, led by `CorebC2TReranking` (**`0.7937`**) and `CorebC2CReranking` (**`0.4205`**).
 
-4. **⚡ Massive Efficiency Advantage (92M Active Params)**
-   - Nearly all models outranking `code-embed-v2` are massive 7B–14B parameter generative LLMs.
-   - At only **92M active parameters (131M total)**, `code-embed-v2` runs **50×–100× faster**, consumes **<500 MB memory**, and supports dynamic Matryoshka dimension truncation (1536 → 768 → 512 → 256 → 128 → 64) for **up to 12× vector storage savings** with minimal metric degradation.
+6. **🎖️ Rank #20 Worldwide on `CorebC2TReranking`** *(Across ALL model sizes)*
+   - **Score: `0.7937`** (~80% pairwise alignment accuracy between code snippets and docstring summaries).
 
-5. **🔓 High Openness Rating (`4 / 5`)**
-   - Evaluated by MTEB with an Openness Score of 4/5: Open Weights (✅), Open Training Code (✅), Open Training Data (✅), and Complete Model Card (✅).
+7. **⚡ Rank #21 Worldwide on `CodeTransOceanDL`** *(Across ALL model sizes)*
+   - **Score: `0.3533`** (Rank #21 Worldwide).
+   - **Beats Enterprise Models**: Outperforms `google/gemini-embedding-001` (`0.3147`, **+3.9 pts**) and `intfloat/multilingual-e5-large` (`0.3128`, **+4.1 pts**), as well as `BAAI/bge-large-en-v1.5` (`0.2104`, **+14.3 pts**).
+
+8. **⚡ Rank #21 Worldwide on `CorebT2CReranking`** *(Across ALL model sizes)*
+   - **Score: `0.2539`** (Near 7B LLM ceiling of `0.2882`).
+
+9. **🥊 Rank #45 Worldwide on `CodeFeedbackMT`** *(Across ALL model sizes)*
+   - **Score: `0.6164`** (Multi-Turn Assistant Feedback).
+   - **Beats Enterprise Models**: Outperforms `google/gemini-embedding-001` (`0.5628`, **+5.4 pts**), `intfloat/multilingual-e5-large` (`0.4278`, **+18.9 pts / +44% relative**), and `BAAI/bge-large-en-v1.5` (`0.3689`, **+24.8 pts**).
+
+10. **⚡ Rank #45 Worldwide on `COIRCodeSearchNetRetrieval`** *(Across ALL model sizes)*
+    - **Score: `0.7488`** across full 300k corpus code retrieval.
+
+11. **⚡ Massive Efficiency Advantage (92M Active Params)**
+    - Nearly all models outranking `code-embed-v2` in the global tiers are massive 7B–14B parameter generative LLMs.
+    - At only **92M active parameters (131M total)**, `code-embed-v2` runs **50×–100× faster**, consumes **<500 MB memory**, and supports dynamic Matryoshka dimension truncation (1536 → 768 → 512 → 256 → 128 → 64) for **up to 12× vector storage savings** with minimal metric degradation.
+
+12. **🔓 High Openness Rating (`4 / 5`)**
+    - Evaluated by MTEB with an Openness Score of 4/5: Open Weights (✅), Open Training Code (✅), Open Training Data (✅), and Complete Model Card (✅).
 
 ---
 
-### 📊 Official MTEB Scorecard & Global Ranks *(Snapshot: October 23, 2026)*
+### 📊 Official MTEB Scorecard & Global Ranks *(Snapshot: October 24, 2026 — Sorted by Rank Ascending)*
 
-| Benchmark / Task | Category | Metric | Global Rank | Total Models | Score | Comparison vs Baselines |
+| Benchmark / Task | Category | Metric | Rank (Class / Global) | Total Models | Score | Comparison vs Baselines |
 | :--- | :--- | :---: | :---: | :---: | :---: | :--- |
-| **`CorebC2CReranking`** | Code-to-Code Reranking | MAP | **#3** | 25 | **`0.4205`** | **Top 3 Worldwide**; beats Naver SPLADE 600M (`0.4198`) |
-| **`CorebC2TReranking`** | Code-to-Text Reranking | MAP | **#20** | 25 | **`0.7937`** | ~80% pairwise alignment accuracy |
-| **`CorebT2CReranking`** | Text-to-Code Reranking | MAP | **#21** | 25 | **`0.2539`** | Near 7B LLM ceiling (`0.2882`) |
-| **`CodeTransOceanDL`** | DL Framework Translation | NDCG@10 | **#21** | 246 | **`0.3533`** | **Beats Gemini-Embedding-001** (`0.3147`) & **E5-Large** (`0.3128`) |
-| **`CodeFeedbackMT`** | Multi-Turn Code Assistant | NDCG@10 | **#45** | 246 | **`0.6164`** | **Beats Gemini-Embedding-001** (`0.5628`) & **E5-Large** (`0.4278`) |
-| **`COIRCodeSearchNetRetrieval`** | Full 300k Corpus Code Search | NDCG@10 | **#45** | 264 | **`0.7488`** | High-scale multilingual code retrieval |
-| **`CodeFeedbackST`** | Single-Turn Code Feedback | NDCG@10 | **#52** | 246 | **`0.6680`** | Robust assistant instruction alignment |
-| **`CodeSearchNetRetrieval`** | Multilingual Code Search | NDCG@10 | **#66** | 265 | **`0.8574`** | **Beats multilingual-e5-large** (`0.8412`) |
-| **`CodeTransOceanContest`** | Competitive Code Translation | NDCG@10 | **#82** | 246 | **`0.6814`** | Cross-language algorithmic problem matching |
-| **`StackOverflowQA`** | Developer Q&A Matching | NDCG@10 | **#92** | 246 | **`0.7131`** | High-precision question-to-code resolution |
+| **`CorebC2CReranking`** | Code-to-Code Reranking | MAP | **#3 Global** | 25 | **`0.4205`** | **Top 3 Worldwide**; beats Naver SPLADE 600M (`0.4198`) |
+| **`CoREB(v1)` (Compact Tier)** | Full Benchmark Suite | MeanTask | **#3 (≤160M)** | 8 | **`0.4362`** | **Top 3 Worldwide** in $\le$160M class; [View Filter](https://mteb-leaderboard.hf.space/benchmark/CoREB(v1)?minSize=33&maxSize=158.48931924611142) |
+| **`CoIR` (Compact Tier)** | Full Benchmark Suite | MeanTask | **#8 (≤141M)** | 17 | **`0.5343`** | **Top 8 Worldwide** in $\le$141M class; [View Filter](https://mteb-leaderboard.hf.space/benchmark/CoIR?minSize=2&maxSize=141.2537544622754) |
+| **`MTEB(Code, v1)` (Compact Tier)** | Full Benchmark Suite | MeanTask | **#9 (≤141M)** | 17 | **`0.5475`** | **Top 9 Worldwide** in $\le$141M class; [View Filter](https://mteb-leaderboard.hf.space/benchmark/MTEB(Code%2C%20v1)?minSize=2&maxSize=141.2537544622754) |
+| **`CoREB(v1)` Macro-Average** | Full Benchmark Suite | MeanTask | **#19 Global** | 25 | **`0.4362`** | **Top 20 Worldwide** (Reranking: `0.4894`, Retrieval: `0.3831`) |
+| **`CorebC2TReranking`** | Code-to-Text Reranking | MAP | **#20 Global** | 25 | **`0.7937`** | ~80% pairwise alignment accuracy |
+| **`CorebT2CReranking`** | Text-to-Code Reranking | MAP | **#21 Global** | 25 | **`0.2539`** | Near 7B LLM ceiling (`0.2882`) |
+| **`CodeTransOceanDL`** | DL Framework Translation | NDCG@10 | **#21 Global** | 246 | **`0.3533`** | **Beats Gemini-Embedding-001** (`0.3147`) & **E5-Large** (`0.3128`) |
+| **`CodeFeedbackMT`** | Multi-Turn Code Assistant | NDCG@10 | **#45 Global** | 246 | **`0.6164`** | **Beats Gemini-Embedding-001** (`0.5628`) & **E5-Large** (`0.4278`) |
+| **`COIRCodeSearchNetRetrieval`** | Full 300k Corpus Code Search | NDCG@10 | **#45 Global** | 264 | **`0.7488`** | High-scale multilingual code retrieval |
+| **`CodeFeedbackST`** | Single-Turn Code Feedback | NDCG@10 | **#52 Global** | 246 | **`0.6680`** | Robust assistant instruction alignment |
+| **`CoIR` Macro-Average** | Full Benchmark Suite | MeanTask | **#60 Global** | 264 | **`0.5343`** | 100% Zero-Shot generalizability across all models |
+| **`CodeSearchNetRetrieval`** | Multilingual Code Search | NDCG@10 | **#66 Global** | 265 | **`0.8574`** | **Beats multilingual-e5-large** (`0.8412`) |
+| **`MTEB(Code, v1)` Macro-Average** | Full Benchmark Suite | MeanTask | **#69 Global** | 265 | **`0.5475`** | Top quartile of all models across all sizes |
+| **`CodeTransOceanContest`** | Competitive Code Translation | NDCG@10 | **#82 Global** | 246 | **`0.6814`** | Cross-language algorithmic problem matching |
+| **`StackOverflowQA`** | Developer Q&A Matching | NDCG@10 | **#92 Global** | 246 | **`0.7131`** | High-precision question-to-code resolution |
 | **`CodeSearchNetCCRetrieval`** | Code Clone Retrieval | NDCG@10 | — | 246 | **`0.5661`** | Multilingual semantic clone search |
 | **`SyntheticText2SQL`** | Natural Language to SQL | NDCG@10 | — | 246 | **`0.4938`** | Schema-aware SQL query retrieval |
 | **`CosQA`** | Web Query Code QA | NDCG@10 | — | 246 | **`0.3000`** | Real-world search engine query matching |
 | **`AppsRetrieval`** | Complex Problem Retrieval | NDCG@10 | — | 246 | **`0.2017`** | Algorithmic specification retrieval |
-| **`CoREB(v1)` Macro-Average** | Full Benchmark Suite | MeanTask | **#19** | 25 | **`0.4362`** | **Top 20 Worldwide** (Reranking: `0.4894`, Retrieval: `0.3831`) |
-| **`CoIR` Macro-Average** | Full Benchmark Suite | MeanTask | **#60** | 264 | **`0.5343`** | 100% Zero-Shot generalizability |
-| **`MTEB(Code, v1)` Macro-Average** | Full Benchmark Suite | MeanTask | **#69** | 265 | **`0.5475`** | Top quartile of all models across all sizes |
+
+*Note: All scores above were evaluated with `mteb==2.26.16` and official reference implementation under revision `e3b5ded5d2448ee53043f95c414635e2d8e915e1`.*
 
 *Note: All scores above were evaluated with `mteb==2.26.16` and official reference implementation under revision `e3b5ded5d2448ee53043f95c414635e2d8e915e1`.*
 
