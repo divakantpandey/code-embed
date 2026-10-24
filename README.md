@@ -28,35 +28,15 @@ model-index:
   - name: code-embed-v2
     results:
       - task:
-          type: retrieval
-          name: MTEB(Code, v1)
-        dataset:
-          name: MTEB(Code, v1) Macro-Average
-          type: mteb/code
-        metrics:
-          - type: ndcg_at_10
-            value: 0.5475
-            name: NDCG@10 (meanTask)
-      - task:
-          type: retrieval
-          name: CoIR
-        dataset:
-          name: CoIR Macro-Average
-          type: mteb/coir
-        metrics:
-          - type: ndcg_at_10
-            value: 0.5343
-            name: NDCG@10 (meanTask)
-      - task:
           type: reranking
           name: CoREB(v1)
         dataset:
-          name: CoREB(v1) Macro-Average
+          name: CoREB(v1) Macro-Average (Rank #3 in <=160M Class)
           type: mteb/coreb
         metrics:
           - type: main_score
             value: 0.4362
-            name: Main Score (meanTask)
+            name: Main Score (Rank #3 in <=160M Class)
           - type: reranking_mean
             value: 0.4894
             name: Reranking Mean
@@ -74,6 +54,26 @@ model-index:
           - type: map
             value: 0.4205
             name: MAP (Rank #3 Worldwide)
+      - task:
+          type: retrieval
+          name: CoIR
+        dataset:
+          name: CoIR Macro-Average (Rank #8 in <=141M Class)
+          type: mteb/coir
+        metrics:
+          - type: ndcg_at_10
+            value: 0.5343
+            name: NDCG@10 (Rank #8 in <=141M Class)
+      - task:
+          type: retrieval
+          name: MTEB(Code, v1)
+        dataset:
+          name: MTEB(Code, v1) Macro-Average (Rank #9 in <=141M Class)
+          type: mteb/code
+        metrics:
+          - type: ndcg_at_10
+            value: 0.5475
+            name: NDCG@10 (Rank #9 in <=141M Class)
       - task:
           type: reranking
           name: Code-to-Text Reranking
