@@ -281,7 +281,7 @@ When filtering by parameter scale for lightweight, production-ready edge models 
 | 🏅 **#8** | **`CoIR`** | $\le$ 141M (`2M – 141.3M`) | **`0.5343`** | 👉 [CoIR Leaderboard (Rank #8)](https://mteb-leaderboard.hf.space/benchmark/CoIR?minSize=2&maxSize=141.2537544622754) |
 | 🏅 **#9** | **`MTEB(Code, v1)`** | $\le$ 141M (`2M – 141.3M`) | **`0.5475`** | 👉 [MTEB Code Leaderboard (Rank #9)](https://mteb-leaderboard.hf.space/benchmark/MTEB(Code%2C%20v1)?minSize=2&maxSize=141.2537544622754) |
 
----
+### 🌟 Key Benchmark Highlights
 
 ### 🌟 Key Benchmark Highlights *(Sorted by Rank Ascending)*
 
