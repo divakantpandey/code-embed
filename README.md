@@ -17,6 +17,8 @@ tags:
   - unixcoder
   - mteb
   - feature-extraction
+  - gguf
+  - onnx
 license: cc-by-nc-4.0
 pipeline_tag: feature-extraction
 library_name: sentence-transformers
@@ -31,12 +33,12 @@ model-index:
           type: reranking
           name: CoREB(v1)
         dataset:
-          name: CoREB(v1) Macro-Average (Rank #3 in <=160M Class)
+          name: CoREB(v1) Macro-Average (Rank #3 in <=150M Category)
           type: mteb/coreb
         metrics:
           - type: main_score
             value: 0.4362
-            name: Main Score (Rank #3 in <=160M Class)
+            name: Main Score (Rank #3 in <=150M Category)
           - type: reranking_mean
             value: 0.4894
             name: Reranking Mean
@@ -58,22 +60,22 @@ model-index:
           type: retrieval
           name: CoIR
         dataset:
-          name: CoIR Macro-Average (Rank #8 in <=141M Class)
+          name: CoIR Macro-Average (Rank #8 in <=150M Category)
           type: mteb/coir
         metrics:
           - type: ndcg_at_10
             value: 0.5343
-            name: NDCG@10 (Rank #8 in <=141M Class)
+            name: NDCG@10 (Rank #8 in <=150M Category)
       - task:
           type: retrieval
           name: MTEB(Code, v1)
         dataset:
-          name: MTEB(Code, v1) Macro-Average (Rank #9 in <=141M Class)
+          name: MTEB(Code, v1) Macro-Average (Rank #9 in <=150M Category)
           type: mteb/code
         metrics:
           - type: ndcg_at_10
             value: 0.5475
-            name: NDCG@10 (Rank #9 in <=141M Class)
+            name: NDCG@10 (Rank #9 in <=150M Category)
       - task:
           type: reranking
           name: Code-to-Text Reranking
@@ -234,14 +236,14 @@ model-index:
 
 > **CodeEmbed v2** (`divakantpandey/code-embed-v2`) is an ultra-compact, high-speed 131M parameter dense embedding model optimized for software engineering workflows: natural language code search, cross-language clone detection, multi-turn code assistant retrieval, and error trace debugging.
 >
-> On the official **Massive Text Embedding Benchmark (MTEB)**, CodeEmbed v2 dominates the compact model category ($\le$ 160M parameters): **Rank #3 on CoREB(v1)**, **Rank #8 on CoIR**, and **Rank #9 on MTEB(Code, v1)**, alongside **Rank #3 Worldwide** across all model sizes on Code-to-Code Reranking (`CorebC2CReranking`). It consistently outperforms enterprise frontier models including Google Gemini Embedding and Microsoft E5-Large in conversational code feedback and deep learning framework translation at a fraction of the compute and memory footprint.
+> On the official **Massive Text Embedding Benchmark (MTEB)**, CodeEmbed v2 dominates the 150M compact model category ($\le$ 150M parameters): **Rank #3 on CoREB(v1)**, **Rank #8 on CoIR**, and **Rank #9 on MTEB(Code, v1)**, alongside **Rank #3 Worldwide** across all model sizes on Code-to-Code Reranking (`CorebC2CReranking`). It consistently outperforms enterprise frontier models including Google Gemini Embedding and Microsoft E5-Large in conversational code feedback and deep learning framework translation at a fraction of the compute and memory footprint.
 
 [![Hugging Face Model](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-divakantpandey%2Fcode--embed--v2-blue)](https://huggingface.co/divakantpandey/code-embed-v2)
 [![MTEB Official Leaderboard](https://img.shields.io/badge/MTEB%20Leaderboard-divakantpandey%2Fcode--embed--v2-blue)](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2)
 [![Coreb C2C Reranking](https://img.shields.io/badge/Coreb%20C2C%20Reranking-%233%20Worldwide%20(0.4205)-gold)](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2)
-[![CoREB(v1) Rank #3 (≤160M)](https://img.shields.io/badge/CoREB(v1)%20(≤160M)-Rank%20%233-gold)](https://mteb-leaderboard.hf.space/benchmark/CoREB(v1)?minSize=33&maxSize=158.48931924611142)
-[![CoIR Rank #8 (≤141M)](https://img.shields.io/badge/CoIR%20(≤141M)-Rank%20%238-gold)](https://mteb-leaderboard.hf.space/benchmark/CoIR?minSize=2&maxSize=141.2537544622754)
-[![MTEB Code Rank #9 (≤141M)](https://img.shields.io/badge/MTEB(Code%2C%20v1)%20(≤141M)-Rank%20%239-gold)](https://mteb-leaderboard.hf.space/benchmark/MTEB(Code%2C%20v1)?minSize=2&maxSize=141.2537544622754)
+[![CoREB(v1) Rank #3 (≤150M)](https://img.shields.io/badge/CoREB(v1)%20(≤150M)-Rank%20%233-gold)](https://mteb-leaderboard.hf.space/benchmark/CoREB(v1)?minSize=33&maxSize=150)
+[![CoIR Rank #8 (≤150M)](https://img.shields.io/badge/CoIR%20(≤150M)-Rank%20%238-gold)](https://mteb-leaderboard.hf.space/benchmark/CoIR?minSize=2&maxSize=150)
+[![MTEB Code Rank #9 (≤150M)](https://img.shields.io/badge/MTEB(Code%2C%20v1)%20(≤150M)-Rank%20%239-gold)](https://mteb-leaderboard.hf.space/benchmark/MTEB(Code%2C%20v1)?minSize=2&maxSize=150)
 [![CoREB(v1) Overall](https://img.shields.io/badge/CoREB(v1)%20Overall-Rank%20%2319-orange)](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2)
 [![CoIR Overall](https://img.shields.io/badge/CoIR%20Overall-Rank%20%2360-orange)](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2)
 [![MTEB Code Overall](https://img.shields.io/badge/MTEB(Code%2C%20v1)%20Overall-Rank%20%2369-orange)](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2)
@@ -271,17 +273,17 @@ model-index:
 > The rankings, scores, and competitive metrics documented below reflect the official **Massive Text Embedding Benchmark (MTEB)** snapshot as of **October 24, 2026** (MTEB Leaderboard Build `39959364296` / `mteb==2.26.16` / PR [#803](https://github.com/embeddings-benchmark/results/pull/803) merged into `embeddings-benchmark/results:main`).
 > Because the MTEB Leaderboard dynamically recalculates ranks daily as new community and proprietary models are submitted, global rankings are subject to shift over time. Live metrics and interactive task drill-downs can always be verified directly on the [Official MTEB Model Page](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2).
 
-### 🥇 Top Rankings in the $\le$ 160M Parameter Class (Compact Models)
+### 🥇 Top Rankings in the $\le$ 150M Parameter Category (Compact Models)
 
-When filtering by parameter scale for lightweight, production-ready edge models ($\le$ 160M parameters), CodeEmbed v2 establishes top-tier standing globally:
+When filtering by parameter scale for lightweight, production-ready edge models ($\le$ 150M category), CodeEmbed v2 establishes top-tier standing globally:
 
-| Rank in Class | Benchmark Suite | Parameter Filter Range | Score | Official Leaderboard Filter Link |
+| Rank in Category | Benchmark Suite | Parameter Category | Score | Official Leaderboard Filter Link |
 | :---: | :--- | :---: | :---: | :--- |
-| 🥉 **#3** | **`CoREB(v1)`** | $\le$ 160M (`33M – 158.5M`) | **`0.4362`** | 👉 [CoREB(v1) Leaderboard (Rank #3)](https://mteb-leaderboard.hf.space/benchmark/CoREB(v1)?minSize=33&maxSize=158.48931924611142) |
-| 🏅 **#8** | **`CoIR`** | $\le$ 141M (`2M – 141.3M`) | **`0.5343`** | 👉 [CoIR Leaderboard (Rank #8)](https://mteb-leaderboard.hf.space/benchmark/CoIR?minSize=2&maxSize=141.2537544622754) |
-| 🏅 **#9** | **`MTEB(Code, v1)`** | $\le$ 141M (`2M – 141.3M`) | **`0.5475`** | 👉 [MTEB Code Leaderboard (Rank #9)](https://mteb-leaderboard.hf.space/benchmark/MTEB(Code%2C%20v1)?minSize=2&maxSize=141.2537544622754) |
+| 🥉 **#3** | **`CoREB(v1)`** | $\le$ 150M Category | **`0.4362`** | 👉 [CoREB(v1) Leaderboard (Rank #3)](https://mteb-leaderboard.hf.space/benchmark/CoREB(v1)?minSize=33&maxSize=150) |
+| 🏅 **#8** | **`CoIR`** | $\le$ 150M Category | **`0.5343`** | 👉 [CoIR Leaderboard (Rank #8)](https://mteb-leaderboard.hf.space/benchmark/CoIR?minSize=2&maxSize=150) |
+| 🏅 **#9** | **`MTEB(Code, v1)`** | $\le$ 150M Category | **`0.5475`** | 👉 [MTEB Code Leaderboard (Rank #9)](https://mteb-leaderboard.hf.space/benchmark/MTEB(Code%2C%20v1)?minSize=2&maxSize=150) |
 
-### 🌟 Key Benchmark Highlights
+---
 
 ### 🌟 Key Benchmark Highlights *(Sorted by Rank Ascending)*
 
@@ -291,17 +293,17 @@ When filtering by parameter scale for lightweight, production-ready edge models 
    - Directly outperforms specialized code models including `naver/splade-code-06B` (600M, `0.4198`), `codefuse-ai/F2LLM-v2-160M` (`0.4155`), and `codefuse-ai/F2LLM-v2-330M` (`0.4143`).
    - Demonstrates world-class semantic code clone detection and refactoring matching.
 
-2. **🥉 Rank #3 Worldwide on `CoREB(v1)`** *(In the $\le$ 160M parameter class)*
+2. **🥉 Rank #3 Worldwide on `CoREB(v1)`** *(In the $\le$ 150M category)*
    - **Score: `0.4362`** (Pairwise Reranking Mean: `0.4894`).
-   - Ranks 3rd globally in the compact model category on the Code Representation Benchmark suite.
+   - Ranks 3rd globally in the 150M compact model category on the Code Representation Benchmark suite.
 
-3. **🏅 Rank #8 Worldwide on `CoIR`** *(In the $\le$ 141M / 160M parameter class)*
+3. **🏅 Rank #8 Worldwide on `CoIR`** *(In the $\le$ 150M category)*
    - **Score: `0.5343`** (100% Zero-Shot generalizability).
-   - Ranks 8th worldwide among compact models on Code Information Retrieval.
+   - Ranks 8th worldwide in the 150M category on Code Information Retrieval.
 
-4. **🏅 Rank #9 Worldwide on `MTEB(Code, v1)`** *(In the $\le$ 141M / 160M parameter class)*
+4. **🏅 Rank #9 Worldwide on `MTEB(Code, v1)`** *(In the $\le$ 150M category)*
    - **Score: `0.5475`** (meanTask NDCG@10).
-   - Ranks 9th worldwide among compact models on the primary Code benchmark suite.
+   - Ranks 9th worldwide in the 150M category on the primary Code benchmark suite.
 
 5. **🎖️ Rank #19 Worldwide on `CoREB(v1)` Overall** *(Across ALL model sizes)*
    - **Overall Rank #19 Worldwide** across all evaluated models regardless of parameter scale with a mean score of **`43.62%`**.
@@ -338,9 +340,9 @@ When filtering by parameter scale for lightweight, production-ready edge models 
 | Benchmark / Task | Category | Metric | Rank (Class / Global) | Total Models | Score | Comparison vs Baselines |
 | :--- | :--- | :---: | :---: | :---: | :---: | :--- |
 | **`CorebC2CReranking`** | Code-to-Code Reranking | MAP | **#3 Global** | 25 | **`0.4205`** | **Top 3 Worldwide**; beats Naver SPLADE 600M (`0.4198`) |
-| **`CoREB(v1)` (Compact Tier)** | Full Benchmark Suite | MeanTask | **#3 (≤160M)** | 8 | **`0.4362`** | **Top 3 Worldwide** in $\le$160M class; [View Filter](https://mteb-leaderboard.hf.space/benchmark/CoREB(v1)?minSize=33&maxSize=158.48931924611142) |
-| **`CoIR` (Compact Tier)** | Full Benchmark Suite | MeanTask | **#8 (≤141M)** | 17 | **`0.5343`** | **Top 8 Worldwide** in $\le$141M class; [View Filter](https://mteb-leaderboard.hf.space/benchmark/CoIR?minSize=2&maxSize=141.2537544622754) |
-| **`MTEB(Code, v1)` (Compact Tier)** | Full Benchmark Suite | MeanTask | **#9 (≤141M)** | 17 | **`0.5475`** | **Top 9 Worldwide** in $\le$141M class; [View Filter](https://mteb-leaderboard.hf.space/benchmark/MTEB(Code%2C%20v1)?minSize=2&maxSize=141.2537544622754) |
+| **`CoREB(v1)` (Compact Tier)** | Full Benchmark Suite | MeanTask | **#3 (≤150M)** | 8 | **`0.4362`** | **Top 3 Worldwide** in $\le$150M category; [View Filter](https://mteb-leaderboard.hf.space/benchmark/CoREB(v1)?minSize=33&maxSize=150) |
+| **`CoIR` (Compact Tier)** | Full Benchmark Suite | MeanTask | **#8 (≤150M)** | 17 | **`0.5343`** | **Top 8 Worldwide** in $\le$150M category; [View Filter](https://mteb-leaderboard.hf.space/benchmark/CoIR?minSize=2&maxSize=150) |
+| **`MTEB(Code, v1)` (Compact Tier)** | Full Benchmark Suite | MeanTask | **#9 (≤150M)** | 17 | **`0.5475`** | **Top 9 Worldwide** in $\le$150M category; [View Filter](https://mteb-leaderboard.hf.space/benchmark/MTEB(Code%2C%20v1)?minSize=2&maxSize=150) |
 | **`CoREB(v1)` Macro-Average** | Full Benchmark Suite | MeanTask | **#19 Global** | 25 | **`0.4362`** | **Top 20 Worldwide** (Reranking: `0.4894`, Retrieval: `0.3831`) |
 | **`CorebC2TReranking`** | Code-to-Text Reranking | MAP | **#20 Global** | 25 | **`0.7937`** | ~80% pairwise alignment accuracy |
 | **`CorebT2CReranking`** | Text-to-Code Reranking | MAP | **#21 Global** | 25 | **`0.2539`** | Near 7B LLM ceiling (`0.2882`) |
@@ -648,6 +650,78 @@ matched_docs = retriever.invoke("how do we prevent DDOS attacks on our API endpo
 for doc in matched_docs:
     print(f"Source: {doc.metadata['file']}")
     print(f"Content: {doc.page_content}")
+```
+
+---
+
+### Example 7: Local Serving with Ollama
+
+Run `code-embed-v2` locally with Ollama (native embed API or OpenAI-compatible endpoint).
+
+> [!NOTE]
+> `code-embed-v2`'s native dimension is **1536-d** (active in SentenceTransformers, ONNX, FastEmbed, and TEI). Ollama/`llama.cpp` executes the 12-layer RoBERTa transformer graph up to layer-norm, outputting the **768-d Matryoshka representation**.
+
+```bash
+# 1. Pull & run directly from Hugging Face
+ollama pull hf.co/divakantpandey/code-embed-v2:code-embed-v2-q8_0.gguf
+
+# Or if pulled from the Ollama registry:
+# ollama pull divakantpandey/code-embed-v2
+
+# 2. Generate embeddings via cURL:
+curl http://localhost:11434/api/embed -d '{
+  "model": "divakantpandey/code-embed-v2",
+  "input": "def binary_search(arr, target):"
+}'
+
+# 3. Query via OpenAI-compatible endpoint (/v1/embeddings):
+curl http://localhost:11434/v1/embeddings \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "divakantpandey/code-embed-v2",
+    "input": "def binary_search(arr, target):"
+  }'
+```
+
+---
+
+### Example 8: High-Performance C++ Inference with `llama.cpp`
+
+Use the Q8_0 GGUF quantized weights for standalone C++ embedding generation or an OpenAI-compatible microservice:
+
+```bash
+# Download GGUF weights (135MB)
+wget https://huggingface.co/divakantpandey/code-embed-v2/resolve/main/code-embed-v2-q8_0.gguf
+
+# Start an OpenAI-compatible embedding server:
+llama-server \
+  -m code-embed-v2-q8_0.gguf \
+  --embedding \
+  -c 8192 \
+  --port 8080
+
+# Query with standard OpenAI Python SDK:
+from openai import OpenAI
+
+client = OpenAI(base_url="http://localhost:8080/v1", api_key="not-needed")
+response = client.embeddings.create(
+    model="code-embed-v2",
+    input="def find_max(nums):"
+)
+print("Vector length:", len(response.data[0].embedding))
+```
+
+---
+
+### Example 9: Production Serving with Text Embeddings Inference (TEI)
+
+For enterprise throughput with dynamic batching and token truncation:
+
+```bash
+# Deploy with Hugging Face TEI (Docker)
+docker run --gpus all -p 8080:80 \
+  ghcr.io/huggingface/text-embeddings-inference:1.5 \
+  --model-id divakantpandey/code-embed-v2
 ```
 
 ---
