@@ -295,30 +295,47 @@ def push(
 
         # Create README.md model card
         readme_path = staging_dir / "README.md"
-        eval_results = Path("evaluation_reports/results.json")
-        card_content = generate_model_card(repo_id, eval_results)
-        readme_path.write_text(card_content, encoding="utf-8")
-        console.print("[green]Generated Model Card README.md with benchmark metrics.[/]")
+        curated_card = st_dir / "README.md"
+        if curated_card.exists():
+            # The curated card carries verified MTEB numbers; the generator only knows v1 eval results.
+            shutil.copy2(curated_card, readme_path)
+            console.print(f"[green]Using curated model card {curated_card}.[/]")
+        else:
+            eval_results = Path("evaluation_reports/results.json")
+            card_content = generate_model_card(repo_id, eval_results)
+            readme_path.write_text(card_content, encoding="utf-8")
+            console.print("[green]Generated Model Card README.md with benchmark metrics.[/]")
 
-        # Ensure model_max_length is strictly capped to 8192 for RoBERTa position embeddings
-        for tok_path in [
-            staging_dir / "tokenizer_config.json",
-            staging_dir / "backbone" / "tokenizer_config.json",
-        ]:
-            if tok_path.exists():
-                with open(tok_path, encoding="utf-8") as f:
-                    tcfg = json.load(f)
-                tcfg["model_max_length"] = 8192
-                with open(tok_path, "w", encoding="utf-8") as f:
-                    json.dump(tcfg, f, indent=2)
+        # RoBERTa reserves padding_idx + 1 position slots, so usable length is max_position_embeddings - 2.
+        # Advertising more than that makes long inputs index past the position table and crash.
+        max_len = None
+        cfg_path = staging_dir / "config.json"
+        if cfg_path.exists():
+            with open(cfg_path, encoding="utf-8") as f:
+                mcfg = json.load(f)
+            if "max_position_embeddings" in mcfg:
+                max_len = int(mcfg["max_position_embeddings"]) - int(mcfg.get("pad_token_id", 1)) - 1
+        if max_len is not None:
+            for tok_path in [
+                staging_dir / "tokenizer_config.json",
+                staging_dir / "backbone" / "tokenizer_config.json",
+            ]:
+                if tok_path.exists():
+                    with open(tok_path, encoding="utf-8") as f:
+                        tcfg = json.load(f)
+                    tcfg["model_max_length"] = max_len
+                    if "max_length" in tcfg:
+                        tcfg["max_length"] = max_len
+                    with open(tok_path, "w", encoding="utf-8") as f:
+                        json.dump(tcfg, f, indent=2)
 
-        sbert_path = staging_dir / "sentence_bert_config.json"
-        if sbert_path.exists():
-            with open(sbert_path, encoding="utf-8") as f:
-                scfg = json.load(f)
-            scfg["max_seq_length"] = 8192
-            with open(sbert_path, "w", encoding="utf-8") as f:
-                json.dump(scfg, f, indent=2)
+            sbert_path = staging_dir / "sentence_bert_config.json"
+            if sbert_path.exists():
+                with open(sbert_path, encoding="utf-8") as f:
+                    scfg = json.load(f)
+                scfg["max_seq_length"] = max_len
+                with open(sbert_path, "w", encoding="utf-8") as f:
+                    json.dump(scfg, f, indent=2)
 
         # 5. Upload folder
         console.print(f"[bold green]Uploading model folder to {repo_id}...[/]")
