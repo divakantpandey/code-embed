@@ -11,7 +11,6 @@ tags:
   - php
   - code-search
   - code-embeddings
-  - multilingual
   - sentence-transformers
   - matryoshka
   - unixcoder
@@ -22,364 +21,341 @@ tags:
 license: cc-by-nc-4.0
 pipeline_tag: feature-extraction
 library_name: sentence-transformers
-metrics:
-  - mrr
-  - ndcg
-  - map
+base_model: microsoft/unixcoder-base
+datasets:
+  - code-search-net/code_search_net
 model-index:
   - name: code-embed-v2
     results:
       - task:
-          type: reranking
-          name: CoREB(v1)
+          type: retrieval
+          name: MTEB(Code, v1)
         dataset:
-          name: CoREB(v1) Macro-Average (Rank #3 in <=150M Category)
-          type: mteb/coreb
-        metrics:
-          - type: main_score
-            value: 0.4362
-            name: Main Score (Rank #3 in <=150M Category)
-          - type: reranking_mean
-            value: 0.4894
-            name: Reranking Mean
-          - type: retrieval_mean
-            value: 0.3831
-            name: Retrieval Mean
-      - task:
-          type: reranking
-          name: Code-to-Code Reranking
-        dataset:
-          name: CorebC2CReranking
-          type: coreb_c2c_reranking
+          name: MTEB(Code, v1) mean over 12 tasks
+          type: mteb/benchmark
           split: test
         metrics:
-          - type: map
-            value: 0.4205
-            name: MAP (Rank #3 Worldwide)
+          - type: main_score
+            value: 0.5475
+            name: mean main_score
       - task:
           type: retrieval
           name: CoIR
         dataset:
-          name: CoIR Macro-Average (Rank #8 in <=150M Category)
-          type: mteb/coir
+          name: CoIR mean over 10 tasks
+          type: mteb/benchmark
+          split: test
         metrics:
-          - type: ndcg_at_10
+          - type: main_score
             value: 0.5343
-            name: NDCG@10 (Rank #8 in <=150M Category)
+            name: mean main_score
       - task:
           type: retrieval
-          name: MTEB(Code, v1)
+          name: CoREB(v1)
         dataset:
-          name: MTEB(Code, v1) Macro-Average (Rank #9 in <=150M Category)
-          type: mteb/code
-        metrics:
-          - type: ndcg_at_10
-            value: 0.5475
-            name: NDCG@10 (Rank #9 in <=150M Category)
-      - task:
-          type: reranking
-          name: Code-to-Text Reranking
-        dataset:
-          name: CorebC2TReranking
-          type: coreb_c2t_reranking
+          name: CoREB(v1) mean over 6 tasks
+          type: mteb/benchmark
           split: test
         metrics:
-          - type: map
-            value: 0.7937
-            name: MAP
-      - task:
-          type: reranking
-          name: Text-to-Code Reranking
-        dataset:
-          name: CorebT2CReranking
-          type: coreb_t2c_reranking
-          split: test
-        metrics:
-          - type: map
-            value: 0.2539
-            name: MAP
+          - type: main_score
+            value: 0.4362
+            name: mean main_score
       - task:
           type: retrieval
-          name: Multi-Turn Feedback
-        dataset:
-          name: CodeFeedbackMT
-          type: code_feedback_mt
-          split: test
-        metrics:
-          - type: ndcg_at_10
-            value: 0.6164
-            name: NDCG@10 (Rank #45 Worldwide)
-      - task:
-          type: retrieval
-          name: Deep Learning Translation
-        dataset:
-          name: CodeTransOceanDL
-          type: code_trans_ocean_dl
-          split: test
-        metrics:
-          - type: ndcg_at_10
-            value: 0.3533
-            name: NDCG@10 (Rank #21 Worldwide)
-      - task:
-          type: retrieval
-          name: Code Search
-        dataset:
-          name: CodeSearchNetRetrieval
-          type: code_search_net
-          split: test
-        metrics:
-          - type: ndcg_at_10
-            value: 0.8574
-            name: NDCG@10
-      - task:
-          type: retrieval
-          name: COIR Code Search
-        dataset:
-          name: COIRCodeSearchNetRetrieval
-          type: coir_code_search_net
-          split: test
-        metrics:
-          - type: ndcg_at_10
-            value: 0.7488
-            name: NDCG@10
-      - task:
-          type: retrieval
-          name: StackOverflow QA
-        dataset:
-          name: StackOverflowQA
-          type: stackoverflow_qa
-          split: test
-        metrics:
-          - type: ndcg_at_10
-            value: 0.7131
-            name: NDCG@10
-      - task:
-          type: retrieval
-          name: Algorithmic Translation
-        dataset:
-          name: CodeTransOceanContest
-          type: code_trans_ocean_contest
-          split: test
-        metrics:
-          - type: ndcg_at_10
-            value: 0.6814
-            name: NDCG@10
-      - task:
-          type: retrieval
-          name: Code Feedback (Single-Turn)
-        dataset:
-          name: CodeFeedbackST
-          type: code_feedback_st
-          split: test
-        metrics:
-          - type: ndcg_at_10
-            value: 0.6680
-            name: NDCG@10
-      - task:
-          type: retrieval
-          name: Code Clone Search
-        dataset:
-          name: CodeSearchNetCCRetrieval
-          type: code_search_net_cc
-          split: test
-        metrics:
-          - type: ndcg_at_10
-            value: 0.5661
-            name: NDCG@10
-      - task:
-          type: retrieval
-          name: Code-to-Text Search
-        dataset:
-          name: CorebC2TRetrieval
-          type: coreb_c2t_retrieval
-          split: test
-        metrics:
-          - type: ndcg_at_10
-            value: 0.6073
-            name: NDCG@10
-      - task:
-          type: retrieval
-          name: Text to SQL
-        dataset:
-          name: SyntheticText2SQL
-          type: synthetic_text2sql
-          split: test
-        metrics:
-          - type: ndcg_at_10
-            value: 0.4938
-            name: NDCG@10
-      - task:
-          type: retrieval
-          name: Code Question Answering
-        dataset:
-          name: CosQA
-          type: cosqa
-          split: test
-        metrics:
-          - type: ndcg_at_10
-            value: 0.3000
-            name: NDCG@10
-      - task:
-          type: retrieval
-          name: Competitive Programming
+          name: AppsRetrieval
         dataset:
           name: AppsRetrieval
-          type: apps_retrieval
+          type: mteb/AppsRetrieval
           split: test
         metrics:
-          - type: ndcg_at_10
+          - type: main_score
             value: 0.2017
-            name: NDCG@10
+            name: main_score (ndcg_at_10 or map)
+      - task:
+          type: retrieval
+          name: COIRCodeSearchNetRetrieval
+        dataset:
+          name: COIRCodeSearchNetRetrieval
+          type: mteb/COIRCodeSearchNetRetrieval
+          split: test
+        metrics:
+          - type: main_score
+            value: 0.7488
+            name: main_score (ndcg_at_10 or map)
+      - task:
+          type: retrieval
+          name: CodeEditSearchRetrieval
+        dataset:
+          name: CodeEditSearchRetrieval
+          type: mteb/CodeEditSearchRetrieval
+          split: train
+        metrics:
+          - type: main_score
+            value: 0.3703
+            name: main_score (ndcg_at_10 or map)
+      - task:
+          type: retrieval
+          name: CodeFeedbackMT
+        dataset:
+          name: CodeFeedbackMT
+          type: mteb/CodeFeedbackMT
+          split: test
+        metrics:
+          - type: main_score
+            value: 0.6164
+            name: main_score (ndcg_at_10 or map)
+      - task:
+          type: retrieval
+          name: CodeFeedbackST
+        dataset:
+          name: CodeFeedbackST
+          type: mteb/CodeFeedbackST
+          split: test
+        metrics:
+          - type: main_score
+            value: 0.6680
+            name: main_score (ndcg_at_10 or map)
+      - task:
+          type: retrieval
+          name: CodeSearchNetCCRetrieval
+        dataset:
+          name: CodeSearchNetCCRetrieval
+          type: mteb/CodeSearchNetCCRetrieval
+          split: test
+        metrics:
+          - type: main_score
+            value: 0.5664
+            name: main_score (ndcg_at_10 or map)
+      - task:
+          type: retrieval
+          name: CodeSearchNetRetrieval
+        dataset:
+          name: CodeSearchNetRetrieval
+          type: mteb/CodeSearchNetRetrieval
+          split: test
+        metrics:
+          - type: main_score
+            value: 0.8574
+            name: main_score (ndcg_at_10 or map)
+      - task:
+          type: retrieval
+          name: CodeTransOceanContest
+        dataset:
+          name: CodeTransOceanContest
+          type: mteb/CodeTransOceanContest
+          split: test
+        metrics:
+          - type: main_score
+            value: 0.6814
+            name: main_score (ndcg_at_10 or map)
+      - task:
+          type: retrieval
+          name: CodeTransOceanDL
+        dataset:
+          name: CodeTransOceanDL
+          type: mteb/CodeTransOceanDL
+          split: test
+        metrics:
+          - type: main_score
+            value: 0.3533
+            name: main_score (ndcg_at_10 or map)
+      - task:
+          type: reranking
+          name: CorebC2CReranking
+        dataset:
+          name: CorebC2CReranking
+          type: mteb/CorebC2CReranking
+          split: test
+        metrics:
+          - type: main_score
+            value: 0.4205
+            name: main_score (ndcg_at_10 or map)
+      - task:
+          type: retrieval
+          name: CorebC2CRetrieval
+        dataset:
+          name: CorebC2CRetrieval
+          type: mteb/CorebC2CRetrieval
+          split: test
+        metrics:
+          - type: main_score
+            value: 0.2750
+            name: main_score (ndcg_at_10 or map)
+      - task:
+          type: reranking
+          name: CorebC2TReranking
+        dataset:
+          name: CorebC2TReranking
+          type: mteb/CorebC2TReranking
+          split: test
+        metrics:
+          - type: main_score
+            value: 0.7937
+            name: main_score (ndcg_at_10 or map)
+      - task:
+          type: retrieval
+          name: CorebC2TRetrieval
+        dataset:
+          name: CorebC2TRetrieval
+          type: mteb/CorebC2TRetrieval
+          split: test
+        metrics:
+          - type: main_score
+            value: 0.6073
+            name: main_score (ndcg_at_10 or map)
+      - task:
+          type: reranking
+          name: CorebT2CReranking
+        dataset:
+          name: CorebT2CReranking
+          type: mteb/CorebT2CReranking
+          split: test
+        metrics:
+          - type: main_score
+            value: 0.2539
+            name: main_score (ndcg_at_10 or map)
+      - task:
+          type: retrieval
+          name: CorebT2CRetrieval
+        dataset:
+          name: CorebT2CRetrieval
+          type: mteb/CorebT2CRetrieval
+          split: test
+        metrics:
+          - type: main_score
+            value: 0.2671
+            name: main_score (ndcg_at_10 or map)
+      - task:
+          type: retrieval
+          name: CosQA
+        dataset:
+          name: CosQA
+          type: mteb/CosQA
+          split: test
+        metrics:
+          - type: main_score
+            value: 0.2997
+            name: main_score (ndcg_at_10 or map)
+      - task:
+          type: retrieval
+          name: StackOverflowQA
+        dataset:
+          name: StackOverflowQA
+          type: mteb/StackOverflowQA
+          split: test
+        metrics:
+          - type: main_score
+            value: 0.7131
+            name: main_score (ndcg_at_10 or map)
+      - task:
+          type: retrieval
+          name: SyntheticText2SQL
+        dataset:
+          name: SyntheticText2SQL
+          type: mteb/SyntheticText2SQL
+          split: test
+        metrics:
+          - type: main_score
+            value: 0.4938
+            name: main_score (ndcg_at_10 or map)
 ---
 
-# 💻 CodeEmbed v2: Multilingual Code & Query Embedding Model (131M)
+# code-embed-v2
 
-> **CodeEmbed v2** (`divakantpandey/code-embed-v2`) is an ultra-compact, high-speed 131M parameter dense embedding model optimized for software engineering workflows: natural language code search, cross-language clone detection, multi-turn code assistant retrieval, and error trace debugging.
->
-> On the official **Massive Text Embedding Benchmark (MTEB)**, CodeEmbed v2 dominates the 150M compact model category ($\le$ 150M parameters): **Rank #3 on CoREB(v1)**, **Rank #8 on CoIR**, and **Rank #9 on MTEB(Code, v1)**, alongside **Rank #3 Worldwide** across all model sizes on Code-to-Code Reranking (`CorebC2CReranking`). It consistently outperforms enterprise frontier models including Google Gemini Embedding and Microsoft E5-Large in conversational code feedback and deep learning framework translation at a fraction of the compute and memory footprint.
+`divakantpandey/code-embed-v2` is a 129.5M-parameter code embedding model fine-tuned from [microsoft/unixcoder-base](https://huggingface.co/microsoft/unixcoder-base) on the CodeSearchNet train split (Python, JavaScript, Go, Java, Ruby, PHP). It maps natural-language queries and functions to 1536-dimensional unit vectors for code search.
 
 [![Hugging Face Model](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-divakantpandey%2Fcode--embed--v2-blue)](https://huggingface.co/divakantpandey/code-embed-v2)
-[![MTEB Official Leaderboard](https://img.shields.io/badge/MTEB%20Leaderboard-divakantpandey%2Fcode--embed--v2-blue)](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2)
-[![Coreb C2C Reranking](https://img.shields.io/badge/Coreb%20C2C%20Reranking-%233%20Worldwide%20(0.4205)-gold)](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2)
-[![CoREB(v1) Rank #3 (≤150M)](https://img.shields.io/badge/CoREB(v1)%20(≤150M)-Rank%20%233-gold)](https://mteb-leaderboard.hf.space/benchmark/CoREB(v1)?minSize=33&maxSize=150)
-[![CoIR Rank #8 (≤150M)](https://img.shields.io/badge/CoIR%20(≤150M)-Rank%20%238-gold)](https://mteb-leaderboard.hf.space/benchmark/CoIR?minSize=2&maxSize=150)
-[![MTEB Code Rank #9 (≤150M)](https://img.shields.io/badge/MTEB(Code%2C%20v1)%20(≤150M)-Rank%20%239-gold)](https://mteb-leaderboard.hf.space/benchmark/MTEB(Code%2C%20v1)?minSize=2&maxSize=150)
-[![CoREB(v1) Overall](https://img.shields.io/badge/CoREB(v1)%20Overall-Rank%20%2319-orange)](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2)
-[![CoIR Overall](https://img.shields.io/badge/CoIR%20Overall-Rank%20%2360-orange)](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2)
-[![MTEB Code Overall](https://img.shields.io/badge/MTEB(Code%2C%20v1)%20Overall-Rank%20%2369-orange)](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2)
-[![MTEB Openness](https://img.shields.io/badge/MTEB%20Openness-4%20%2F%205-brightgreen)](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2)
-[![Context Length: 8192](https://img.shields.io/badge/Context%20Length-8192%20tokens-brightgreen.svg)]()
-[![MTEB Results](https://img.shields.io/badge/MTEB%20Results-Merged%20(PR%20%23803)-brightgreen)](https://github.com/embeddings-benchmark/results/pull/803)
-[![Sentence-Transformers](https://img.shields.io/badge/Sentence--Transformers-Compatible-orange.svg)](https://sbert.net)
+[![MTEB Leaderboard](https://img.shields.io/badge/MTEB%20Leaderboard-code--embed--v2-blue)](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2)
+[![MTEB Results](https://img.shields.io/badge/MTEB%20Results-PR%20%23803-brightgreen)](https://github.com/embeddings-benchmark/results/pull/803)
+[![Context Length: 1024](https://img.shields.io/badge/Context%20Length-1024%20tokens-lightgrey.svg)]()
 [![License: CC-BY-NC-4.0](https://img.shields.io/badge/License-CC--BY--NC--4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 
----
+> [!NOTE]
+> **Model scope**
+>
+> - **Context length:** 1,024 tokens. The model has 1,026 absolute position embeddings and was trained and evaluated at this length; longer inputs are truncated. Revisions published before 2026-11-17 advertised 8,192 tokens and fail on longer inputs, so update to the latest revision if you see `IndexError: index 1026 is out of bounds`.
+> - **Training data:** the CodeSearchNet train split in Python, JavaScript, Go, Java, Ruby and PHP. Scores on `CodeSearchNetRetrieval`, `COIRCodeSearchNetRetrieval` and `CodeSearchNetCCRetrieval` are in-distribution.
+> - **Training setup:** mean pooling, in-batch negatives, and a Matryoshka loss at 64, 128, 256, 384, 768 and 1536 dimensions.
+> - **Not yet measured:** retrieval quality at truncated dimensions and inference latency.
+> - **Parameters:** 129.5M in total, 90.0M excluding the token embedding table.
 
-## 🌟 Key Product Capabilities
+## Model details
 
-* **8,192-Token Long Context Window**: Ingests complete repository files, large multi-function modules, complex classes, and detailed error tracebacks without truncation (via Position Interpolation).
-* **Multilingual Programming Support**: First-class embedding support for **Python, JavaScript, TypeScript, Go, Java, Ruby, PHP, SQL**, and natural language technical English.
-* **Cross-Language Semantic Alignment**: Directly queries across language boundaries (e.g. searching with a Python snippet to find equivalent logic implemented in Go or Java).
-* **Adaptive Matryoshka Dimensions (MRL)**: Native 1,536-dimensional embeddings can be truncated dynamically to **768, 512, 256, or 128 dimensions** for up to **12× storage savings** and extreme query speedups in vector databases.
-* **Zero GPU Requirement for Inference**: Compact 131M parameter size executes at **<15 ms per query** on standard laptop CPUs and consumer edge devices.
-* **Ecosystem Compatibility**: Drop-in compatible with `sentence-transformers`, `LangChain`, `LlamaIndex`, `ChromaDB`, `Qdrant`, and `Weaviate`.
+| | |
+|---|---|
+| Base model | `microsoft/unixcoder-base` (RoBERTa architecture, 12 layers, hidden size 768) |
+| Pooling | Mean over tokens |
+| Head | Linear 768 → 1536, GELU, Linear 1536 → 1536, L2 normalisation |
+| Output dimension | 1536 (trained with a Matryoshka loss at 64, 128, 256, 384, 768, 1536) |
+| Maximum input | 1,024 tokens; longer inputs are truncated |
+| Parameters | 129,471,744 total; 89,984,256 excluding the token embedding table |
+| Training data | CodeSearchNet train split, 6 languages, 1,838,250 docstring–function pairs after filtering and deduplication |
+| Formats | safetensors (Sentence Transformers), ONNX (`model_optimized.onnx`, 135 MB), GGUF Q8_0 (138 MB, see the note under Ollama) |
+| License | CC-BY-NC-4.0 |
 
----
+## Training
 
-## 🏆 Official MTEB Leaderboard Achievements & Scorecard
+Three stages, each one epoch, effective batch 128 (32 × 4 gradient accumulation), bf16 autocast, maximum length 1,024 tokens. Config: [`configs/v2_multilingual_config.yaml`](https://github.com/divakantpandey/code-embed/blob/main/configs/v2_multilingual_config.yaml).
 
-> [!IMPORTANT]
-> **Temporal Snapshot & Benchmark Version Notice**:
-> The rankings, scores, and competitive metrics documented below reflect the official **Massive Text Embedding Benchmark (MTEB)** snapshot as of **October 24, 2026** (MTEB Leaderboard Build `39959364296` / `mteb==2.26.16` / PR [#803](https://github.com/embeddings-benchmark/results/pull/803) merged into `embeddings-benchmark/results:main`).
-> Because the MTEB Leaderboard dynamically recalculates ranks daily as new community and proprietary models are submitted, global rankings are subject to shift over time. Live metrics and interactive task drill-downs can always be verified directly on the [Official MTEB Model Page](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2).
+1. **SimCSE** on functions: two dropout views (p = 0.1) of the same function are positives, temperature 0.05, lr 3e-5.
+2. **Multiple Negatives Ranking Loss** on docstring → function pairs with in-batch negatives only, scale 25, lr 2.7e-5.
+3. **Matryoshka loss** wrapping the same ranking loss at dimensions 64, 128, 256, 384, 768, 1536 with weights 0.10, 0.10, 0.15, 0.15, 0.25, 0.25, lr 1e-5.
 
-### 🥇 Top Rankings in the $\le$ 150M Parameter Category (Compact Models)
+## Evaluation
 
-When filtering by parameter scale for lightweight, production-ready edge models ($\le$ 150M category), CodeEmbed v2 establishes top-tier standing globally:
+Official MTEB results, `mteb` 2.26, model revision `d7759ca2`, merged in [embeddings-benchmark/results#803](https://github.com/embeddings-benchmark/results/pull/803). Evaluation used 1,024 tokens.
 
-| Rank in Category | Benchmark Suite | Parameter Category | Score | Official Leaderboard Filter Link |
-| :---: | :--- | :---: | :---: | :--- |
-| 🥉 **#3** | **`CoREB(v1)`** | $\le$ 150M Category | **`0.4362`** | 👉 [CoREB(v1) Leaderboard (Rank #3)](https://mteb-leaderboard.hf.space/benchmark/CoREB(v1)?minSize=33&maxSize=150) |
-| 🏅 **#8** | **`CoIR`** | $\le$ 150M Category | **`0.5343`** | 👉 [CoIR Leaderboard (Rank #8)](https://mteb-leaderboard.hf.space/benchmark/CoIR?minSize=2&maxSize=150) |
-| 🏅 **#9** | **`MTEB(Code, v1)`** | $\le$ 150M Category | **`0.5475`** | 👉 [MTEB Code Leaderboard (Rank #9)](https://mteb-leaderboard.hf.space/benchmark/MTEB(Code%2C%20v1)?minSize=2&maxSize=150) |
+| Benchmark | Tasks | Mean main score |
+|---|---|---|
+| MTEB(Code, v1) | 12 | 0.5475 |
+| CoIR | 10 | 0.5343 |
+| CoREB(v1) | 6 | 0.4362 |
 
----
+| Task | Metric | Score | Note |
+|---|---|---|---|
+| AppsRetrieval | nDCG@10 | 0.2017 | |
+| CodeEditSearchRetrieval | nDCG@10 | 0.3703 | |
+| CodeFeedbackMT | nDCG@10 | 0.6164 | |
+| CodeFeedbackST | nDCG@10 | 0.6680 | |
+| CodeSearchNetCCRetrieval | nDCG@10 | 0.5664 | in-distribution |
+| CodeSearchNetRetrieval | nDCG@10 | 0.8574 | in-distribution |
+| COIRCodeSearchNetRetrieval | nDCG@10 | 0.7488 | in-distribution |
+| CodeTransOceanContest | nDCG@10 | 0.6814 | |
+| CodeTransOceanDL | nDCG@10 | 0.3533 | |
+| CosQA | nDCG@10 | 0.2997 | |
+| StackOverflowQA | nDCG@10 | 0.7131 | |
+| SyntheticText2SQL | nDCG@10 | 0.4938 | |
+| CorebC2CReranking | MAP | 0.4205 | |
+| CorebC2CRetrieval | nDCG@10 | 0.2750 | |
+| CorebC2TReranking | MAP | 0.7937 | |
+| CorebC2TRetrieval | nDCG@10 | 0.6073 | |
+| CorebT2CReranking | MAP | 0.2539 | |
+| CorebT2CRetrieval | nDCG@10 | 0.2671 | |
 
-### 🌟 Key Benchmark Highlights *(Sorted by Rank Ascending)*
+**Leaderboard position.** On 2026-10-24, filtered to models with at most 150M parameters, the MTEB leaderboard listed this model 3rd on CoREB(v1), 8th on CoIR and 9th on MTEB(Code, v1), and 3rd of 25 models overall on CorebC2CReranking. Ranks change as models are added; check the [live leaderboard](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2).
 
-1. **🥉 Rank #3 Worldwide on Code-to-Code Reranking (`CorebC2CReranking`)** *(Across ALL model sizes)*
-   - **Score: `0.4205`** (Rank #3 globally out of all models ever evaluated).
-   - Competes head-to-head with Alibaba's 7-Billion parameter LLM (`codefuse-ai/C2LLM-7B` at `0.4238`, a margin of just 0.003).
-   - Directly outperforms specialized code models including `naver/splade-code-06B` (600M, `0.4198`), `codefuse-ai/F2LLM-v2-160M` (`0.4155`), and `codefuse-ai/F2LLM-v2-330M` (`0.4143`).
-   - Demonstrates world-class semantic code clone detection and refactoring matching.
+**Zero-shot status.** The model's current mteb metadata declares only `CodeSearchNetRetrieval` as training data, which gives 91% zero-shot on MTEB(Code, v1). `COIRCodeSearchNetRetrieval` and `CodeSearchNetCCRetrieval` are also built from CodeSearchNet. Declaring all three gives 75% zero-shot on MTEB(Code, v1), 80% on CoIR and 100% on CoREB(v1).
 
-2. **🥉 Rank #3 Worldwide on `CoREB(v1)`** *(In the $\le$ 150M category)*
-   - **Score: `0.4362`** (Pairwise Reranking Mean: `0.4894`).
-   - Ranks 3rd globally in the 150M compact model category on the Code Representation Benchmark suite.
+## Limitations
 
-3. **🏅 Rank #8 Worldwide on `CoIR`** *(In the $\le$ 150M category)*
-   - **Score: `0.5343`** (100% Zero-Shot generalizability).
-   - Ranks 8th worldwide in the 150M category on Code Information Retrieval.
+- **Truncated dimensions are untested.** The model was trained with a Matryoshka loss, but retrieval quality at truncated dimensions has not been measured. Validate on your own data before relying on it.
+- **Latency is not benchmarked.**
+- **The GGUF file is not the same embedding.** It outputs the 768-dimensional backbone representation without the projection head, and it has not been evaluated. Do not mix GGUF vectors with Sentence Transformers vectors in one index.
+- **Function-level training only.** Training pairs are single functions with their docstrings, at most 1,024 tokens. Whole files, other languages, and non-docstring queries are out of distribution.
 
-4. **🏅 Rank #9 Worldwide on `MTEB(Code, v1)`** *(In the $\le$ 150M category)*
-   - **Score: `0.5475`** (meanTask NDCG@10).
-   - Ranks 9th worldwide in the 150M category on the primary Code benchmark suite.
+## Usage
 
-5. **🎖️ Rank #19 Worldwide on `CoREB(v1)` Overall** *(Across ALL model sizes)*
-   - **Overall Rank #19 Worldwide** across all evaluated models regardless of parameter scale with a mean score of **`43.62%`**.
-   - **Pairwise Reranking Mean: `48.94%`**, led by `CorebC2TReranking` (**`0.7937`**) and `CorebC2CReranking` (**`0.4205`**).
-
-6. **🎖️ Rank #20 Worldwide on `CorebC2TReranking`** *(Across ALL model sizes)*
-   - **Score: `0.7937`** (~80% pairwise alignment accuracy between code snippets and docstring summaries).
-
-7. **⚡ Rank #21 Worldwide on `CodeTransOceanDL`** *(Across ALL model sizes)*
-   - **Score: `0.3533`** (Rank #21 Worldwide).
-   - **Beats Enterprise Models**: Outperforms `google/gemini-embedding-001` (`0.3147`, **+3.9 pts**) and `intfloat/multilingual-e5-large` (`0.3128`, **+4.1 pts**), as well as `BAAI/bge-large-en-v1.5` (`0.2104`, **+14.3 pts**).
-
-8. **⚡ Rank #21 Worldwide on `CorebT2CReranking`** *(Across ALL model sizes)*
-   - **Score: `0.2539`** (Near 7B LLM ceiling of `0.2882`).
-
-9. **🥊 Rank #45 Worldwide on `CodeFeedbackMT`** *(Across ALL model sizes)*
-   - **Score: `0.6164`** (Multi-Turn Assistant Feedback).
-   - **Beats Enterprise Models**: Outperforms `google/gemini-embedding-001` (`0.5628`, **+5.4 pts**), `intfloat/multilingual-e5-large` (`0.4278`, **+18.9 pts / +44% relative**), and `BAAI/bge-large-en-v1.5` (`0.3689`, **+24.8 pts**).
-
-10. **⚡ Rank #45 Worldwide on `COIRCodeSearchNetRetrieval`** *(Across ALL model sizes)*
-    - **Score: `0.7488`** across full 300k corpus code retrieval.
-
-11. **⚡ Massive Efficiency Advantage (92M Active Params)**
-    - Nearly all models outranking `code-embed-v2` in the global tiers are massive 7B–14B parameter generative LLMs.
-    - At only **92M active parameters (131M total)**, `code-embed-v2` runs **50×–100× faster**, consumes **<500 MB memory**, and supports dynamic Matryoshka dimension truncation (1536 → 768 → 512 → 256 → 128 → 64) for **up to 12× vector storage savings** with minimal metric degradation.
-
-12. **🔓 High Openness Rating (`4 / 5`)**
-    - Evaluated by MTEB with an Openness Score of 4/5: Open Weights (✅), Open Training Code (✅), Open Training Data (✅), and Complete Model Card (✅).
-
----
-
-### 📊 Official MTEB Scorecard & Global Ranks *(Snapshot: October 24, 2026 — Sorted by Rank Ascending)*
-
-| Benchmark / Task | Category | Metric | Rank (Class / Global) | Total Models | Score | Comparison vs Baselines |
-| :--- | :--- | :---: | :---: | :---: | :---: | :--- |
-| **`CorebC2CReranking`** | Code-to-Code Reranking | MAP | **#3 Global** | 25 | **`0.4205`** | **Top 3 Worldwide**; beats Naver SPLADE 600M (`0.4198`) |
-| **`CoREB(v1)` (Compact Tier)** | Full Benchmark Suite | MeanTask | **#3 (≤150M)** | 8 | **`0.4362`** | **Top 3 Worldwide** in $\le$150M category; [View Filter](https://mteb-leaderboard.hf.space/benchmark/CoREB(v1)?minSize=33&maxSize=150) |
-| **`CoIR` (Compact Tier)** | Full Benchmark Suite | MeanTask | **#8 (≤150M)** | 17 | **`0.5343`** | **Top 8 Worldwide** in $\le$150M category; [View Filter](https://mteb-leaderboard.hf.space/benchmark/CoIR?minSize=2&maxSize=150) |
-| **`MTEB(Code, v1)` (Compact Tier)** | Full Benchmark Suite | MeanTask | **#9 (≤150M)** | 17 | **`0.5475`** | **Top 9 Worldwide** in $\le$150M category; [View Filter](https://mteb-leaderboard.hf.space/benchmark/MTEB(Code%2C%20v1)?minSize=2&maxSize=150) |
-| **`CoREB(v1)` Macro-Average** | Full Benchmark Suite | MeanTask | **#19 Global** | 25 | **`0.4362`** | **Top 20 Worldwide** (Reranking: `0.4894`, Retrieval: `0.3831`) |
-| **`CorebC2TReranking`** | Code-to-Text Reranking | MAP | **#20 Global** | 25 | **`0.7937`** | ~80% pairwise alignment accuracy |
-| **`CorebT2CReranking`** | Text-to-Code Reranking | MAP | **#21 Global** | 25 | **`0.2539`** | Near 7B LLM ceiling (`0.2882`) |
-| **`CodeTransOceanDL`** | DL Framework Translation | NDCG@10 | **#21 Global** | 246 | **`0.3533`** | **Beats Gemini-Embedding-001** (`0.3147`) & **E5-Large** (`0.3128`) |
-| **`CodeFeedbackMT`** | Multi-Turn Code Assistant | NDCG@10 | **#45 Global** | 246 | **`0.6164`** | **Beats Gemini-Embedding-001** (`0.5628`) & **E5-Large** (`0.4278`) |
-| **`COIRCodeSearchNetRetrieval`** | Full 300k Corpus Code Search | NDCG@10 | **#45 Global** | 264 | **`0.7488`** | High-scale multilingual code retrieval |
-| **`CodeFeedbackST`** | Single-Turn Code Feedback | NDCG@10 | **#52 Global** | 246 | **`0.6680`** | Robust assistant instruction alignment |
-| **`CoIR` Macro-Average** | Full Benchmark Suite | MeanTask | **#60 Global** | 264 | **`0.5343`** | 100% Zero-Shot generalizability across all models |
-| **`CodeSearchNetRetrieval`** | Multilingual Code Search | NDCG@10 | **#66 Global** | 265 | **`0.8574`** | **Beats multilingual-e5-large** (`0.8412`) |
-| **`MTEB(Code, v1)` Macro-Average** | Full Benchmark Suite | MeanTask | **#69 Global** | 265 | **`0.5475`** | Top quartile of all models across all sizes |
-| **`CodeTransOceanContest`** | Competitive Code Translation | NDCG@10 | **#82 Global** | 246 | **`0.6814`** | Cross-language algorithmic problem matching |
-| **`StackOverflowQA`** | Developer Q&A Matching | NDCG@10 | **#92 Global** | 246 | **`0.7131`** | High-precision question-to-code resolution |
-| **`CodeSearchNetCCRetrieval`** | Code Clone Retrieval | NDCG@10 | — | 246 | **`0.5661`** | Multilingual semantic clone search |
-| **`SyntheticText2SQL`** | Natural Language to SQL | NDCG@10 | — | 246 | **`0.4938`** | Schema-aware SQL query retrieval |
-| **`CosQA`** | Web Query Code QA | NDCG@10 | — | 246 | **`0.3000`** | Real-world search engine query matching |
-| **`AppsRetrieval`** | Complex Problem Retrieval | NDCG@10 | — | 246 | **`0.2017`** | Algorithmic specification retrieval |
-
-*Note: All scores above were evaluated with `mteb==2.26.16` and official reference implementation under revision `e3b5ded5d2448ee53043f95c414635e2d8e915e1`.*
-
-*Note: All scores above were evaluated with `mteb==2.26.16` and official reference implementation under revision `e3b5ded5d2448ee53043f95c414635e2d8e915e1`.*
-
----
-
-## 💻 Production Usage & Complex Examples
-
-### Example 1: Basic Semantic Code Search with `sentence-transformers`
+### Semantic code search with `sentence-transformers`
 
 ```python
 from sentence_transformers import SentenceTransformer
 
-# Load model directly from Hugging Face Hub
 model = SentenceTransformer("divakantpandey/code-embed-v2")
 
 queries = [
     "binary search implementation with edge handling",
     "http json get request with retry logic",
-    "worker pool concurrency pattern using channels"
+    "worker pool concurrency pattern using channels",
 ]
 
 code_candidates = [
@@ -419,36 +395,25 @@ code_candidates = [
     }
     wg.Wait()
     close(results)
-}"""
+}""",
 ]
 
-# Compute dense vectors (1536-dimensional native)
 query_vecs = model.encode(queries, normalize_embeddings=True)
 code_vecs = model.encode(code_candidates, normalize_embeddings=True)
-
-# Pairwise cosine similarity
-similarity_matrix = query_vecs @ code_vecs.T
+similarity = query_vecs @ code_vecs.T
 
 for i, q in enumerate(queries):
-    best_match_idx = similarity_matrix[i].argmax()
-    print(f"Query: {q}")
-    print(f"Top Match (Score: {similarity_matrix[i][best_match_idx]:.4f}):")
-    print(code_candidates[best_match_idx][:100] + "...\n")
+    best = similarity[i].argmax()
+    print(f"{q!r} -> candidate {best} (score {similarity[i][best]:.4f})")
 ```
 
----
-
-### Example 2: Cross-Language Clone & Duplicate Detection
-
-Search across repositories to find functionally identical functions implemented in different programming languages:
+### Code-to-code similarity
 
 ```python
 from sentence_transformers import SentenceTransformer
-import numpy as np
 
 model = SentenceTransformer("divakantpandey/code-embed-v2")
 
-# Reference Python implementation
 reference_python = """
 def quicksort(arr):
     if len(arr) <= 1:
@@ -460,9 +425,7 @@ def quicksort(arr):
     return quicksort(left) + middle + quicksort(right)
 """
 
-# Candidate implementations in different languages
 candidates = [
-    # Candidate A: Quicksort in Go
     """func QuickSort(arr []int) []int {
         if len(arr) <= 1 { return arr }
         pivot := arr[len(arr)/2]
@@ -472,7 +435,6 @@ candidates = [
         }
         return append(append(QuickSort(left), middle...), QuickSort(right)...)
     }""",
-    # Candidate B: Bubble sort in Go (different algorithm)
     """func BubbleSort(arr []int) []int {
         n := len(arr)
         for i := 0; i < n-1; i++ {
@@ -481,26 +443,23 @@ candidates = [
             }
         }
         return arr
-    }"""
+    }""",
 ]
 
-ref_emb = model.encode(reference_python, normalize_embeddings=True)
-cand_embs = model.encode(candidates, normalize_embeddings=True)
-
-scores = cand_embs @ ref_emb
-print("Candidate A (Go Quicksort) Clone Similarity:", scores[0]) # High similarity (>0.85)
-print("Candidate B (Go Bubble Sort) Clone Similarity:", scores[1]) # Significantly lower
+ref = model.encode(reference_python, normalize_embeddings=True)
+cands = model.encode(candidates, normalize_embeddings=True)
+print(cands @ ref)
 ```
 
----
+The model was not trained on cross-language pairs. Code-to-code scores across languages come from the shared docstring-to-code objective; check them on your own data.
 
-### Example 3: Two-Stage Coarse-to-Fine Retrieval (Matryoshka MRL)
+### Truncated embeddings
 
-Use 128-dimensional truncated embeddings for fast initial database scanning, then rerank the top candidates with full 1536-dimensional vectors:
+The model was trained with a Matryoshka loss at 64, 128, 256, 384, 768 and 1536 dimensions, so leading prefixes of the vector can be used as smaller embeddings. Quality at each size has not been measured.
 
 ```python
-from sentence_transformers import SentenceTransformer
 import numpy as np
+from sentence_transformers import SentenceTransformer
 
 model = SentenceTransformer("divakantpandey/code-embed-v2")
 
@@ -509,239 +468,116 @@ corpus = [
     "import jwt, datetime\ndef make_token(uid): return jwt.encode({'sub': uid, 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)}, 'secret')",
     "import hashlib\ndef hash_password(pwd): return hashlib.sha256(pwd.encode()).hexdigest()",
     "def connect_db(): return psycopg2.connect('dbname=app user=postgres')",
-    "import jwt\ndef decode_token(tok): return jwt.decode(tok, 'secret', algorithms=['HS256'])"
-] * 250  # 1,000 document simulated corpus
-
-# --- STAGE 1: Coarse Filtering (128 Dimensions -> 12x storage & speed savings) ---
-coarse_query = model.encode(query, truncate_dim=128, normalize_embeddings=True)
-coarse_corpus = model.encode(corpus, truncate_dim=128, normalize_embeddings=True)
-
-# Fast candidate selection (top 10)
-coarse_scores = coarse_corpus @ coarse_query
-top_10_indices = np.argsort(coarse_scores)[-10:][::-1]
-
-# --- STAGE 2: Fine Reranking (1536 Dimensions) ---
-top_candidates = [corpus[idx] for idx in top_10_indices]
-fine_query = model.encode(query, truncate_dim=1536, normalize_embeddings=True)
-fine_candidates = model.encode(top_candidates, truncate_dim=1536, normalize_embeddings=True)
-
-fine_scores = fine_candidates @ fine_query
-final_best_idx = top_10_indices[np.argmax(fine_scores)]
-
-print(f"Top Matched Snippet (Final score: {fine_scores.max():.4f}):")
-print(corpus[final_best_idx])
-```
-
----
-
-### Example 4: Debugging & Crash Traceback Matching
-
-Retrieve the buggy function in your codebase directly from a runtime exception traceback:
-
-```python
-from sentence_transformers import SentenceTransformer
-
-model = SentenceTransformer("divakantpandey/code-embed-v2")
-
-traceback_query = """
-Traceback (most recent call last):
-  File "payment_service.py", line 42, in process_transaction
-    charge_amount = invoice.total * (1 - discount_rate)
-TypeError: unsupported operand type(s) for -: 'int' and 'NoneType'
-"""
-
-repo_functions = [
-    """def calculate_shipping(weight, distance):
-    base_rate = 5.0
-    return base_rate + (weight * 0.5) + (distance * 0.1)""",
-    
-    """def process_transaction(user_id, invoice, discount_rate=None):
-    if discount_rate is None:
-        discount_rate = 0.0
-    charge_amount = invoice.total * (1 - discount_rate)
-    return payment_gateway.charge(user_id, charge_amount)""",
-    
-    """def validate_email(email_address):
-    import re
-    regex = r'^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w+$'
-    return bool(re.search(regex, email_address))"""
+    "import jwt\ndef decode_token(tok): return jwt.decode(tok, 'secret', algorithms=['HS256'])",
 ]
 
-query_vec = model.encode(traceback_query, normalize_embeddings=True)
-doc_vecs = model.encode(repo_functions, normalize_embeddings=True)
+# Stage 1: shortlist with 256-d prefixes.
+q256 = model.encode(query, truncate_dim=256, normalize_embeddings=True)
+c256 = model.encode(corpus, truncate_dim=256, normalize_embeddings=True)
+shortlist = np.argsort(c256 @ q256)[::-1][:2]
 
-best_idx = (doc_vecs @ query_vec).argmax()
-print("Associated Buggy Function Identified:")
-print(repo_functions[best_idx])
+# Stage 2: rerank the shortlist with full 1536-d vectors.
+q = model.encode(query, normalize_embeddings=True)
+c = model.encode([corpus[i] for i in shortlist], normalize_embeddings=True)
+print(corpus[shortlist[np.argmax(c @ q)]])
 ```
 
----
-
-### Example 5: Qdrant Vector Database Integration
+### Qdrant
 
 ```python
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct
 from sentence_transformers import SentenceTransformer
 
-# Initialize client & model
 qdrant = QdrantClient(":memory:")
 model = SentenceTransformer("divakantpandey/code-embed-v2")
 
-collection_name = "codebase_symbols"
 qdrant.create_collection(
-    collection_name=collection_name,
+    collection_name="codebase_symbols",
     vectors_config=VectorParams(size=1536, distance=Distance.COSINE),
 )
 
-# Ingest code files with metadata
 files = [
-    {"id": 1, "path": "auth/session.go", "lang": "go", "code": "func VerifySession(token string) bool { return redis.Exists(token) }"},
-    {"id": 2, "path": "models/user.py", "lang": "python", "code": "class User(BaseModel): id: int; name: str; active: bool"},
+    {"id": 1, "path": "auth/session.go", "code": "func VerifySession(token string) bool { return redis.Exists(token) }"},
+    {"id": 2, "path": "models/user.py", "code": "class User(BaseModel): id: int; name: str; active: bool"},
 ]
-
-points = []
-for f in files:
-    vector = model.encode(f["code"], normalize_embeddings=True).tolist()
-    points.append(PointStruct(id=f["id"], vector=vector, payload=f))
-
-qdrant.upsert(collection_name=collection_name, points=points)
-
-# Search with metadata filtering
-query_emb = model.encode("validate active user session", normalize_embeddings=True).tolist()
-search_results = qdrant.query_points(
-    collection_name=collection_name,
-    query=query_emb,
-    limit=1
+qdrant.upsert(
+    collection_name="codebase_symbols",
+    points=[
+        PointStruct(id=f["id"], vector=model.encode(f["code"], normalize_embeddings=True).tolist(), payload=f)
+        for f in files
+    ],
 )
 
-for hit in search_results.points:
-    print(f"Path: {hit.payload['path']} (Score: {hit.score:.4f})")
-    print(f"Code: {hit.payload['code']}")
+hits = qdrant.query_points(
+    collection_name="codebase_symbols",
+    query=model.encode("validate active user session", normalize_embeddings=True).tolist(),
+    limit=1,
+)
+for hit in hits.points:
+    print(hit.payload["path"], round(hit.score, 4))
 ```
 
----
-
-### Example 6: LangChain Code Repository Q&A (RAG Pipeline)
+### LangChain
 
 ```python
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
 from langchain_core.documents import Document
 
-# 1. Initialize embeddings with CodeEmbed v2
 embeddings = HuggingFaceEmbeddings(
     model_name="divakantpandey/code-embed-v2",
-    encode_kwargs={"normalize_embeddings": True}
+    encode_kwargs={"normalize_embeddings": True},
 )
 
-# 2. Build local document store
 documents = [
     Document(page_content="func RateLimiter(ip string) bool { return limiter.Allow(ip) }", metadata={"file": "security/ratelimit.go"}),
-    Document(page_content="def send_metric(name, val): statsd.increment(name, val)", metadata={"file": "telemetry/metrics.py"})
+    Document(page_content="def send_metric(name, val): statsd.increment(name, val)", metadata={"file": "telemetry/metrics.py"}),
 ]
-
 vector_db = Chroma.from_documents(documents, embeddings)
 
-# 3. Retrieve relevant context for an LLM query
-retriever = vector_db.as_retriever(search_kwargs={"k": 1})
-matched_docs = retriever.invoke("how do we prevent DDOS attacks on our API endpoints?")
-
-for doc in matched_docs:
-    print(f"Source: {doc.metadata['file']}")
-    print(f"Content: {doc.page_content}")
+for doc in vector_db.as_retriever(search_kwargs={"k": 1}).invoke("rate limit requests per client IP"):
+    print(doc.metadata["file"])
 ```
 
----
-
-### Example 7: Local Serving with Ollama
-
-Run `code-embed-v2` locally with Ollama (native embed API or OpenAI-compatible endpoint).
+### Ollama and llama.cpp (GGUF)
 
 > [!NOTE]
-> `code-embed-v2`'s native dimension is **1536-d** (active in SentenceTransformers, ONNX, FastEmbed, and TEI). Ollama/`llama.cpp` executes the 12-layer RoBERTa transformer graph up to layer-norm, outputting the **768-d Matryoshka representation**.
+> The GGUF file contains the transformer only. It returns the 768-dimensional pooled backbone output, without the 1536-d projection head, so its vectors are not the same as the Sentence Transformers output and have not been evaluated. Keep the context at 1,024 tokens.
 
 ```bash
-# 1. Pull & run directly from Hugging Face
 ollama pull hf.co/divakantpandey/code-embed-v2:code-embed-v2-q8_0.gguf
 
-# Or if pulled from the Ollama registry:
-# ollama pull divakantpandey/code-embed-v2
-
-# 2. Generate embeddings via cURL:
 curl http://localhost:11434/api/embed -d '{
-  "model": "divakantpandey/code-embed-v2",
+  "model": "hf.co/divakantpandey/code-embed-v2:code-embed-v2-q8_0.gguf",
   "input": "def binary_search(arr, target):"
 }'
-
-# 3. Query via OpenAI-compatible endpoint (/v1/embeddings):
-curl http://localhost:11434/v1/embeddings \
-  -H "Content-Type: application/json" \
-  -d '{
-    "model": "divakantpandey/code-embed-v2",
-    "input": "def binary_search(arr, target):"
-  }'
 ```
 
----
-
-### Example 8: High-Performance C++ Inference with `llama.cpp`
-
-Use the Q8_0 GGUF quantized weights for standalone C++ embedding generation or an OpenAI-compatible microservice:
-
 ```bash
-# Download GGUF weights (135MB)
 wget https://huggingface.co/divakantpandey/code-embed-v2/resolve/main/code-embed-v2-q8_0.gguf
-
-# Start an OpenAI-compatible embedding server:
-llama-server \
-  -m code-embed-v2-q8_0.gguf \
-  --embedding \
-  -c 8192 \
-  --port 8080
-
-# Query with standard OpenAI Python SDK:
-from openai import OpenAI
-
-client = OpenAI(base_url="http://localhost:8080/v1", api_key="not-needed")
-response = client.embeddings.create(
-    model="code-embed-v2",
-    input="def find_max(nums):"
-)
-print("Vector length:", len(response.data[0].embedding))
+llama-server -m code-embed-v2-q8_0.gguf --embedding -c 1024 --port 8080
 ```
 
----
-
-### Example 9: Production Serving with Text Embeddings Inference (TEI)
-
-For enterprise throughput with dynamic batching and token truncation:
+### Text Embeddings Inference
 
 ```bash
-# Deploy with Hugging Face TEI (Docker)
 docker run --gpus all -p 8080:80 \
   ghcr.io/huggingface/text-embeddings-inference:1.5 \
   --model-id divakantpandey/code-embed-v2
 ```
 
----
+Check that the returned vectors are 1536-dimensional. A 768-dimensional result means the projection head was not applied.
 
-## 📜 License & Citation
+## License and citation
 
-This project and its model weights are licensed under the **Creative Commons Attribution-NonCommercial 4.0 International License (CC-BY-NC 4.0)**.
+Code and weights are released under [CC-BY-NC-4.0](https://creativecommons.org/licenses/by-nc/4.0/). For commercial use, contact Divakant Pandey (`divakant01@gmail.com`, [@divakantpandey](https://github.com/divakantpandey)).
 
-- **Non-Commercial Use:** Free for open-source research, academic benchmarking, developer tooling experiments, and non-commercial projects with attribution.
-- **Attribution:** Please attribute **Divakant Pandey** and cite:
-  ```bibtex
-  @misc{pandey2026codeembedv2,
-    author = {Divakant Pandey},
-    title = {CodeEmbed v2: High-Performance Multilingual Code Embedding Model},
-    year = {2026},
-    publisher = {Hugging Face / GitHub},
-    howpublished = {\url{https://huggingface.co/divakantpandey/code-embed-v2}}
-  }
-  ```
-- **Commercial Inquiries:** For commercial deployments, SaaS integration, or enterprise licenses, contact:
-  - **Maintainer:** Divakant Pandey
-  - **Email:** `divakant01@gmail.com`
-  - **GitHub:** [@divakantpandey](https://github.com/divakantpandey)
+```bibtex
+@misc{pandey2026codeembedv2,
+  author = {Divakant Pandey},
+  title = {code-embed-v2: A UniXcoder-Based Code Embedding Model Fine-Tuned on CodeSearchNet},
+  year = {2026},
+  howpublished = {\url{https://huggingface.co/divakantpandey/code-embed-v2}}
+}
+```
