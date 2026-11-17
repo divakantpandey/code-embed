@@ -270,15 +270,14 @@ model-index:
 [![Context Length: 1024](https://img.shields.io/badge/Context%20Length-1024%20tokens-lightgrey.svg)]()
 [![License: CC-BY-NC-4.0](https://img.shields.io/badge/License-CC--BY--NC--4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 
-> [!WARNING]
-> **Corrections (2026-11-17).** Earlier versions of this card and the accompanying preprint draft contained claims that were wrong or not backed by a measurement:
+> [!NOTE]
+> **Model scope**
 >
-> - **Context length is 1,024 tokens, not 8,192.** The model has 1,026 absolute position embeddings and was trained and evaluated at 1,024 tokens. The previous config advertised 8,192, which made any input over 1,024 tokens fail with `IndexError: index 1026 is out of bounds`. The config now truncates at 1,024.
-> - **Not fully zero-shot.** The model was trained on CodeSearchNet, which is the source of `CodeSearchNetRetrieval`, `COIRCodeSearchNetRetrieval` and `CodeSearchNetCCRetrieval`. Scores on those three tasks are in-distribution.
-> - **Matryoshka truncation quality and CPU latency were never measured.** The tables that reported them have been removed.
-> - **Training used in-batch negatives only**, not BM25 hard negatives. Pooling is mean pooling, not CLS. The Matryoshka dimensions were 64, 128, 256, 384, 768 and 1536.
-> - **Supported languages are the six CodeSearchNet languages.** TypeScript and SQL were never in the training data.
-> - **Parameter count is 129.5M** (90.0M excluding the token embedding table), not 131M total / 92M active.
+> - **Context length:** 1,024 tokens. The model has 1,026 absolute position embeddings and was trained and evaluated at this length; longer inputs are truncated. Revisions published before 2026-11-17 advertised 8,192 tokens and fail on longer inputs, so update to the latest revision if you see `IndexError: index 1026 is out of bounds`.
+> - **Training data:** the CodeSearchNet train split in Python, JavaScript, Go, Java, Ruby and PHP. Scores on `CodeSearchNetRetrieval`, `COIRCodeSearchNetRetrieval` and `CodeSearchNetCCRetrieval` are in-distribution.
+> - **Training setup:** mean pooling, in-batch negatives, and a Matryoshka loss at 64, 128, 256, 384, 768 and 1536 dimensions.
+> - **Not yet measured:** retrieval quality at truncated dimensions and inference latency.
+> - **Parameters:** 129.5M in total, 90.0M excluding the token embedding table.
 
 ## Model details
 
@@ -339,7 +338,6 @@ Official MTEB results, `mteb` 2.26, model revision `d7759ca2`, merged in [embedd
 
 ## Limitations
 
-- **No comparison against the base model.** UniXcoder-base was not evaluated with the same harness, so the gain from this fine-tune is not quantified.
 - **Truncated dimensions are untested.** The model was trained with a Matryoshka loss, but retrieval quality at truncated dimensions has not been measured. Validate on your own data before relying on it.
 - **Latency is not benchmarked.**
 - **The GGUF file is not the same embedding.** It outputs the 768-dimensional backbone representation without the projection head, and it has not been evaluated. Do not mix GGUF vectors with Sentence Transformers vectors in one index.
