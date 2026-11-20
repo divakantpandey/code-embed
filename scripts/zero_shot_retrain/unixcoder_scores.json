@@ -1,0 +1,20 @@
+{
+ "StackOverflowQA": 0.41078,
+ "CodeSearchNetRetrieval": 0.6811733333333333,
+ "CodeEditSearchRetrieval": 0.35166230769230766,
+ "CodeTransOceanDL": 0.33049,
+ "CorebC2CRetrieval": 0.29322,
+ "CorebC2CReranking": 0.37223,
+ "AppsRetrieval": 0.0091,
+ "SyntheticText2SQL": 0.49853,
+ "CorebC2TRetrieval": 0.44038,
+ "CorebT2CRetrieval": 0.14074,
+ "CodeFeedbackMT": 0.12371,
+ "CorebT2CReranking": 0.20353,
+ "CorebC2TReranking": 0.66847,
+ "CodeTransOceanContest": 0.4421,
+ "CodeFeedbackST": 0.34179,
+ "COIRCodeSearchNetRetrieval": 0.4725616666666667,
+ "CodeSearchNetCCRetrieval": 0.5511050000000001,
+ "CosQA": 0.17577
+}

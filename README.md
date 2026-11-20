@@ -305,32 +305,36 @@ Three stages, each one epoch, effective batch 128 (32 × 4 gradient accumulation
 
 Official MTEB results, `mteb` 2.26, model revision `d7759ca2`, merged in [embeddings-benchmark/results#803](https://github.com/embeddings-benchmark/results/pull/803). Evaluation used 1,024 tokens.
 
-| Benchmark | Tasks | Mean main score |
-|---|---|---|
-| MTEB(Code, v1) | 12 | 0.5475 |
-| CoIR | 10 | 0.5343 |
-| CoREB(v1) | 6 | 0.4362 |
+The UniXcoder-base column is the base model run through the same harness and settings (`mteb` 2.26.17, `sentence-transformers` 6.2.0, 1,024 tokens, batch size 64, mean pooling, no prompts). It is our own run, not part of the merged results.
 
-| Task | Metric | Score | Note |
+| Benchmark | Tasks | UniXcoder-base | code-embed-v2 |
 |---|---|---|---|
-| AppsRetrieval | nDCG@10 | 0.2017 | |
-| CodeEditSearchRetrieval | nDCG@10 | 0.3703 | |
-| CodeFeedbackMT | nDCG@10 | 0.6164 | |
-| CodeFeedbackST | nDCG@10 | 0.6680 | |
-| CodeSearchNetCCRetrieval | nDCG@10 | 0.5664 | in-distribution |
-| CodeSearchNetRetrieval | nDCG@10 | 0.8574 | in-distribution |
-| COIRCodeSearchNetRetrieval | nDCG@10 | 0.7488 | in-distribution |
-| CodeTransOceanContest | nDCG@10 | 0.6814 | |
-| CodeTransOceanDL | nDCG@10 | 0.3533 | |
-| CosQA | nDCG@10 | 0.2997 | |
-| StackOverflowQA | nDCG@10 | 0.7131 | |
-| SyntheticText2SQL | nDCG@10 | 0.4938 | |
-| CorebC2CReranking | MAP | 0.4205 | |
-| CorebC2CRetrieval | nDCG@10 | 0.2750 | |
-| CorebC2TReranking | MAP | 0.7937 | |
-| CorebC2TRetrieval | nDCG@10 | 0.6073 | |
-| CorebT2CReranking | MAP | 0.2539 | |
-| CorebT2CRetrieval | nDCG@10 | 0.2671 | |
+| MTEB(Code, v1) | 12 | 0.3657 | 0.5475 |
+| CoIR | 10 | 0.3356 | 0.5343 |
+| CoREB(v1) | 6 | 0.3531 | 0.4362 |
+
+| Task | Metric | UniXcoder-base | code-embed-v2 | Note |
+|---|---|---|---|---|
+| AppsRetrieval | nDCG@10 | 0.0091 | 0.2017 | |
+| CodeEditSearchRetrieval | nDCG@10 | 0.3517 | 0.3703 | |
+| CodeFeedbackMT | nDCG@10 | 0.1237 | 0.6164 | |
+| CodeFeedbackST | nDCG@10 | 0.3418 | 0.6680 | |
+| CodeSearchNetCCRetrieval | nDCG@10 | 0.5511 | 0.5664 | in-distribution |
+| CodeSearchNetRetrieval | nDCG@10 | 0.6812 | 0.8574 | in-distribution |
+| COIRCodeSearchNetRetrieval | nDCG@10 | 0.4726 | 0.7488 | in-distribution |
+| CodeTransOceanContest | nDCG@10 | 0.4421 | 0.6814 | |
+| CodeTransOceanDL | nDCG@10 | 0.3305 | 0.3533 | |
+| CosQA | nDCG@10 | 0.1758 | 0.2997 | |
+| StackOverflowQA | nDCG@10 | 0.4108 | 0.7131 | |
+| SyntheticText2SQL | nDCG@10 | 0.4985 | 0.4938 | |
+| CorebC2CReranking | MAP | 0.3722 | 0.4205 | |
+| CorebC2CRetrieval | nDCG@10 | 0.2932 | 0.2750 | |
+| CorebC2TReranking | MAP | 0.6685 | 0.7937 | |
+| CorebC2TRetrieval | nDCG@10 | 0.4404 | 0.6073 | |
+| CorebT2CReranking | MAP | 0.2035 | 0.2539 | |
+| CorebT2CRetrieval | nDCG@10 | 0.1407 | 0.2671 | |
+
+**Gain over the base model.** Fine-tuning improves 16 of 18 tasks. It regresses slightly on SyntheticText2SQL (-0.005) and CorebC2CRetrieval (-0.018). Over the 15 tasks not built from CodeSearchNet, the mean rises from 0.3202 to 0.4677.
 
 **Leaderboard position.** On 2026-10-24, filtered to models with at most 150M parameters, the MTEB leaderboard listed this model 3rd on CoREB(v1), 8th on CoIR and 9th on MTEB(Code, v1), and 3rd of 25 models overall on CorebC2CReranking. Ranks change as models are added; check the [live leaderboard](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2).
 
