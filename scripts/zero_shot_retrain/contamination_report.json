@@ -1,0 +1,50 @@
+{
+  "cornstack_go": {
+    "AppsRetrieval": 6,
+    "COIRCodeSearchNetRetrieval": 402,
+    "CodeSearchNetCCRetrieval": 7,
+    "CodeSearchNetRetrieval": 25,
+    "after": 311585,
+    "before": 312000
+  },
+  "cornstack_java": {
+    "AppsRetrieval": 4,
+    "COIRCodeSearchNetRetrieval": 184,
+    "CodeSearchNetCCRetrieval": 29,
+    "CodeSearchNetRetrieval": 9,
+    "after": 443778,
+    "before": 444000
+  },
+  "cornstack_javascript": {
+    "AppsRetrieval": 1,
+    "COIRCodeSearchNetRetrieval": 338,
+    "CodeFeedbackST": 2,
+    "CodeSearchNetCCRetrieval": 8,
+    "CodeSearchNetRetrieval": 226,
+    "after": 116535,
+    "before": 117000
+  },
+  "cornstack_php": {
+    "AppsRetrieval": 2,
+    "COIRCodeSearchNetRetrieval": 1015,
+    "CodeEditSearchRetrieval": 1,
+    "CodeSearchNetCCRetrieval": 22,
+    "CodeSearchNetRetrieval": 347,
+    "after": 509640,
+    "before": 511000
+  },
+  "cornstack_python": {
+    "COIRCodeSearchNetRetrieval": 350,
+    "CodeFeedbackST": 1,
+    "CodeSearchNetCCRetrieval": 12,
+    "CodeSearchNetRetrieval": 28,
+    "after": 404629,
+    "before": 405000
+  },
+  "cornstack_ruby": {
+    "COIRCodeSearchNetRetrieval": 1432,
+    "CodeSearchNetRetrieval": 1423,
+    "after": 46561,
+    "before": 48000
+  }
+}

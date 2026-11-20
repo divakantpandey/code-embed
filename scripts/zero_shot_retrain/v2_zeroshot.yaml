@@ -1,0 +1,12 @@
+# code-embed-v2's language mix (1.84M CodeSearchNet train pairs) rebuilt from CoRNStack, which has no
+# provenance link to any MTEB(Code, v1) / CoIR / CoREB(v1) task. +500 per source for the dev hold-out.
+output_dir: /workspace/data/v2_zeroshot
+seed: 42
+dev_rows: 500
+sources:
+  - {name: cornstack_php, loader: cornstack, family: nl2code, license: apache-2.0, hf_id: nomic-ai/cornstack-php-v1, max_rows: 511500}
+  - {name: cornstack_java, loader: cornstack, family: nl2code, license: apache-2.0, hf_id: nomic-ai/cornstack-java-v1, max_rows: 444500}
+  - {name: cornstack_python, loader: cornstack, family: nl2code, license: apache-2.0, hf_id: nomic-ai/cornstack-python-v1, max_rows: 405500}
+  - {name: cornstack_go, loader: cornstack, family: nl2code, license: apache-2.0, hf_id: nomic-ai/cornstack-go-v1, max_rows: 312500}
+  - {name: cornstack_javascript, loader: cornstack, family: nl2code, license: apache-2.0, hf_id: nomic-ai/cornstack-javascript-v1, max_rows: 117500}
+  - {name: cornstack_ruby, loader: cornstack, family: nl2code, license: apache-2.0, hf_id: nomic-ai/cornstack-ruby-v1, max_rows: 48500}
