@@ -338,7 +338,9 @@ The UniXcoder-base column is the base model run through the same harness and set
 
 **Leaderboard position.** On 2026-10-24, filtered to models with at most 150M parameters, the MTEB leaderboard listed this model 3rd on CoREB(v1), 8th on CoIR and 9th on MTEB(Code, v1), and 3rd of 25 models overall on CorebC2CReranking. Ranks change as models are added; check the [live leaderboard](https://mteb-leaderboard.hf.space/models/divakantpandey/code-embed-v2).
 
-**Zero-shot status.** The model's current mteb metadata declares only `CodeSearchNetRetrieval` as training data, which gives 91% zero-shot on MTEB(Code, v1). `COIRCodeSearchNetRetrieval` and `CodeSearchNetCCRetrieval` are also built from CodeSearchNet. Declaring all three gives 75% zero-shot on MTEB(Code, v1), 80% on CoIR and 100% on CoREB(v1).
+**Zero-shot status.** `CodeSearchNetRetrieval`, `COIRCodeSearchNetRetrieval` and `CodeSearchNetCCRetrieval` are all built from CodeSearchNet, and the model's mteb metadata declares all three as training data ([embeddings-benchmark/mteb#5942](https://github.com/embeddings-benchmark/mteb/pull/5942)). That makes the model 75% zero-shot on MTEB(Code, v1), 80% on CoIR and 100% on CoREB(v1).
+
+**Retrain without CodeSearchNet.** The same three-stage recipe retrained on CoRNStack, with no CodeSearchNet data, matches the three CodeSearchNet-derived scores (mean 0.7182 against 0.7242) but keeps less than a third of the gain on the other 15 tasks (0.3613 against 0.4677, base 0.3202), and falls below the base model on CoREB(v1) (0.2899 against 0.3531). Setup and per-task scores: [docs/zero_shot_retrain.md](https://github.com/divakantpandey/code-embed/blob/f539025/docs/zero_shot_retrain.md).
 
 ## Limitations
 
