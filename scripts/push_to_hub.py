@@ -396,7 +396,9 @@ def push(
             with open(cfg_path, encoding="utf-8") as f:
                 mcfg = json.load(f)
             if "max_position_embeddings" in mcfg:
-                max_len = int(mcfg["max_position_embeddings"]) - int(mcfg.get("pad_token_id", 1)) - 1
+                max_len = (
+                    int(mcfg["max_position_embeddings"]) - int(mcfg.get("pad_token_id", 1)) - 1
+                )
         if max_len is not None:
             for tok_path in [
                 staging_dir / "tokenizer_config.json",
