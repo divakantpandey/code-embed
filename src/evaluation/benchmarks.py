@@ -110,23 +110,52 @@ class CodeSearchNetBenchmark(Benchmark):
     @staticmethod
     def _load_data(language: str, max_queries: int | None) -> tuple[list[str], list[str]]:
         """Load queries (docstrings) and documents (code) from CSN for specified language."""
-        from datasets import load_dataset
+        from pathlib import Path
+
+        from datasets import load_dataset, load_from_disk
 
         logger.info("Loading CodeSearchNet %s test split …", language)
         ds = None
-        for name in ["code-search-net/code_search_net", "code_search_net"]:
+
+        # 1. Check local disk cache
+        lang_path = Path(f"data/raw/{language}")
+        if lang_path.exists() and (lang_path / "dataset_dict.json").exists():
             try:
-                ds = load_dataset(name, language, split="test")
-                break
+                dict_ds = load_from_disk(str(lang_path))
+                ds = dict_ds.get("test", dict_ds.get("validation", dict_ds["train"]))
             except Exception as exc:
-                logger.debug("Could not load from %s: %s", name, exc)
+                logger.debug("Could not load from local path %s: %s", lang_path, exc)
+
+        if ds is None and language == "python":
+            raw_path = Path("data/raw")
+            if raw_path.exists() and (raw_path / "dataset_dict.json").exists():
+                try:
+                    dict_ds = load_from_disk(str(raw_path))
+                    ds = dict_ds.get("test", dict_ds.get("validation", dict_ds["train"]))
+                except Exception:
+                    pass
+
+        # 2. Check HuggingFace datasets
+        if ds is None:
+            for name in ["code-search-net/code_search_net", "code_search_net"]:
+                try:
+                    ds = load_dataset(name, language, split="test")
+                    break
+                except Exception as exc:
+                    logger.debug("Could not load from %s: %s", name, exc)
 
         queries: list[str] = []
         docs: list[str] = []
         if ds is not None:
             for row in ds:
-                docstring = row.get("func_documentation_string", "")
-                code = row.get("func_code_string", "")
+                docstring = (
+                    row.get("func_documentation_string")
+                    or row.get("docstring_summary")
+                    or row.get("docstring")
+                    or row.get("query")
+                    or ""
+                )
+                code = row.get("func_code_string") or row.get("code") or row.get("function") or ""
                 if docstring and code:
                     queries.append(docstring.strip())
                     docs.append(code.strip())
@@ -135,32 +164,147 @@ class CodeSearchNetBenchmark(Benchmark):
 
         if not queries:
             logger.warning("Using synthetic fallback data for CodeSearchNet (%s).", language)
-            fallback_pairs = [
-                (
-                    "Extract video ID from URL string",
-                    "def get_vid_from_url(url):\n    return url.split('v=')[-1].split('&')[0]",
-                ),
-                (
-                    "Binary search in sorted list",
-                    "def binary_search(arr, target):\n    low, high = 0, len(arr) - 1\n    while low <= high:\n        mid = (low + high) // 2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid + 1\n        else: high = mid - 1\n    return -1",
-                ),
-                (
-                    "Check if string is palindrome",
-                    "def is_palindrome(s: str) -> bool:\n    return s == s[::-1]",
-                ),
-                (
-                    "Calculate factorial iteratively",
-                    "def factorial(n: int) -> int:\n    res = 1\n    for i in range(2, n + 1): res *= i\n    return res",
-                ),
-                (
-                    "Quicksort list in ascending order",
-                    "def quicksort(arr):\n    if len(arr) <= 1: return arr\n    pivot = arr[len(arr) // 2]\n    return quicksort([x for x in arr if x < pivot]) + [x for x in arr if x == pivot] + quicksort([x for x in arr if x > pivot])",
-                ),
-            ]
+            fallbacks: dict[str, list[tuple[str, str]]] = {
+                "python": [
+                    (
+                        "Extract video ID from URL string",
+                        "def get_vid_from_url(url):\n    return url.split('v=')[-1].split('&')[0]",
+                    ),
+                    (
+                        "Binary search in sorted list",
+                        "def binary_search(arr, target):\n    low, high = 0, len(arr) - 1\n    while low <= high:\n        mid = (low + high) // 2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid + 1\n        else: high = mid - 1\n    return -1",
+                    ),
+                    (
+                        "Check if string is palindrome",
+                        "def is_palindrome(s: str) -> bool:\n    return s == s[::-1]",
+                    ),
+                    (
+                        "Calculate factorial iteratively",
+                        "def factorial(n: int) -> int:\n    res = 1\n    for i in range(2, n + 1): res *= i\n    return res",
+                    ),
+                    (
+                        "Quicksort list in ascending order",
+                        "def quicksort(arr):\n    if len(arr) <= 1: return arr\n    pivot = arr[len(arr) // 2]\n    return quicksort([x for x in arr if x < pivot]) + [x for x in arr if x == pivot] + quicksort([x for x in arr if x > pivot])",
+                    ),
+                ],
+                "go": [
+                    (
+                        "Extract video ID from URL string",
+                        'func GetVidFromURL(url string) string {\n\tparts := strings.Split(url, "v=")\n\treturn strings.Split(parts[len(parts)-1], "&")[0]\n}',
+                    ),
+                    (
+                        "Binary search in sorted list",
+                        "func BinarySearch(arr []int, target int) int {\n\tlow, high := 0, len(arr)-1\n\tfor low <= high {\n\t\tmid := (low + high) / 2\n\t\tif arr[mid] == target {\n\t\t\treturn mid\n\t\t} else if arr[mid] < target {\n\t\t\tlow = mid + 1\n\t\t} else {\n\t\t\thigh = mid - 1\n\t\t}\n\t}\n\treturn -1\n}",
+                    ),
+                    (
+                        "Check if string is palindrome",
+                        "func IsPalindrome(s string) bool {\n\tfor i := 0; i < len(s)/2; i++ {\n\t\tif s[i] != s[len(s)-1-i] {\n\t\t\treturn false\n\t\t}\n\t}\n\treturn true\n}",
+                    ),
+                    (
+                        "Calculate factorial iteratively",
+                        "func Factorial(n int) int {\n\tres := 1\n\tfor i := 2; i <= n; i++ {\n\t\tres *= i\n\t}\n\treturn res\n}",
+                    ),
+                    (
+                        "Quicksort list in ascending order",
+                        "func QuickSort(arr []int) []int {\n\tif len(arr) <= 1 {\n\t\treturn arr\n\t}\n\tpivot := arr[len(arr)/2]\n\tvar left, mid, right []int\n\tfor _, x := range arr {\n\t\tif x < pivot {\n\t\t\tleft = append(left, x)\n\t\t} else if x == pivot {\n\t\t\tmid = append(mid, x)\n\t\t} else {\n\t\t\tright = append(right, x)\n\t\t}\n\t}\n\treturn append(append(QuickSort(left), mid...), QuickSort(right)...)\n}",
+                    ),
+                ],
+                "java": [
+                    (
+                        "Extract video ID from URL string",
+                        'public class V {\n    public static String getVid(String url) {\n        return url.split("v=")[1].split("&")[0];\n    }\n}',
+                    ),
+                    (
+                        "Binary search in sorted list",
+                        "public class B {\n    public static int search(int[] arr, int target) {\n        int low = 0, high = arr.length - 1;\n        while (low <= high) {\n            int mid = (low + high) / 2;\n            if (arr[mid] == target) return mid;\n            else if (arr[mid] < target) low = mid + 1;\n            else high = mid - 1;\n        }\n        return -1;\n    }\n}",
+                    ),
+                    (
+                        "Check if string is palindrome",
+                        "public class P {\n    public static boolean isPal(String s) {\n        return new StringBuilder(s).reverse().toString().equals(s);\n    }\n}",
+                    ),
+                    (
+                        "Calculate factorial iteratively",
+                        "public class F {\n    public static int fact(int n) {\n        int res = 1;\n        for (int i = 2; i <= n; i++) res *= i;\n        return res;\n    }\n}",
+                    ),
+                    (
+                        "Quicksort list in ascending order",
+                        "public class Q {\n    public static void sort(int[] a, int lo, int hi) {\n        if (lo < hi) {\n            int p = partition(a, lo, hi);\n            sort(a, lo, p - 1);\n            sort(a, p + 1, hi);\n        }\n    }\n    private static int partition(int[] a, int lo, int hi) { return lo; }\n}",
+                    ),
+                ],
+                "javascript": [
+                    (
+                        "Extract video ID from URL string",
+                        "function getVidFromUrl(url) {\n    return url.split('v=')[1].split('&')[0];\n}",
+                    ),
+                    (
+                        "Binary search in sorted list",
+                        "function binarySearch(arr, target) {\n    let low = 0, high = arr.length - 1;\n    while (low <= high) {\n        const mid = Math.floor((low + high) / 2);\n        if (arr[mid] === target) return mid;\n        else if (arr[mid] < target) low = mid + 1;\n        else high = mid - 1;\n    }\n    return -1;\n}",
+                    ),
+                    (
+                        "Check if string is palindrome",
+                        "function isPalindrome(s) {\n    return s === s.split('').reverse().join('');\n}",
+                    ),
+                    (
+                        "Calculate factorial iteratively",
+                        "function factorial(n) {\n    let res = 1;\n    for (let i = 2; i <= n; i++) res *= i;\n    return res;\n}",
+                    ),
+                    (
+                        "Quicksort list in ascending order",
+                        "function quicksort(arr) {\n    if (arr.length <= 1) return arr;\n    const p = arr[0];\n    return [...quicksort(arr.filter(x => x < p)), ...arr.filter(x => x === p), ...quicksort(arr.filter(x => x > p))];\n}",
+                    ),
+                ],
+                "ruby": [
+                    (
+                        "Extract video ID from URL string",
+                        "def get_vid_from_url(url)\n  url.split('v=')[-1].split('&')[0]\nend",
+                    ),
+                    (
+                        "Binary search in sorted list",
+                        "def binary_search(arr, target)\n  low, high = 0, arr.length - 1\n  while low <= high\n    mid = (low + high) / 2\n    return mid if arr[mid] == target\n    arr[mid] < target ? low = mid + 1 : high = mid - 1\n  end\n  -1\nend",
+                    ),
+                    (
+                        "Check if string is palindrome",
+                        "def is_palindrome(s)\n  s == s.reverse\nend",
+                    ),
+                    (
+                        "Calculate factorial iteratively",
+                        "def factorial(n)\n  (1..n).inject(1, :*)\nend",
+                    ),
+                    (
+                        "Quicksort list in ascending order",
+                        "def quicksort(arr)\n  return arr if arr.length <= 1\n  p = arr[0]\n  quicksort(arr.select { |x| x < p }) + arr.select { |x| x == p } + quicksort(arr.select { |x| x > p })\nend",
+                    ),
+                ],
+                "php": [
+                    (
+                        "Extract video ID from URL string",
+                        "<?php\nfunction get_vid_from_url($url) {\n    return explode('&', explode('v=', $url)[1])[0];\n}",
+                    ),
+                    (
+                        "Binary search in sorted list",
+                        "<?php\nfunction binary_search($arr, $target) {\n    $low = 0; $high = count($arr) - 1;\n    while ($low <= $high) {\n        $mid = intdiv($low + $high, 2);\n        if ($arr[$mid] === $target) return $mid;\n        elseif ($arr[$mid] < $target) $low = $mid + 1;\n        else $high = $mid - 1;\n    }\n    return -1;\n}",
+                    ),
+                    (
+                        "Check if string is palindrome",
+                        "<?php\nfunction is_palindrome($s) {\n    return $s === strrev($s);\n}",
+                    ),
+                    (
+                        "Calculate factorial iteratively",
+                        "<?php\nfunction factorial($n) {\n    $res = 1;\n    for ($i = 2; $i <= $n; $i++) $res *= $i;\n    return $res;\n}",
+                    ),
+                    (
+                        "Quicksort list in ascending order",
+                        "<?php\nfunction quicksort($arr) {\n    if (count($arr) <= 1) return $arr;\n    $p = $arr[0];\n    $left = array_filter($arr, fn($x) => $x < $p);\n    $mid = array_filter($arr, fn($x) => $x === $p);\n    $right = array_filter($arr, fn($x) => $x > $p);\n    return array_merge(quicksort($left), $mid, quicksort($right));\n}",
+                    ),
+                ],
+            }
+            fallback_pairs = fallbacks.get(language, fallbacks["python"])
             queries = [q for q, _ in fallback_pairs]
             docs = [d for _, d in fallback_pairs]
 
-        logger.info("Loaded %d query–document pairs from CSN-%s", len(queries), language.capitalize())
+        logger.info(
+            "Loaded %d query–document pairs from CSN-%s", len(queries), language.capitalize()
+        )
         return queries, docs
 
     # -- public API ---------------------------------------------------------

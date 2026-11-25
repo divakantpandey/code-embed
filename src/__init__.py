@@ -17,4 +17,4 @@ if "scalene" in sys.modules or os.environ.get("SCALENE_PROFILING"):
     except ImportError:
         pass
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"

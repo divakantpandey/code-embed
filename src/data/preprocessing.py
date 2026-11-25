@@ -7,7 +7,6 @@ MinHash-based deduplication uses the ``datasketch`` library.
 
 from __future__ import annotations
 
-import ast
 import logging
 import re
 from typing import Any
@@ -60,17 +59,11 @@ def has_valid_syntax(code: str, language: str = "python") -> bool:
     return LanguageRegistry.get(language).has_valid_syntax(code)
 
 
-def has_function_definition(code: str) -> bool:
-    """Return ``True`` if *code* contains at least one ``def`` statement.
+def has_function_definition(code: str, language: str = "python") -> bool:
+    """Return ``True`` if *code* contains at least one function/method definition in *language*."""
+    from src.data.languages.registry import LanguageRegistry
 
-    Uses :func:`ast.parse` so it only counts real function definitions, not
-    occurrences of the word *def* in strings or comments.
-    """
-    try:
-        tree = ast.parse(code)
-    except SyntaxError:
-        return False
-    return any(isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)) for node in ast.walk(tree))
+    return LanguageRegistry.get(language).has_function_definition(code)
 
 
 def is_auto_generated(code: str) -> bool:
@@ -91,18 +84,11 @@ def is_auto_generated(code: str) -> bool:
     return any(marker in header_text for marker in _AUTO_GEN_MARKERS)
 
 
-def compute_comment_ratio(code: str) -> float:
-    """Return the ratio of comment lines to total non-blank lines in *code*.
+def compute_comment_ratio(code: str, language: str = "python") -> float:
+    """Return the ratio of comment lines to total non-blank lines in *code* for *language*."""
+    from src.data.languages.registry import LanguageRegistry
 
-    A "comment line" is any line whose first non-whitespace character is ``#``.
-    If the code has no non-blank lines the ratio is ``0.0``.
-    """
-    lines = code.splitlines()
-    non_blank = [line for line in lines if line.strip()]
-    if not non_blank:
-        return 0.0
-    comment_lines = sum(1 for line in non_blank if line.lstrip().startswith("#"))
-    return comment_lines / len(non_blank)
+    return LanguageRegistry.get(language).compute_comment_ratio(code)
 
 
 # ── Preprocessing / normalisation ─────────────────────────────────────────
@@ -135,6 +121,7 @@ def apply_filters(
     config: dict[str, Any] | None = None,
     *,
     code_column: str = "whole_func_string",
+    language: str | None = None,
     min_tokens: int | None = None,
     max_tokens: int | None = None,
     require_valid_syntax: bool | None = None,
@@ -153,9 +140,11 @@ def apply_filters(
     config:
         Optional ``data.preprocessing`` section of the training config. Expected
         keys: ``min_tokens``, ``max_tokens``, ``require_valid_syntax``,
-        ``require_function_def``, ``max_comment_ratio``.
+        ``require_function_def``, ``max_comment_ratio``, ``language``.
     code_column:
-        Name of the column containing Python source code.
+        Name of the column containing source code.
+    language:
+        Default programming language name for syntax/function checks. Overrides *config*.
     min_tokens:
         Minimum number of tokens required in the code snippet. Overrides *config*.
     max_tokens:
@@ -173,6 +162,7 @@ def apply_filters(
         The filtered dataset (rows that pass **all** predicates).
     """
     cfg = config or {}
+    default_lang: str = language or cfg.get("language", "python")
     resolved_min_tokens: int = min_tokens if min_tokens is not None else cfg.get("min_tokens", 10)
     resolved_max_tokens: int = max_tokens if max_tokens is not None else cfg.get("max_tokens", 512)
     resolved_require_syntax: bool = (
@@ -197,6 +187,8 @@ def apply_filters(
         if not code or not isinstance(code, str):
             return False
 
+        row_lang = str(example.get("language") or default_lang).lower()
+
         # Auto-generated check (reject)
         if is_auto_generated(code):
             return False
@@ -206,15 +198,15 @@ def apply_filters(
             return False
 
         # Syntax check
-        if resolved_require_syntax and not has_valid_syntax(code):
+        if resolved_require_syntax and not has_valid_syntax(code, language=row_lang):
             return False
 
         # Function definition check
-        if resolved_require_func and not has_function_definition(code):
+        if resolved_require_func and not has_function_definition(code, language=row_lang):
             return False
 
         # Comment ratio
-        return compute_comment_ratio(code) <= resolved_max_comment_ratio
+        return compute_comment_ratio(code, language=row_lang) <= resolved_max_comment_ratio
 
     filtered = dataset.filter(_passes, desc="Filtering")
     logger.info(

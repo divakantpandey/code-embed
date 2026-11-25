@@ -1,0 +1,306 @@
+boot Thu Nov 19 08:50:13 UTC 2026
+downloading uv 0.13.9 x86_64-unknown-linux-gnu
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading cpython-3.12.16-linux-x86_64-gnu (download) (33.1MiB)
+ Downloaded cpython-3.12.16-linux-x86_64-gnu (download)
+Installed Python 3.12.16 in 12.19s
+ + cpython-3.12.16-linux-x86_64-gnu (python3.12)
+Using CPython 3.12.16
+Creating virtual environment at: .venv
+   Building code-embed-v3 @ file:///workspace/code
+      Built code-embed-v3 @ file:///workspace/code
+Downloading scipy (33.7MiB)
+Downloading networkx (2.0MiB)
+Downloading pygments (1.2MiB)
+Downloading ruff (10.1MiB)
+Downloading pydantic-core (2.1MiB)
+Downloading nvidia-cuda-runtime (2.2MiB)
+Downloading ast-serialize (1.3MiB)
+Downloading nvidia-cufft (208.1MiB)
+Downloading scikit-learn (8.7MiB)
+Downloading nvidia-nccl-cu13 (206.0MiB)
+Downloading sympy (6.0MiB)
+Downloading nvidia-cudnn-cu13 (495.1MiB)
+Downloading nvidia-nvshmem-cu13 (129.1MiB)
+Downloading nvidia-cufile (1.3MiB)
+Downloading mypy (14.8MiB)
+Downloading nvidia-cublas (386.1MiB)
+Downloading nvidia-cuda-nvrtc (44.8MiB)
+Downloading aiohttp (1.8MiB)
+Downloading nvidia-cusparselt-cu13 (162.3MiB)
+Downloading tokenizers (3.2MiB)
+Downloading pandas (11.5MiB)
+Downloading numpy (16.0MiB)
+Downloading torch (514.2MiB)
+Downloading nvidia-cusparse (144.0MiB)
+Downloading wandb (19.4MiB)
+Downloading cuda-bindings (6.8MiB)
+Downloading polars-runtime-32 (51.4MiB)
+Downloading triton (272.4MiB)
+Downloading transformers (12.4MiB)
+Downloading nvidia-cusolver (217.4MiB)
+Downloading nvidia-cuda-cccl (3.7MiB)
+Downloading pyarrow (51.4MiB)
+Downloading nvidia-cuda-cupti (11.4MiB)
+Downloading hf-xet (4.0MiB)
+Downloading nvidia-nvjitlink (40.5MiB)
+Downloading mteb (6.6MiB)
+ Downloaded pygments
+ Downloaded ast-serialize
+ Downloaded nvidia-cufile
+ Downloaded aiohttp
+ Downloaded networkx
+ Downloaded pydantic-core
+ Downloaded nvidia-cuda-runtime
+ Downloaded tokenizers
+ Downloaded nvidia-cuda-cccl
+ Downloaded hf-xet
+ Downloaded sympy
+ Downloaded mteb
+ Downloaded cuda-bindings
+ Downloaded scikit-learn
+ Downloaded ruff
+ Downloaded pandas
+ Downloaded nvidia-cuda-cupti
+ Downloaded transformers
+ Downloaded mypy
+ Downloaded numpy
+ Downloaded wandb
+ Downloaded scipy
+ Downloaded nvidia-nvjitlink
+ Downloaded nvidia-cuda-nvrtc
+ Downloaded pyarrow
+ Downloaded polars-runtime-32
+ Downloaded nvidia-nvshmem-cu13
+ Downloaded nvidia-cusparse
+ Downloaded nvidia-cusparselt-cu13
+ Downloaded nvidia-nccl-cu13
+ Downloaded nvidia-cufft
+ Downloaded nvidia-cusolver
+ Downloaded triton
+ Downloaded nvidia-cublas
+ Downloaded nvidia-cudnn-cu13
+ Downloaded torch
+Prepared 120 packages in 14m 13s
+Installed 120 packages in 3.30s
+ + accelerate==1.15.0
+ + aiohappyeyeballs==2.7.1
+ + aiohttp==3.14.5
+ + aiosignal==1.4.0
+ + annotated-doc==0.0.5
+ + annotated-types==0.8.0
+ + anyio==4.15.1
+ + ast-serialize==0.13.1
+ + attrs==26.1.0
+ + certifi==2026.10.23
+ + charset-normalizer==3.5.2
+ + click==8.5.0
+ + cloudpickle==3.1.2
+ + code-embed-v3==0.1.0 (from file:///workspace/code)
+ + cuda-bindings==13.4.4
+ + cuda-pathfinder==1.8.4
+ + cuda-toolkit==13.2.2
+ + cwevals==0.0.1b1
+ + datasets==5.1.0
+ + datasketch==2.0.0
+ + dill==0.4.1
+ + distro==1.9.0
+ + filelock==4.2.4
+ + frozenlist==1.8.0
+ + fsspec==2026.7.0
+ + googleapis-common-protos==1.76.0
+ + h11==0.16.0
+ + hf-xet==1.7.1
+ + httpcore==1.0.9
+ + httpcore2==2.16.0
+ + httpx==0.28.1
+ + httpx2==2.16.0
+ + huggingface-hub==2.3.0
+ + idna==3.20
+ + iniconfig==2.3.1
+ + jinja2==3.1.6
+ + joblib==1.6.0
+ + librt==0.16.0
+ + markdown-it-py==4.2.0
+ + markupsafe==3.0.4
+ + mdurl==0.1.2
+ + mpmath==1.3.0
+ + mteb==2.26.28
+ + multidict==7.2.1
+ + multiprocess==0.70.19
+ + mypy==2.4.1
+ + mypy-extensions==1.1.0
+ + narwhals==2.28.0
+ + networkx==3.7
+ + numpy==2.5.4
+ + nvidia-cublas==13.4.1.3
+ + nvidia-cuda-cccl==13.3.4.3.1
+ + nvidia-cuda-cupti==13.2.86
+ + nvidia-cuda-nvrtc==13.2.86
+ + nvidia-cuda-runtime==13.2.86
+ + nvidia-cudnn-cu13==9.26.0.51
+ + nvidia-cufft==12.2.0.57
+ + nvidia-cufile==1.17.1.22
+ + nvidia-cusolver==12.2.0.11
+ + nvidia-cusparse==12.7.10.12
+ + nvidia-cusparselt-cu13==0.8.1
+ + nvidia-nccl-cu13==2.30.7
+ + nvidia-nvjitlink==13.4.92
+ + nvidia-nvshmem-cu13==3.7.2
+ + nvidia-nvtx==13.2.86
+ + opentelemetry-api==1.45.1
+ + opentelemetry-exporter-http-transport==0.66b1
+ + opentelemetry-exporter-otlp-common==0.66b1
+ + opentelemetry-exporter-otlp-proto-common==1.45.1
+ + opentelemetry-exporter-otlp-proto-http==1.45.1
+ + opentelemetry-proto==1.45.1
+ + opentelemetry-sdk==1.45.1
+ + opentelemetry-semantic-conventions==0.66b1
+ + packaging==26.3
+ + pandas==3.1.0
+ + pathspec==1.1.1
+ + platformdirs==4.14.0
+ + pluggy==1.7.0
+ + polars==2.1.0
+ + polars-runtime-32==2.1.0
+ + propcache==0.5.4
+ + protobuf==7.36.2
+ + psutil==7.2.2
+ + pyarrow==26.0.0
+ + pydantic==2.14.1
+ + pydantic-core==2.50.1
+ + pygments==2.21.0
+ + pytest==9.2.0
+ + python-dateutil==3.0.0
+ + pytrec-eval-terrier==0.5.11
+ + pyyaml==6.0.3
+ + regex==2026.9.29
+ + requests==2.34.2
+ + rich==15.0.0
+ + ruff==0.17.3
+ + safetensors==0.8.0
+ + scikit-learn==1.9.1
+ + scipy==1.18.1
+ + sentence-transformers==6.2.0
+ + setuptools==84.2.1
+ + shellingham==1.5.4
+ + six==1.17.0
+ + sniffio==1.3.1
+ + sympy==1.14.0
+ + threadpoolctl==3.7.0
+ + tokenizers==0.23.3
+ + torch==2.15.0
+ + tqdm==4.70.1
+ + transformers==5.21.1
+ + triton==3.9.0
+ + truststore==0.10.5
+ + typer==0.27.3
+ + types-pyyaml==6.0.12.20260906
+ + typing-extensions==4.16.0
+ + typing-inspection==0.4.4
+ + tzdata==2026.6
+ + urllib3==2.8.0
+ + wandb==0.31.0
+ + xxhash==4.0.2
+ + yarl==1.25.1
+Thu Nov 19 09:04:57 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 595.91.07              Driver Version: 595.91.07      CUDA Version: 13.2     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:C1:00.0 Off |                    0 |
+| N/A   31C    P0             29W /  400W |       4MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+started run.sh pid 694
+boot Thu Nov 19 19:22:53 UTC 2026
+Python 3.12 is already installed
+Checked 120 packages in 14ms
+Thu Nov 19 19:22:56 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 595.91.07              Driver Version: 595.91.07      CUDA Version: 13.2     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:01:00.0 Off |                    0 |
+| N/A   39C    P0             27W /  400W |       4MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+started run.sh pid 118
+boot Fri Nov 20 06:26:53 UTC 2026
+Python 3.12 is already installed
+Checked 120 packages in 12ms
+Fri Nov 20 06:27:01 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 595.91.07              Driver Version: 595.91.07      CUDA Version: 13.2     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:01:00.0 Off |                    0 |
+| N/A   49C    P0             29W /  400W |       4MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+started run.sh pid 93
+boot Fri Nov 20 10:31:05 UTC 2026
+Python 3.12 is already installed
+Checked 120 packages in 11ms
+Fri Nov 20 10:31:11 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 595.91.07              Driver Version: 595.91.07      CUDA Version: 13.2     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:01:00.0 Off |                    0 |
+| N/A   50C    P0             29W /  400W |       4MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+started run.sh pid 94

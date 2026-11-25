@@ -1,0 +1,1953 @@
+Traceback (most recent call last):
+  File "/workspace/eval_v2zs.py", line 8, in <module>
+    import mteb
+ModuleNotFoundError: No module named 'mteb'
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 5703.38it/s]
+/workspace/evenv/lib/python3.12/site-packages/mteb/models/model_meta.py:991: FutureWarning: The `get_sentence_embedding_dimension` method has been renamed to `get_embedding_dimension`.
+  embedding_dimensions = model.get_sentence_embedding_dimension()
+/workspace/evenv/lib/python3.12/site-packages/mteb/models/model_meta.py:951: FutureWarning: The `get_sentence_embedding_dimension` method has been renamed to `get_embedding_dimension`.
+  embed_dim=model.get_sentence_embedding_dimension(),
+Evaluating tasks:   0%|          | 0/1 [00:00<?, ?it/s]Evaluating task AppsRetrieval:   0%|          | 0/1 [00:00<?, ?it/s]
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/8765 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:  23%|██▎       | 2000/8765 [00:00<00:00, 17893.48 examples/s][A[A
+
+Standardizing text corpus format:  48%|████▊     | 4178/8765 [00:00<00:00, 20072.56 examples/s][A[A
+
+Standardizing text corpus format:  73%|███████▎  | 6402/8765 [00:00<00:00, 21031.88 examples/s][A[A
+
+Standardizing text corpus format:  98%|█████████▊| 8559/8765 [00:00<00:00, 21235.91 examples/s][A[AStandardizing text corpus format: 100%|██████████| 8765/8765 [00:00<00:00, 20479.52 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:34<00:00, 34.32s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:34<00:00, 34.32s/it]
+Evaluating task AppsRetrieval: 100%|██████████| 1/1 [01:28<00:00, 88.71s/it]Evaluating task AppsRetrieval: 100%|██████████| 1/1 [01:28<00:00, 88.71s/it]
+eval done AppsRetrieval in 1.5 min
+Evaluating tasks:   0%|          | 0/1 [00:00<?, ?it/s]Evaluating task CodeEditSearchRetrieval:   0%|          | 0/1 [00:00<?, ?it/s]
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/1000 [00:00<?, ? examples/s][A[AStandardizing text corpus format: 100%|██████████| 1000/1000 [00:00<00:00, 27496.42 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:04<00:00,  4.03s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:04<00:00,  4.03s/it]
+
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/1000 [00:00<?, ? examples/s][A[AStandardizing text corpus format: 100%|██████████| 1000/1000 [00:00<00:00, 27263.53 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:03<00:00,  3.98s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:03<00:00,  3.98s/it]
+
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/1000 [00:00<?, ? examples/s][A[AStandardizing text corpus format: 100%|██████████| 1000/1000 [00:00<00:00, 28859.96 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:03<00:00,  3.82s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:03<00:00,  3.82s/it]
+
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/1000 [00:00<?, ? examples/s][A[AStandardizing text corpus format: 100%|██████████| 1000/1000 [00:00<00:00, 27712.61 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:04<00:00,  4.14s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:04<00:00,  4.14s/it]
+
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/1000 [00:00<?, ? examples/s][A[AStandardizing text corpus format: 100%|██████████| 1000/1000 [00:00<00:00, 27894.52 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:03<00:00,  3.77s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:03<00:00,  3.77s/it]
+
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/1000 [00:00<?, ? examples/s][A[AStandardizing text corpus format: 100%|██████████| 1000/1000 [00:00<00:00, 27663.26 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:03<00:00,  3.99s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:03<00:00,  3.99s/it]
+
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/1000 [00:00<?, ? examples/s][A[AStandardizing text corpus format: 100%|██████████| 1000/1000 [00:00<00:00, 27263.36 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:03<00:00,  3.67s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:03<00:00,  3.67s/it]
+
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/1000 [00:00<?, ? examples/s][A[AStandardizing text corpus format: 100%|██████████| 1000/1000 [00:00<00:00, 28643.36 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:03<00:00,  3.72s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:03<00:00,  3.72s/it]
+
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/1000 [00:00<?, ? examples/s][A[AStandardizing text corpus format: 100%|██████████| 1000/1000 [00:00<00:00, 27395.85 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:03<00:00,  3.98s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:03<00:00,  3.98s/it]
+
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/1000 [00:00<?, ? examples/s][A[AStandardizing text corpus format: 100%|██████████| 1000/1000 [00:00<00:00, 27654.14 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:04<00:00,  4.28s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:04<00:00,  4.28s/it]
+
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/1000 [00:00<?, ? examples/s][A[AStandardizing text corpus format: 100%|██████████| 1000/1000 [00:00<00:00, 27848.22 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:03<00:00,  3.82s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:03<00:00,  3.82s/it]
+
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/1000 [00:00<?, ? examples/s][A[AStandardizing text corpus format: 100%|██████████| 1000/1000 [00:00<00:00, 28732.83 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:03<00:00,  3.76s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:03<00:00,  3.76s/it]
+
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/1000 [00:00<?, ? examples/s][A[AStandardizing text corpus format: 100%|██████████| 1000/1000 [00:00<00:00, 29172.08 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:04<00:00,  4.05s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:04<00:00,  4.05s/it]
+Evaluating task CodeEditSearchRetrieval: 100%|██████████| 1/1 [01:48<00:00, 108.24s/it]Evaluating task CodeEditSearchRetrieval: 100%|██████████| 1/1 [01:48<00:00, 108.24s/it]
+eval done CodeEditSearchRetrieval in 1.8 min
+Evaluating tasks:   0%|          | 0/1 [00:00<?, ?it/s]Evaluating task CodeFeedbackMT:   0%|          | 0/1 [00:00<?, ?it/s]
+Searching corpus chunks:   0%|          | 0/2 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   5%|▍         | 2321/50000 [00:00<00:02, 23066.70 examples/s][A[A
+
+Standardizing text corpus format:  10%|▉         | 4863/50000 [00:00<00:01, 24443.10 examples/s][A[A
+
+Standardizing text corpus format:  17%|█▋        | 8595/50000 [00:00<00:01, 24411.46 examples/s][A[A
+
+Standardizing text corpus format:  22%|██▏       | 11043/50000 [00:00<00:01, 24431.98 examples/s][A[A
+
+Standardizing text corpus format:  27%|██▋       | 13680/50000 [00:00<00:01, 25069.52 examples/s][A[A
+
+Standardizing text corpus format:  33%|███▎      | 16307/50000 [00:00<00:01, 24982.52 examples/s][A[A
+
+Standardizing text corpus format:  38%|███▊      | 18949/50000 [00:00<00:01, 25425.03 examples/s][A[A
+
+Standardizing text corpus format:  45%|████▌     | 22714/50000 [00:00<00:01, 25294.16 examples/s][A[A
+
+Standardizing text corpus format:  51%|█████     | 25314/50000 [00:01<00:00, 25132.47 examples/s][A[A
+
+Standardizing text corpus format:  56%|█████▌    | 27838/50000 [00:01<00:00, 25161.05 examples/s][A[A
+
+Standardizing text corpus format:  63%|██████▎   | 31638/50000 [00:01<00:00, 25158.85 examples/s][A[A
+
+Standardizing text corpus format:  71%|███████   | 35452/50000 [00:01<00:00, 25248.83 examples/s][A[A
+
+Standardizing text corpus format:  76%|███████▌  | 38000/50000 [00:01<00:00, 25138.63 examples/s][A[A
+
+Standardizing text corpus format:  81%|████████▏ | 40641/50000 [00:01<00:00, 25467.95 examples/s][A[A
+
+Standardizing text corpus format:  89%|████████▉ | 44392/50000 [00:01<00:00, 25300.32 examples/s][A[A
+
+Standardizing text corpus format:  94%|█████████▍| 47000/50000 [00:01<00:00, 25182.81 examples/s][A[A
+
+Standardizing text corpus format:  99%|█████████▉| 49646/50000 [00:01<00:00, 25518.55 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 25064.21 examples/s]
+
+Searching corpus chunks:  50%|█████     | 1/2 [05:36<05:36, 336.50s/it][A
+
+Standardizing text corpus format:   0%|          | 0/16383 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:  14%|█▍        | 2283/16383 [00:00<00:00, 22685.66 examples/s][A[A
+
+Standardizing text corpus format:  30%|██▉       | 4833/16383 [00:00<00:00, 24328.81 examples/s][A[A
+
+Standardizing text corpus format:  45%|████▍     | 7330/16383 [00:00<00:00, 24425.63 examples/s][A[A
+
+Standardizing text corpus format:  61%|██████    | 9965/16383 [00:00<00:00, 25178.65 examples/s][A[A
+
+Standardizing text corpus format:  84%|████████▍ | 13774/16383 [00:00<00:00, 25274.51 examples/s][A[A
+
+Standardizing text corpus format: 100%|█████████▉| 16329/16383 [00:00<00:00, 25097.14 examples/s][A[AStandardizing text corpus format: 100%|██████████| 16383/16383 [00:00<00:00, 24712.83 examples/s]
+
+Searching corpus chunks: 100%|██████████| 2/2 [07:31<00:00, 206.15s/it][ASearching corpus chunks: 100%|██████████| 2/2 [07:31<00:00, 225.70s/it]
+Evaluating task CodeFeedbackMT: 100%|██████████| 1/1 [11:34<00:00, 694.12s/it]Evaluating task CodeFeedbackMT: 100%|██████████| 1/1 [11:34<00:00, 694.12s/it]
+eval done CodeFeedbackMT in 11.6 min
+Evaluating tasks:   0%|          | 0/1 [00:00<?, ?it/s]Evaluating task CodeFeedbackST:   0%|          | 0/1 [00:00<?, ?it/s]
+Searching corpus chunks:   0%|          | 0/4 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   4%|▍         | 2000/50000 [00:00<00:02, 17724.48 examples/s][A[A
+
+Standardizing text corpus format:   8%|▊         | 4000/50000 [00:00<00:02, 18479.49 examples/s][A[A
+
+Standardizing text corpus format:  12%|█▏        | 6000/50000 [00:00<00:02, 18960.04 examples/s][A[A
+
+Standardizing text corpus format:  16%|█▌        | 8002/50000 [00:00<00:02, 19334.18 examples/s][A[A
+
+Standardizing text corpus format:  21%|██        | 10478/50000 [00:01<00:05, 7707.22 examples/s][A[A
+
+Standardizing text corpus format:  24%|██▍       | 12000/50000 [00:01<00:04, 8818.61 examples/s][A[A
+
+Standardizing text corpus format:  28%|██▊       | 14000/50000 [00:01<00:03, 10743.03 examples/s][A[A
+
+Standardizing text corpus format:  32%|███▏      | 16000/50000 [00:01<00:02, 12552.98 examples/s][A[A
+
+Standardizing text corpus format:  36%|███▌      | 18000/50000 [00:01<00:02, 13641.25 examples/s][A[A
+
+Standardizing text corpus format:  40%|███▉      | 19912/50000 [00:01<00:02, 14925.76 examples/s][A[A
+
+Standardizing text corpus format:  44%|████▍     | 21875/50000 [00:01<00:01, 16106.50 examples/s][A[A
+
+Standardizing text corpus format:  48%|████▊     | 23846/50000 [00:01<00:01, 17056.75 examples/s][A[A
+
+Standardizing text corpus format:  52%|█████▏    | 25805/50000 [00:01<00:01, 17748.01 examples/s][A[A
+
+Standardizing text corpus format:  56%|█████▌    | 27808/50000 [00:01<00:01, 18388.31 examples/s][A[A
+
+Standardizing text corpus format:  59%|█████▉    | 29746/50000 [00:02<00:01, 18670.36 examples/s][A[A
+
+Standardizing text corpus format:  65%|██████▌   | 32659/50000 [00:02<00:00, 18953.21 examples/s][A[A
+
+Standardizing text corpus format:  71%|███████   | 35523/50000 [00:02<00:00, 19000.54 examples/s][A[A
+
+Standardizing text corpus format:  77%|███████▋  | 38374/50000 [00:02<00:00, 18999.00 examples/s][A[A
+
+Standardizing text corpus format:  81%|████████  | 40330/50000 [00:02<00:00, 19132.92 examples/s][A[A
+
+Standardizing text corpus format:  85%|████████▍ | 42279/50000 [00:02<00:00, 19222.07 examples/s][A[A
+
+Standardizing text corpus format:  89%|████████▊ | 44257/50000 [00:02<00:00, 19368.06 examples/s][A[A
+
+Standardizing text corpus format:  94%|█████████▍| 47119/50000 [00:02<00:00, 19258.52 examples/s][A[A
+
+Standardizing text corpus format: 100%|██████████| 50000/50000 [00:03<00:00, 19143.66 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:03<00:00, 16098.23 examples/s]
+
+Searching corpus chunks:  25%|██▌       | 1/4 [06:19<18:59, 379.94s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   4%|▍         | 2000/50000 [00:00<00:02, 17930.66 examples/s][A[A
+
+Standardizing text corpus format:   8%|▊         | 4000/50000 [00:00<00:02, 18314.46 examples/s][A[A
+
+Standardizing text corpus format:  12%|█▏        | 6000/50000 [00:00<00:02, 18962.00 examples/s][A[A
+
+Standardizing text corpus format:  16%|█▌        | 8001/50000 [00:00<00:02, 19342.21 examples/s][A[A
+
+Standardizing text corpus format:  20%|██        | 10000/50000 [00:00<00:02, 19461.85 examples/s][A[A
+
+Standardizing text corpus format:  24%|██▍       | 12001/50000 [00:00<00:01, 19535.29 examples/s][A[A
+
+Standardizing text corpus format:  28%|██▊       | 14001/50000 [00:00<00:01, 19657.30 examples/s][A[A
+
+Standardizing text corpus format:  32%|███▏      | 16000/50000 [00:00<00:01, 19710.82 examples/s][A[A
+
+Standardizing text corpus format:  36%|███▌      | 18000/50000 [00:00<00:01, 19704.71 examples/s][A[A
+
+Standardizing text corpus format:  40%|████      | 20001/50000 [00:01<00:01, 19745.49 examples/s][A[A
+
+Standardizing text corpus format:  44%|████▍     | 22000/50000 [00:01<00:01, 19494.83 examples/s][A[A
+
+Standardizing text corpus format:  48%|████▊     | 24000/50000 [00:01<00:01, 19557.75 examples/s][A[A
+
+Standardizing text corpus format:  52%|█████▏    | 26000/50000 [00:01<00:01, 19563.12 examples/s][A[A
+
+Standardizing text corpus format:  56%|█████▌    | 28000/50000 [00:01<00:01, 19642.06 examples/s][A[A
+
+Standardizing text corpus format:  60%|██████    | 30000/50000 [00:01<00:01, 19640.29 examples/s][A[A
+
+Standardizing text corpus format:  64%|██████▍   | 32000/50000 [00:03<00:06, 2608.93 examples/s] [A[A
+
+Standardizing text corpus format:  68%|██████▊   | 34000/50000 [00:03<00:04, 3529.03 examples/s][A[A
+
+Standardizing text corpus format:  72%|███████▏  | 36013/50000 [00:04<00:02, 4698.08 examples/s][A[A
+
+Standardizing text corpus format:  76%|███████▌  | 38000/50000 [00:04<00:01, 6085.03 examples/s][A[A
+
+Standardizing text corpus format:  80%|████████  | 40001/50000 [00:04<00:01, 7693.54 examples/s][A[A
+
+Standardizing text corpus format:  84%|████████▍ | 42000/50000 [00:04<00:00, 9428.09 examples/s][A[A
+
+Standardizing text corpus format:  88%|████████▊ | 44000/50000 [00:04<00:00, 11178.17 examples/s][A[A
+
+Standardizing text corpus format:  92%|█████████▏| 46000/50000 [00:04<00:00, 12833.85 examples/s][A[A
+
+Standardizing text corpus format:  96%|█████████▌| 48000/50000 [00:04<00:00, 14154.26 examples/s][A[A
+
+Standardizing text corpus format: 100%|██████████| 50000/50000 [00:04<00:00, 15502.87 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:04<00:00, 10485.97 examples/s]
+
+Searching corpus chunks:  50%|█████     | 2/4 [12:43<12:44, 382.15s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   2%|▏         | 893/50000 [00:01<01:22, 593.00 examples/s][A[A
+
+Standardizing text corpus format:   2%|▏         | 1000/50000 [00:03<03:50, 212.20 examples/s][A[A
+
+Standardizing text corpus format:   6%|▌         | 3000/50000 [00:04<00:47, 997.45 examples/s][A[A
+
+Standardizing text corpus format:  10%|█         | 5000/50000 [00:04<00:22, 2016.12 examples/s][A[A
+
+Standardizing text corpus format:  14%|█▍        | 7000/50000 [00:04<00:13, 3294.09 examples/s][A[A
+
+Standardizing text corpus format:  18%|█▊        | 9000/50000 [00:04<00:08, 4830.52 examples/s][A[A
+
+Standardizing text corpus format:  22%|██▏       | 11000/50000 [00:04<00:05, 6590.41 examples/s][A[A
+
+Standardizing text corpus format:  26%|██▌       | 13001/50000 [00:04<00:04, 8377.54 examples/s][A[A
+
+Standardizing text corpus format:  30%|███       | 15001/50000 [00:04<00:03, 10290.60 examples/s][A[A
+
+Standardizing text corpus format:  34%|███▍      | 17000/50000 [00:04<00:02, 12084.41 examples/s][A[A
+
+Standardizing text corpus format:  38%|███▊      | 19000/50000 [00:04<00:02, 13662.24 examples/s][A[A
+
+Standardizing text corpus format:  42%|████▏     | 21000/50000 [00:04<00:01, 14877.16 examples/s][A[A
+
+Standardizing text corpus format:  46%|████▌     | 23000/50000 [00:05<00:01, 15933.05 examples/s][A[A
+
+Standardizing text corpus format:  50%|█████     | 25000/50000 [00:05<00:01, 16805.33 examples/s][A[A
+
+Standardizing text corpus format:  54%|█████▍    | 27000/50000 [00:05<00:01, 17551.19 examples/s][A[A
+
+Standardizing text corpus format:  58%|█████▊    | 29000/50000 [00:05<00:01, 17691.26 examples/s][A[A
+
+Standardizing text corpus format:  62%|██████▏   | 31000/50000 [00:05<00:01, 18227.82 examples/s][A[A
+
+Standardizing text corpus format:  66%|██████▌   | 33000/50000 [00:05<00:00, 18489.04 examples/s][A[A
+
+Standardizing text corpus format:  70%|███████   | 35000/50000 [00:05<00:00, 18829.28 examples/s][A[A
+
+Standardizing text corpus format:  74%|███████▍  | 37001/50000 [00:05<00:00, 19070.30 examples/s][A[A
+
+Standardizing text corpus format:  78%|███████▊  | 39000/50000 [00:05<00:00, 19245.68 examples/s][A[A
+
+Standardizing text corpus format:  82%|████████▏ | 41000/50000 [00:05<00:00, 19082.40 examples/s][A[A
+
+Standardizing text corpus format:  86%|████████▌ | 43000/50000 [00:06<00:00, 18930.58 examples/s][A[A
+
+Standardizing text corpus format:  90%|█████████ | 45000/50000 [00:06<00:00, 19008.82 examples/s][A[A
+
+Standardizing text corpus format:  94%|█████████▍| 47000/50000 [00:06<00:00, 18722.31 examples/s][A[A
+
+Standardizing text corpus format:  98%|█████████▊| 49000/50000 [00:06<00:00, 18899.05 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:06<00:00, 7741.60 examples/s] 
+
+Searching corpus chunks:  75%|███████▌  | 3/4 [19:10<06:24, 384.52s/it][A
+
+Standardizing text corpus format:   0%|          | 0/6526 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:  10%|█         | 666/6526 [00:01<00:10, 561.58 examples/s][A[A
+
+Standardizing text corpus format:  37%|███▋      | 2428/6526 [00:01<00:01, 2395.38 examples/s][A[A
+
+Standardizing text corpus format:  66%|██████▌   | 4283/6526 [00:01<00:00, 4530.53 examples/s][A[A
+
+Standardizing text corpus format:  95%|█████████▍| 6176/6526 [00:01<00:00, 6824.00 examples/s][A[AStandardizing text corpus format: 100%|██████████| 6526/6526 [00:01<00:00, 4321.24 examples/s]
+
+Searching corpus chunks: 100%|██████████| 4/4 [20:10<00:00, 256.12s/it][ASearching corpus chunks: 100%|██████████| 4/4 [20:10<00:00, 302.56s/it]
+Evaluating task CodeFeedbackST: 100%|██████████| 1/1 [23:49<00:00, 1429.57s/it]Evaluating task CodeFeedbackST: 100%|██████████| 1/1 [23:49<00:00, 1429.57s/it]
+eval done CodeFeedbackST in 23.8 min
+Evaluating tasks:   0%|          | 0/1 [00:00<?, ?it/s]Evaluating task CodeSearchNetCCRetrieval:   0%|          | 0/1 [00:00<?, ?it/s]
+Searching corpus chunks:   0%|          | 0/6 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   6%|▌         | 3055/50000 [00:00<00:01, 30356.42 examples/s][A[A
+
+Standardizing text corpus format:  16%|█▌        | 7894/50000 [00:00<00:01, 31669.25 examples/s][A[A
+
+Standardizing text corpus format:  22%|██▏       | 11125/50000 [00:00<00:01, 31917.95 examples/s][A[A
+
+Standardizing text corpus format:  32%|███▏      | 15923/50000 [00:00<00:01, 31940.36 examples/s][A[A
+
+Standardizing text corpus format:  38%|███▊      | 19123/50000 [00:00<00:00, 31956.80 examples/s][A[A
+
+Standardizing text corpus format:  45%|████▍     | 22395/50000 [00:00<00:00, 32181.51 examples/s][A[A
+
+Standardizing text corpus format:  54%|█████▍    | 27124/50000 [00:00<00:00, 31921.73 examples/s][A[A
+
+Standardizing text corpus format:  61%|██████    | 30407/50000 [00:00<00:00, 32167.28 examples/s][A[A
+
+Standardizing text corpus format:  67%|██████▋   | 33686/50000 [00:01<00:00, 32337.85 examples/s][A[A
+
+Standardizing text corpus format:  77%|███████▋  | 38508/50000 [00:01<00:00, 32263.68 examples/s][A[A
+
+Standardizing text corpus format:  87%|████████▋ | 43333/50000 [00:01<00:00, 32226.36 examples/s][A[A
+
+Standardizing text corpus format:  96%|█████████▌| 47990/50000 [00:01<00:00, 31831.75 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 31902.68 examples/s]
+
+Searching corpus chunks:  17%|█▋        | 1/6 [01:48<09:03, 108.70s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   6%|▌         | 3048/50000 [00:00<00:01, 30313.80 examples/s][A[A
+
+Standardizing text corpus format:  13%|█▎        | 6273/50000 [00:00<00:01, 31442.71 examples/s][A[A
+
+Standardizing text corpus format:  22%|██▏       | 10937/50000 [00:00<00:01, 31242.87 examples/s][A[A
+
+Standardizing text corpus format:  28%|██▊       | 14069/50000 [00:00<00:01, 31265.04 examples/s][A[A
+
+Standardizing text corpus format:  35%|███▍      | 17343/50000 [00:00<00:01, 31749.07 examples/s][A[A
+
+Standardizing text corpus format:  41%|████▏     | 20668/50000 [00:00<00:00, 32129.86 examples/s][A[A
+
+Standardizing text corpus format:  48%|████▊     | 23936/50000 [00:00<00:00, 32297.30 examples/s][A[A
+
+Standardizing text corpus format:  57%|█████▋    | 28668/50000 [00:00<00:00, 31889.85 examples/s][A[A
+
+Standardizing text corpus format:  64%|██████▍   | 31938/50000 [00:01<00:00, 32109.90 examples/s][A[A
+
+Standardizing text corpus format:  74%|███████▎  | 36760/50000 [00:01<00:00, 32119.54 examples/s][A[A
+
+Standardizing text corpus format:  80%|████████  | 40000/50000 [00:01<00:00, 32092.07 examples/s][A[A
+
+Standardizing text corpus format:  86%|████████▋ | 43220/50000 [00:01<00:00, 32116.52 examples/s][A[A
+
+Standardizing text corpus format:  96%|█████████▌| 47836/50000 [00:01<00:00, 31618.15 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 31782.00 examples/s]
+
+Searching corpus chunks:  33%|███▎      | 2/6 [03:37<07:14, 108.51s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   1%|          | 468/50000 [00:00<01:01, 810.02 examples/s][A[A
+
+Standardizing text corpus format:  10%|▉         | 4980/50000 [00:00<00:05, 8728.72 examples/s][A[A
+
+Standardizing text corpus format:  16%|█▌        | 8000/50000 [00:00<00:03, 13112.40 examples/s][A[A
+
+Standardizing text corpus format:  24%|██▎       | 11874/50000 [00:01<00:04, 9475.59 examples/s][A[A
+
+Standardizing text corpus format:  30%|███       | 15000/50000 [00:01<00:02, 12502.54 examples/s][A[A
+
+Standardizing text corpus format:  36%|███▋      | 18142/50000 [00:01<00:02, 15640.89 examples/s][A[A
+
+Standardizing text corpus format:  43%|████▎     | 21342/50000 [00:01<00:01, 18775.45 examples/s][A[A
+
+Standardizing text corpus format:  49%|████▉     | 24378/50000 [00:01<00:01, 21264.07 examples/s][A[A
+
+Standardizing text corpus format:  55%|█████▌    | 27676/50000 [00:01<00:00, 23944.17 examples/s][A[A
+
+Standardizing text corpus format:  62%|██████▏   | 30935/50000 [00:01<00:00, 26110.46 examples/s][A[A
+
+Standardizing text corpus format:  68%|██████▊   | 34128/50000 [00:02<00:00, 27641.66 examples/s][A[A
+
+Standardizing text corpus format:  75%|███████▍  | 37391/50000 [00:02<00:00, 29004.64 examples/s][A[A
+
+Standardizing text corpus format:  81%|████████▏ | 40690/50000 [00:02<00:00, 30121.53 examples/s][A[A
+
+Standardizing text corpus format:  88%|████████▊ | 43915/50000 [00:02<00:00, 30347.79 examples/s][A[A
+
+Standardizing text corpus format:  97%|█████████▋| 48426/50000 [00:02<00:00, 30241.61 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:02<00:00, 19416.79 examples/s]
+
+Searching corpus chunks:  50%|█████     | 3/6 [05:28<05:29, 109.84s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   1%|          | 468/50000 [00:00<00:28, 1751.01 examples/s][A[A
+
+Standardizing text corpus format:   7%|▋         | 3402/50000 [00:00<00:04, 11359.56 examples/s][A[A
+
+Standardizing text corpus format:  11%|█▏        | 5694/50000 [00:01<00:17, 2605.12 examples/s] [A[A
+
+Standardizing text corpus format:  18%|█▊        | 8773/50000 [00:02<00:08, 4725.26 examples/s][A[A
+
+Standardizing text corpus format:  24%|██▍       | 11995/50000 [00:02<00:05, 7392.91 examples/s][A[A
+
+Standardizing text corpus format:  30%|███       | 15048/50000 [00:02<00:03, 10209.14 examples/s][A[A
+
+Standardizing text corpus format:  37%|███▋      | 18300/50000 [00:02<00:02, 13514.11 examples/s][A[A
+
+Standardizing text corpus format:  43%|████▎     | 21538/50000 [00:02<00:01, 16808.24 examples/s][A[A
+
+Standardizing text corpus format:  49%|████▉     | 24585/50000 [00:02<00:01, 19469.56 examples/s][A[A
+
+Standardizing text corpus format:  56%|█████▌    | 27798/50000 [00:02<00:00, 22271.11 examples/s][A[A
+
+Standardizing text corpus format:  62%|██████▏   | 31000/50000 [00:02<00:00, 24536.67 examples/s][A[A
+
+Standardizing text corpus format:  68%|██████▊   | 34212/50000 [00:02<00:00, 26247.25 examples/s][A[A
+
+Standardizing text corpus format:  75%|███████▍  | 37434/50000 [00:02<00:00, 27831.39 examples/s][A[A
+
+Standardizing text corpus format:  81%|████████▏ | 40648/50000 [00:03<00:00, 28990.36 examples/s][A[A
+
+Standardizing text corpus format:  88%|████████▊ | 43903/50000 [00:03<00:00, 29989.87 examples/s][A[A
+
+Standardizing text corpus format:  97%|█████████▋| 48619/50000 [00:03<00:00, 30063.09 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:03<00:00, 15011.20 examples/s]
+
+Searching corpus chunks:  67%|██████▋   | 4/6 [07:17<03:39, 109.51s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   6%|▌         | 3056/50000 [00:00<00:01, 30385.80 examples/s][A[A
+
+Standardizing text corpus format:  12%|█▏        | 6247/50000 [00:00<00:01, 31272.99 examples/s][A[A
+
+Standardizing text corpus format:  21%|██        | 10258/50000 [00:00<00:02, 18110.50 examples/s][A[A
+
+Standardizing text corpus format:  27%|██▋       | 13389/50000 [00:00<00:01, 21415.28 examples/s][A[A
+
+Standardizing text corpus format:  33%|███▎      | 16649/50000 [00:00<00:01, 24316.30 examples/s][A[A
+
+Standardizing text corpus format:  40%|███▉      | 19859/50000 [00:00<00:01, 26440.52 examples/s][A[A
+
+Standardizing text corpus format:  46%|████▌     | 23000/50000 [00:00<00:00, 27525.09 examples/s][A[A
+
+Standardizing text corpus format:  52%|█████▏    | 26200/50000 [00:01<00:00, 28794.31 examples/s][A[A
+
+Standardizing text corpus format:  59%|█████▉    | 29388/50000 [00:01<00:00, 29680.45 examples/s][A[A
+
+Standardizing text corpus format:  65%|██████▌   | 32654/50000 [00:01<00:00, 30512.81 examples/s][A[A
+
+Standardizing text corpus format:  72%|███████▏  | 35845/50000 [00:01<00:00, 30920.47 examples/s][A[A
+
+Standardizing text corpus format:  78%|███████▊  | 39014/50000 [00:01<00:00, 31145.63 examples/s][A[A
+
+Standardizing text corpus format:  84%|████████▍ | 42221/50000 [00:01<00:00, 31419.71 examples/s][A[A
+
+Standardizing text corpus format:  94%|█████████▎| 46871/50000 [00:01<00:00, 31252.78 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 28345.99 examples/s]
+
+Searching corpus chunks:  83%|████████▎ | 5/6 [09:04<01:48, 108.51s/it][A
+
+Standardizing text corpus format:   0%|          | 0/30652 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   2%|▏         | 467/30652 [00:00<00:21, 1408.18 examples/s][A[A
+
+Standardizing text corpus format:  11%|█         | 3427/30652 [00:00<00:02, 9895.14 examples/s][A[A
+
+Standardizing text corpus format:  20%|██        | 6218/30652 [00:00<00:03, 8116.86 examples/s][A[A
+
+Standardizing text corpus format:  31%|███       | 9435/30652 [00:00<00:01, 12577.42 examples/s][A[A
+
+Standardizing text corpus format:  41%|████      | 12625/30652 [00:01<00:01, 16557.48 examples/s][A[A
+
+Standardizing text corpus format:  52%|█████▏    | 15894/30652 [00:01<00:00, 20260.06 examples/s][A[A
+
+Standardizing text corpus format:  62%|██████▏   | 19107/30652 [00:01<00:00, 23190.22 examples/s][A[A
+
+Standardizing text corpus format:  72%|███████▏  | 22165/30652 [00:01<00:00, 25115.77 examples/s][A[A
+
+Standardizing text corpus format:  83%|████████▎ | 25370/30652 [00:01<00:00, 26995.63 examples/s][A[A
+
+Standardizing text corpus format:  94%|█████████▎| 28681/30652 [00:01<00:00, 28696.55 examples/s][A[AStandardizing text corpus format: 100%|██████████| 30652/30652 [00:02<00:00, 10522.62 examples/s]
+
+Searching corpus chunks: 100%|██████████| 6/6 [10:17<00:00, 96.36s/it] [ASearching corpus chunks: 100%|██████████| 6/6 [10:17<00:00, 102.84s/it]
+
+Searching corpus chunks:   0%|          | 0/2 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   6%|▋         | 3141/50000 [00:00<00:01, 31181.50 examples/s][A[A
+
+Standardizing text corpus format:  13%|█▎        | 6369/50000 [00:00<00:01, 31819.88 examples/s][A[A
+
+Standardizing text corpus format:  19%|█▉        | 9663/50000 [00:00<00:01, 32055.06 examples/s][A[A
+
+Standardizing text corpus format:  26%|██▌       | 12928/50000 [00:00<00:01, 32282.69 examples/s][A[A
+
+Standardizing text corpus format:  35%|███▌      | 17636/50000 [00:00<00:01, 31507.66 examples/s][A[A
+
+Standardizing text corpus format:  42%|████▏     | 20918/50000 [00:00<00:00, 31900.79 examples/s][A[A
+
+Standardizing text corpus format:  48%|████▊     | 24156/50000 [00:00<00:00, 32043.84 examples/s][A[A
+
+Standardizing text corpus format:  55%|█████▍    | 27449/50000 [00:00<00:00, 32308.45 examples/s][A[A
+
+Standardizing text corpus format:  61%|██████▏   | 30740/50000 [00:00<00:00, 32486.52 examples/s][A[A
+
+Standardizing text corpus format:  71%|███████   | 35397/50000 [00:01<00:00, 31920.15 examples/s][A[A
+
+Standardizing text corpus format:  77%|███████▋  | 38667/50000 [00:01<00:00, 32131.02 examples/s][A[A
+
+Standardizing text corpus format:  84%|████████▍ | 41941/50000 [00:01<00:00, 32299.53 examples/s][A[A
+
+Standardizing text corpus format:  94%|█████████▎| 46848/50000 [00:01<00:00, 32450.95 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 32150.23 examples/s]
+
+Searching corpus chunks:  50%|█████     | 1/2 [01:18<01:18, 78.55s/it][A
+
+Standardizing text corpus format:   0%|          | 0/15201 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:  20%|██        | 3083/15201 [00:00<00:00, 30664.22 examples/s][A[A
+
+Standardizing text corpus format:  41%|████      | 6266/15201 [00:00<00:00, 31341.36 examples/s][A[A
+
+Standardizing text corpus format:  62%|██████▏   | 9474/15201 [00:00<00:00, 31675.00 examples/s][A[A
+
+Standardizing text corpus format:  84%|████████▎ | 12697/15201 [00:00<00:00, 31890.09 examples/s][A[AStandardizing text corpus format: 100%|██████████| 15201/15201 [00:00<00:00, 31415.26 examples/s]
+
+Searching corpus chunks: 100%|██████████| 2/2 [01:43<00:00, 47.03s/it][ASearching corpus chunks: 100%|██████████| 2/2 [01:43<00:00, 51.76s/it]
+
+Searching corpus chunks:   0%|          | 0/4 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   6%|▋         | 3219/50000 [00:00<00:01, 32055.14 examples/s][A[A
+
+Standardizing text corpus format:  16%|█▌        | 8000/50000 [00:00<00:01, 31714.17 examples/s][A[A
+
+Standardizing text corpus format:  23%|██▎       | 11269/50000 [00:00<00:01, 32092.57 examples/s][A[A
+
+Standardizing text corpus format:  29%|██▉       | 14501/50000 [00:00<00:01, 32170.61 examples/s][A[A
+
+Standardizing text corpus format:  36%|███▌      | 17794/50000 [00:00<00:00, 32424.51 examples/s][A[A
+
+Standardizing text corpus format:  45%|████▌     | 22693/50000 [00:00<00:00, 32519.77 examples/s][A[A
+
+Standardizing text corpus format:  52%|█████▏    | 25969/50000 [00:00<00:00, 32586.06 examples/s][A[A
+
+Standardizing text corpus format:  61%|██████▏   | 30666/50000 [00:00<00:00, 32098.10 examples/s][A[A
+
+Standardizing text corpus format:  71%|███████   | 35469/50000 [00:01<00:00, 32066.44 examples/s][A[A
+
+Standardizing text corpus format:  77%|███████▋  | 38730/50000 [00:01<00:00, 32201.08 examples/s][A[A
+
+Standardizing text corpus format:  84%|████████▍ | 41990/50000 [00:01<00:00, 32304.48 examples/s][A[A
+
+Standardizing text corpus format:  94%|█████████▎| 46852/50000 [00:01<00:00, 32338.87 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 32126.47 examples/s]
+
+Searching corpus chunks:  25%|██▌       | 1/4 [01:06<03:19, 66.48s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   6%|▌         | 3012/50000 [00:00<00:01, 29971.47 examples/s][A[A
+
+Standardizing text corpus format:  13%|█▎        | 6291/50000 [00:00<00:01, 31620.71 examples/s][A[A
+
+Standardizing text corpus format:  19%|█▉        | 9557/50000 [00:00<00:01, 32092.69 examples/s][A[A
+
+Standardizing text corpus format:  28%|██▊       | 14238/50000 [00:00<00:01, 31649.15 examples/s][A[A
+
+Standardizing text corpus format:  35%|███▌      | 17504/50000 [00:00<00:01, 31971.24 examples/s][A[A
+
+Standardizing text corpus format:  44%|████▍     | 22213/50000 [00:00<00:00, 31732.04 examples/s][A[A
+
+Standardizing text corpus format:  51%|█████     | 25451/50000 [00:00<00:00, 31909.74 examples/s][A[A
+
+Standardizing text corpus format:  57%|█████▋    | 28720/50000 [00:00<00:00, 32129.61 examples/s][A[A
+
+Standardizing text corpus format:  64%|██████▍   | 31967/50000 [00:01<00:00, 32225.57 examples/s][A[A
+
+Standardizing text corpus format:  74%|███████▍  | 36882/50000 [00:01<00:00, 32428.10 examples/s][A[A
+
+Standardizing text corpus format:  80%|████████  | 40145/50000 [00:01<00:00, 32479.29 examples/s][A[A
+
+Standardizing text corpus format:  87%|████████▋ | 43440/50000 [00:01<00:00, 32608.46 examples/s][A[A
+
+Standardizing text corpus format:  97%|█████████▋| 48272/50000 [00:01<00:00, 32457.04 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 32069.04 examples/s]
+
+Searching corpus chunks:  50%|█████     | 2/4 [02:12<02:12, 66.27s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   1%|          | 468/50000 [00:00<00:44, 1122.49 examples/s][A[A
+
+Standardizing text corpus format:   7%|▋         | 3347/50000 [00:00<00:05, 8182.93 examples/s][A[A
+
+Standardizing text corpus format:  11%|█▏        | 5694/50000 [00:00<00:06, 6348.63 examples/s][A[A
+
+Standardizing text corpus format:  16%|█▌        | 8084/50000 [00:02<00:15, 2669.54 examples/s][A[A
+
+Standardizing text corpus format:  22%|██▏       | 11178/50000 [00:02<00:08, 4470.75 examples/s][A[A
+
+Standardizing text corpus format:  29%|██▉       | 14415/50000 [00:02<00:05, 6798.19 examples/s][A[A
+
+Standardizing text corpus format:  35%|███▌      | 17686/50000 [00:02<00:03, 9557.32 examples/s][A[A
+
+Standardizing text corpus format:  42%|████▏     | 20834/50000 [00:02<00:02, 12451.53 examples/s][A[A
+
+Standardizing text corpus format:  47%|████▋     | 23631/50000 [00:03<00:01, 14907.49 examples/s][A[A
+
+Standardizing text corpus format:  54%|█████▎    | 26864/50000 [00:03<00:01, 18124.68 examples/s][A[A
+
+Standardizing text corpus format:  60%|██████    | 30087/50000 [00:03<00:00, 21068.14 examples/s][A[A
+
+Standardizing text corpus format:  67%|██████▋   | 33359/50000 [00:03<00:00, 23743.73 examples/s][A[A
+
+Standardizing text corpus format:  73%|███████▎  | 36683/50000 [00:03<00:00, 26068.10 examples/s][A[A
+
+Standardizing text corpus format:  80%|███████▉  | 39893/50000 [00:03<00:00, 27215.09 examples/s][A[A
+
+Standardizing text corpus format:  86%|████████▌ | 43068/50000 [00:03<00:00, 28431.03 examples/s][A[A
+
+Standardizing text corpus format:  95%|█████████▌| 47738/50000 [00:03<00:00, 29414.63 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:03<00:00, 12857.54 examples/s]
+
+Searching corpus chunks:  75%|███████▌  | 3/4 [03:23<01:08, 68.52s/it][A
+
+Standardizing text corpus format:   0%|          | 0/32735 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   9%|▉         | 3105/32735 [00:00<00:00, 30877.18 examples/s][A[A
+
+Standardizing text corpus format:  19%|█▉        | 6299/32735 [00:00<00:00, 31495.26 examples/s][A[A
+
+Standardizing text corpus format:  29%|██▉       | 9551/32735 [00:00<00:00, 31958.32 examples/s][A[A
+
+Standardizing text corpus format:  39%|███▉      | 12747/32735 [00:00<00:00, 31955.24 examples/s][A[A
+
+Standardizing text corpus format:  49%|████▉     | 15980/32735 [00:00<00:00, 32084.87 examples/s][A[A
+
+Standardizing text corpus format:  59%|█████▊    | 19207/32735 [00:00<00:00, 32145.81 examples/s][A[A
+
+Standardizing text corpus format:  69%|██████▊   | 22489/32735 [00:00<00:00, 32365.34 examples/s][A[A
+
+Standardizing text corpus format:  83%|████████▎ | 27225/32735 [00:00<00:00, 32018.28 examples/s][A[A
+
+Standardizing text corpus format:  93%|█████████▎| 30482/32735 [00:00<00:00, 32172.34 examples/s][A[AStandardizing text corpus format: 100%|██████████| 32735/32735 [00:01<00:00, 32027.63 examples/s]
+
+Searching corpus chunks: 100%|██████████| 4/4 [04:07<00:00, 58.74s/it][ASearching corpus chunks: 100%|██████████| 4/4 [04:07<00:00, 61.89s/it]
+
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/27588 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:  11%|█▏        | 3104/27588 [00:00<00:00, 30854.65 examples/s][A[A
+
+Standardizing text corpus format:  23%|██▎       | 6290/27588 [00:00<00:00, 31438.26 examples/s][A[A
+
+Standardizing text corpus format:  35%|███▍      | 9592/27588 [00:00<00:00, 32153.57 examples/s][A[A
+
+Standardizing text corpus format:  47%|████▋     | 12863/27588 [00:00<00:00, 32369.54 examples/s][A[A
+
+Standardizing text corpus format:  64%|██████▍   | 17761/27588 [00:00<00:00, 32494.87 examples/s][A[A
+
+Standardizing text corpus format:  82%|████████▏ | 22665/27588 [00:00<00:00, 32570.06 examples/s][A[A
+
+Standardizing text corpus format:  99%|█████████▉| 27423/27588 [00:00<00:00, 32261.08 examples/s][A[AStandardizing text corpus format: 100%|██████████| 27588/27588 [00:00<00:00, 32149.03 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:30<00:00, 30.10s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:30<00:00, 30.11s/it]
+
+Searching corpus chunks:   0%|          | 0/4 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   6%|▌         | 3000/50000 [00:00<00:01, 29588.61 examples/s][A[A
+
+Standardizing text corpus format:  12%|█▏        | 6177/50000 [00:00<00:01, 30860.23 examples/s][A[A
+
+Standardizing text corpus format:  22%|██▏       | 10864/50000 [00:00<00:01, 31071.93 examples/s][A[A
+
+Standardizing text corpus format:  28%|██▊       | 14057/50000 [00:00<00:01, 31365.56 examples/s][A[A
+
+Standardizing text corpus format:  38%|███▊      | 18765/50000 [00:00<00:00, 31371.48 examples/s][A[A
+
+Standardizing text corpus format:  44%|████▍     | 21907/50000 [00:00<00:00, 31381.02 examples/s][A[A
+
+Standardizing text corpus format:  53%|█████▎    | 26702/50000 [00:00<00:00, 31601.19 examples/s][A[A
+
+Standardizing text corpus format:  60%|█████▉    | 29910/50000 [00:00<00:00, 31726.85 examples/s][A[A
+
+Standardizing text corpus format:  69%|██████▉   | 34587/50000 [00:01<00:00, 31524.47 examples/s][A[A
+
+Standardizing text corpus format:  76%|███████▌  | 37764/50000 [00:01<00:00, 31586.42 examples/s][A[A
+
+Standardizing text corpus format:  82%|████████▏ | 40948/50000 [00:01<00:00, 31652.79 examples/s][A[A
+
+Standardizing text corpus format:  91%|█████████▏| 45719/50000 [00:01<00:00, 31706.60 examples/s][A[A
+
+Standardizing text corpus format:  98%|█████████▊| 48951/50000 [00:01<00:00, 31861.54 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 31517.07 examples/s]
+
+Searching corpus chunks:  25%|██▌       | 1/4 [01:18<03:55, 78.65s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   6%|▌         | 3109/50000 [00:00<00:01, 30920.18 examples/s][A[A
+
+Standardizing text corpus format:  13%|█▎        | 6341/50000 [00:00<00:01, 31734.70 examples/s][A[A
+
+Standardizing text corpus format:  19%|█▉        | 9538/50000 [00:00<00:01, 31839.14 examples/s][A[A
+
+Standardizing text corpus format:  26%|██▌       | 12817/50000 [00:00<00:01, 32213.64 examples/s][A[A
+
+Standardizing text corpus format:  35%|███▌      | 17658/50000 [00:00<00:01, 32036.76 examples/s][A[A
+
+Standardizing text corpus format:  42%|████▏     | 20934/50000 [00:00<00:00, 32255.29 examples/s][A[A
+
+Standardizing text corpus format:  52%|█████▏    | 25778/50000 [00:00<00:00, 32265.91 examples/s][A[A
+
+Standardizing text corpus format:  61%|██████▏   | 30646/50000 [00:00<00:00, 32065.92 examples/s][A[A
+
+Standardizing text corpus format:  68%|██████▊   | 33935/50000 [00:01<00:00, 32271.53 examples/s][A[A
+
+Standardizing text corpus format:  74%|███████▍  | 37223/50000 [00:01<00:00, 32429.39 examples/s][A[A
+
+Standardizing text corpus format:  81%|████████  | 40570/50000 [00:01<00:00, 32714.09 examples/s][A[A
+
+Standardizing text corpus format:  91%|█████████ | 45442/50000 [00:01<00:00, 32621.97 examples/s][A[A
+
+Standardizing text corpus format:  98%|█████████▊| 48760/50000 [00:01<00:00, 32765.24 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 32326.02 examples/s]
+
+Searching corpus chunks:  50%|█████     | 2/4 [02:41<02:42, 81.26s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   6%|▌         | 3089/50000 [00:00<00:01, 30721.86 examples/s][A[A
+
+Standardizing text corpus format:  13%|█▎        | 6302/50000 [00:00<00:01, 31545.20 examples/s][A[A
+
+Standardizing text corpus format:  19%|█▉        | 9524/50000 [00:00<00:01, 31851.70 examples/s][A[A
+
+Standardizing text corpus format:  29%|██▊       | 14274/50000 [00:00<00:01, 31756.40 examples/s][A[A
+
+Standardizing text corpus format:  35%|███▌      | 17521/50000 [00:00<00:01, 31979.78 examples/s][A[A
+
+Standardizing text corpus format:  44%|████▍     | 22224/50000 [00:00<00:00, 31642.49 examples/s][A[A
+
+Standardizing text corpus format:  54%|█████▎    | 26869/50000 [00:00<00:00, 31390.69 examples/s][A[A
+
+Standardizing text corpus format:  60%|██████    | 30060/50000 [00:00<00:00, 31522.73 examples/s][A[A
+
+Standardizing text corpus format:  67%|██████▋   | 33299/50000 [00:01<00:00, 31755.98 examples/s][A[A
+
+Standardizing text corpus format:  76%|███████▌  | 37967/50000 [00:01<00:00, 31520.86 examples/s][A[A
+
+Standardizing text corpus format:  82%|████████▏ | 41160/50000 [00:01<00:00, 31625.69 examples/s][A[A
+
+Standardizing text corpus format:  89%|████████▉ | 44421/50000 [00:01<00:00, 31888.37 examples/s][A[A
+
+Standardizing text corpus format:  95%|█████████▌| 47677/50000 [00:01<00:00, 32072.78 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 31727.23 examples/s]
+
+Searching corpus chunks:  75%|███████▌  | 3/4 [04:00<01:20, 80.17s/it][A
+
+Standardizing text corpus format:   0%|          | 0/31061 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   2%|▏         | 468/31061 [00:00<00:13, 2255.67 examples/s][A[A
+
+Standardizing text corpus format:  11%|█▏        | 3560/31061 [00:00<00:01, 13942.60 examples/s][A[A
+
+Standardizing text corpus format:  22%|██▏       | 6694/31061 [00:00<00:01, 12269.49 examples/s][A[A
+
+Standardizing text corpus format:  32%|███▏      | 9789/31061 [00:00<00:01, 16766.28 examples/s][A[A
+
+Standardizing text corpus format:  42%|████▏     | 12986/31061 [00:00<00:00, 20655.34 examples/s][A[A
+
+Standardizing text corpus format:  52%|█████▏    | 16055/31061 [00:00<00:00, 23338.86 examples/s][A[A
+
+Standardizing text corpus format:  62%|██████▏   | 19322/31061 [00:00<00:00, 25916.93 examples/s][A[A
+
+Standardizing text corpus format:  73%|███████▎  | 22587/31061 [00:01<00:00, 27821.43 examples/s][A[A
+
+Standardizing text corpus format:  83%|████████▎ | 25811/31061 [00:01<00:00, 29091.96 examples/s][A[A
+
+Standardizing text corpus format:  93%|█████████▎| 29000/31061 [00:01<00:00, 29841.61 examples/s][A[AStandardizing text corpus format: 100%|██████████| 31061/31061 [00:01<00:00, 22944.31 examples/s]
+
+Searching corpus chunks: 100%|██████████| 4/4 [04:52<00:00, 69.10s/it][ASearching corpus chunks: 100%|██████████| 4/4 [04:52<00:00, 73.18s/it]
+
+Searching corpus chunks:   0%|          | 0/6 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   6%|▌         | 3059/50000 [00:00<00:01, 30383.00 examples/s][A[A
+
+Standardizing text corpus format:  12%|█▎        | 6250/50000 [00:00<00:01, 31271.26 examples/s][A[A
+
+Standardizing text corpus format:  22%|██▏       | 11000/50000 [00:00<00:01, 31400.33 examples/s][A[A
+
+Standardizing text corpus format:  29%|██▊       | 14269/50000 [00:00<00:01, 31845.21 examples/s][A[A
+
+Standardizing text corpus format:  35%|███▌      | 17576/50000 [00:00<00:01, 32245.97 examples/s][A[A
+
+Standardizing text corpus format:  45%|████▍     | 22275/50000 [00:00<00:00, 31862.00 examples/s][A[A
+
+Standardizing text corpus format:  51%|█████     | 25547/50000 [00:00<00:00, 32103.48 examples/s][A[A
+
+Standardizing text corpus format:  58%|█████▊    | 28796/50000 [00:00<00:00, 32210.17 examples/s][A[A
+
+Standardizing text corpus format:  67%|██████▋   | 33658/50000 [00:01<00:00, 32285.41 examples/s][A[A
+
+Standardizing text corpus format:  77%|███████▋  | 38295/50000 [00:01<00:00, 31799.75 examples/s][A[A
+
+Standardizing text corpus format:  83%|████████▎ | 41548/50000 [00:01<00:00, 31981.27 examples/s][A[A
+
+Standardizing text corpus format:  90%|████████▉ | 44814/50000 [00:01<00:00, 32158.95 examples/s][A[A
+
+Standardizing text corpus format:  99%|█████████▉| 49709/50000 [00:01<00:00, 32328.62 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 31995.26 examples/s]
+
+Searching corpus chunks:  17%|█▋        | 1/6 [01:18<06:31, 78.21s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   6%|▌         | 3104/50000 [00:00<00:01, 30893.75 examples/s][A[A
+
+Standardizing text corpus format:  13%|█▎        | 6301/50000 [00:00<00:01, 31522.45 examples/s][A[A
+
+Standardizing text corpus format:  19%|█▉        | 9513/50000 [00:00<00:01, 31790.28 examples/s][A[A
+
+Standardizing text corpus format:  26%|██▌       | 12758/50000 [00:00<00:01, 32049.06 examples/s][A[A
+
+Standardizing text corpus format:  35%|███▌      | 17517/50000 [00:00<00:01, 31884.70 examples/s][A[A
+
+Standardizing text corpus format:  44%|████▍     | 22250/50000 [00:00<00:00, 31750.69 examples/s][A[A
+
+Standardizing text corpus format:  51%|█████     | 25529/50000 [00:00<00:00, 32033.10 examples/s][A[A
+
+Standardizing text corpus format:  58%|█████▊    | 28820/50000 [00:00<00:00, 32279.23 examples/s][A[A
+
+Standardizing text corpus format:  64%|██████▍   | 32080/50000 [00:01<00:00, 32368.40 examples/s][A[A
+
+Standardizing text corpus format:  74%|███████▎  | 36836/50000 [00:01<00:00, 32111.78 examples/s][A[A
+
+Standardizing text corpus format:  80%|████████  | 40090/50000 [00:01<00:00, 32222.63 examples/s][A[A
+
+Standardizing text corpus format:  87%|████████▋ | 43409/50000 [00:01<00:00, 32487.83 examples/s][A[A
+
+Standardizing text corpus format:  93%|█████████▎| 46712/50000 [00:01<00:00, 32638.02 examples/s][A[A
+
+Standardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 32655.48 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 32189.97 examples/s]
+
+Searching corpus chunks:  33%|███▎      | 2/6 [02:43<05:29, 82.28s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   6%|▌         | 3076/50000 [00:00<00:01, 30577.70 examples/s][A[A
+
+Standardizing text corpus format:  12%|█▏        | 6197/50000 [00:00<00:01, 30941.99 examples/s][A[A
+
+Standardizing text corpus format:  20%|█▉        | 9776/50000 [00:00<00:02, 13836.22 examples/s][A[A
+
+Standardizing text corpus format:  26%|██▌       | 12779/50000 [00:00<00:02, 17296.62 examples/s][A[A
+
+Standardizing text corpus format:  32%|███▏      | 15950/50000 [00:00<00:01, 20665.86 examples/s][A[A
+
+Standardizing text corpus format:  38%|███▊      | 18861/50000 [00:00<00:01, 22777.52 examples/s][A[A
+
+Standardizing text corpus format:  44%|████▍     | 22014/50000 [00:01<00:01, 25082.90 examples/s][A[A
+
+Standardizing text corpus format:  50%|█████     | 25177/50000 [00:01<00:00, 26871.72 examples/s][A[A
+
+Standardizing text corpus format:  57%|█████▋    | 28452/50000 [00:01<00:00, 28518.89 examples/s][A[A
+
+Standardizing text corpus format:  63%|██████▎   | 31644/50000 [00:01<00:00, 28035.03 examples/s][A[A
+
+Standardizing text corpus format:  71%|███████▏  | 35638/50000 [00:01<00:00, 26826.43 examples/s][A[A
+
+Standardizing text corpus format:  79%|███████▉  | 39641/50000 [00:02<00:00, 12348.03 examples/s][A[A
+
+Standardizing text corpus format:  86%|████████▌ | 42849/50000 [00:02<00:00, 14905.06 examples/s][A[A
+
+Standardizing text corpus format:  92%|█████████▏| 46072/50000 [00:02<00:00, 17611.20 examples/s][A[A
+
+Standardizing text corpus format:  99%|█████████▉| 49382/50000 [00:02<00:00, 20436.04 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:02<00:00, 20213.92 examples/s]
+
+Searching corpus chunks:  50%|█████     | 3/6 [04:05<04:06, 82.05s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   1%|          | 468/50000 [00:00<00:24, 1985.91 examples/s][A[A
+
+Standardizing text corpus format:   5%|▌         | 2694/50000 [00:00<00:09, 5221.24 examples/s][A[A
+
+Standardizing text corpus format:  12%|█▏        | 5786/50000 [00:00<00:04, 11030.06 examples/s][A[A
+
+Standardizing text corpus format:  18%|█▊        | 8949/50000 [00:00<00:02, 16057.76 examples/s][A[A
+
+Standardizing text corpus format:  24%|██▍       | 12005/50000 [00:00<00:01, 19804.82 examples/s][A[A
+
+Standardizing text corpus format:  31%|███       | 15253/50000 [00:00<00:01, 23220.62 examples/s][A[A
+
+Standardizing text corpus format:  37%|███▋      | 18401/50000 [00:01<00:01, 25514.58 examples/s][A[A
+
+Standardizing text corpus format:  43%|████▎     | 21667/50000 [00:01<00:01, 27544.13 examples/s][A[A
+
+Standardizing text corpus format:  50%|████▉     | 24954/50000 [00:01<00:00, 29080.14 examples/s][A[A
+
+Standardizing text corpus format:  56%|█████▌    | 28082/50000 [00:01<00:00, 29720.95 examples/s][A[A
+
+Standardizing text corpus format:  63%|██████▎   | 31342/50000 [00:01<00:00, 30567.29 examples/s][A[A
+
+Standardizing text corpus format:  72%|███████▏  | 36053/50000 [00:01<00:00, 30889.17 examples/s][A[A
+
+Standardizing text corpus format:  79%|███████▊  | 39277/50000 [00:01<00:00, 31252.02 examples/s][A[A
+
+Standardizing text corpus format:  85%|████████▌ | 42524/50000 [00:01<00:00, 31588.06 examples/s][A[A
+
+Standardizing text corpus format:  92%|█████████▏| 45790/50000 [00:01<00:00, 31888.86 examples/s][A[A
+
+Standardizing text corpus format:  98%|█████████▊| 49023/50000 [00:02<00:00, 32011.77 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:02<00:00, 24401.98 examples/s]
+
+Searching corpus chunks:  67%|██████▋   | 4/6 [05:26<02:43, 81.73s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   6%|▌         | 3108/50000 [00:00<00:01, 30917.20 examples/s][A[A
+
+Standardizing text corpus format:  13%|█▎        | 6354/50000 [00:00<00:01, 31817.75 examples/s][A[A
+
+Standardizing text corpus format:  19%|█▉        | 9574/50000 [00:00<00:01, 31756.60 examples/s][A[A
+
+Standardizing text corpus format:  26%|██▌       | 12832/50000 [00:00<00:01, 32076.98 examples/s][A[A
+
+Standardizing text corpus format:  35%|███▌      | 17632/50000 [00:00<00:01, 31825.78 examples/s][A[A
+
+Standardizing text corpus format:  42%|████▏     | 20904/50000 [00:00<00:00, 32091.19 examples/s][A[A
+
+Standardizing text corpus format:  52%|█████▏    | 25787/50000 [00:00<00:00, 32268.82 examples/s][A[A
+
+Standardizing text corpus format:  58%|█████▊    | 29027/50000 [00:00<00:00, 32301.01 examples/s][A[A
+
+Standardizing text corpus format:  68%|██████▊   | 33779/50000 [00:01<00:00, 32070.15 examples/s][A[A
+
+Standardizing text corpus format:  74%|███████▍  | 36993/50000 [00:01<00:00, 32086.88 examples/s][A[A
+
+Standardizing text corpus format:  81%|████████  | 40253/50000 [00:01<00:00, 32221.89 examples/s][A[A
+
+Standardizing text corpus format:  87%|████████▋ | 43536/50000 [00:01<00:00, 32388.39 examples/s][A[A
+
+Standardizing text corpus format:  94%|█████████▎| 46840/50000 [00:01<00:00, 32572.22 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 32189.85 examples/s]
+
+Searching corpus chunks:  83%|████████▎ | 5/6 [06:48<01:21, 81.90s/it][A
+
+Standardizing text corpus format:   0%|          | 0/18237 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   3%|▎         | 468/18237 [00:00<00:11, 1507.08 examples/s][A[A
+
+Standardizing text corpus format:  15%|█▍        | 2694/18237 [00:00<00:03, 4486.89 examples/s][A[A
+
+Standardizing text corpus format:  32%|███▏      | 5858/18237 [00:00<00:01, 9934.48 examples/s][A[A
+
+Standardizing text corpus format:  49%|████▉     | 9011/18237 [00:00<00:00, 14743.91 examples/s][A[A
+
+Standardizing text corpus format:  67%|██████▋   | 12278/18237 [00:00<00:00, 19070.52 examples/s][A[A
+
+Standardizing text corpus format:  85%|████████▌ | 15547/18237 [00:01<00:00, 22560.74 examples/s][A[AStandardizing text corpus format: 100%|██████████| 18237/18237 [00:01<00:00, 15750.94 examples/s]
+
+Searching corpus chunks: 100%|██████████| 6/6 [07:20<00:00, 64.75s/it][ASearching corpus chunks: 100%|██████████| 6/6 [07:20<00:00, 73.33s/it]
+Evaluating task CodeSearchNetCCRetrieval: 100%|██████████| 1/1 [33:29<00:00, 2009.49s/it]Evaluating task CodeSearchNetCCRetrieval: 100%|██████████| 1/1 [33:29<00:00, 2009.49s/it]
+eval done CodeSearchNetCCRetrieval in 33.5 min
+Evaluating tasks:   0%|          | 0/1 [00:00<?, ?it/s]Evaluating task CodeSearchNetRetrieval:   0%|          | 0/1 [00:00<?, ?it/s]
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/1000 [00:00<?, ? examples/s][A[AStandardizing text corpus format: 100%|██████████| 1000/1000 [00:00<00:00, 26745.12 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:04<00:00,  4.59s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:04<00:00,  4.59s/it]
+
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/1000 [00:00<?, ? examples/s][A[AStandardizing text corpus format: 100%|██████████| 1000/1000 [00:00<00:00, 24093.43 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:05<00:00,  5.12s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:05<00:00,  5.12s/it]
+
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/1000 [00:00<?, ? examples/s][A[AStandardizing text corpus format: 100%|██████████| 1000/1000 [00:00<00:00, 26944.60 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:03<00:00,  3.73s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:03<00:00,  3.73s/it]
+
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/1000 [00:00<?, ? examples/s][A[AStandardizing text corpus format: 100%|██████████| 1000/1000 [00:00<00:00, 26149.68 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:03<00:00,  3.50s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:03<00:00,  3.50s/it]
+
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/1000 [00:00<?, ? examples/s][A[AStandardizing text corpus format: 100%|██████████| 1000/1000 [00:00<00:00, 26813.00 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:03<00:00,  3.15s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:03<00:00,  3.15s/it]
+
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/1000 [00:00<?, ? examples/s][A[AStandardizing text corpus format: 100%|██████████| 1000/1000 [00:00<00:00, 26414.16 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:04<00:00,  4.22s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:04<00:00,  4.22s/it]
+Evaluating task CodeSearchNetRetrieval: 100%|██████████| 1/1 [01:52<00:00, 112.17s/it]Evaluating task CodeSearchNetRetrieval: 100%|██████████| 1/1 [01:52<00:00, 112.17s/it]
+eval done CodeSearchNetRetrieval in 1.9 min
+Evaluating tasks:   0%|          | 0/1 [00:00<?, ?it/s]Evaluating task CodeTransOceanContest:   0%|          | 0/1 [00:00<?, ?it/s]
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/1008 [00:00<?, ? examples/s][A[AStandardizing text corpus format: 100%|██████████| 1008/1008 [00:00<00:00, 13601.92 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:07<00:00,  7.70s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:07<00:00,  7.70s/it]
+Evaluating task CodeTransOceanContest: 100%|██████████| 1/1 [00:22<00:00, 22.20s/it]Evaluating task CodeTransOceanContest: 100%|██████████| 1/1 [00:22<00:00, 22.20s/it]
+eval done CodeTransOceanContest in 0.4 min
+Evaluating tasks:   0%|          | 0/1 [00:00<?, ?it/s]Evaluating task CodeTransOceanDL:   0%|          | 0/1 [00:00<?, ?it/s]
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/816 [00:00<?, ? examples/s][A[AStandardizing text corpus format: 100%|██████████| 816/816 [00:00<00:00, 16451.57 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:06<00:00,  6.36s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:06<00:00,  6.37s/it]
+Evaluating task CodeTransOceanDL: 100%|██████████| 1/1 [00:21<00:00, 21.61s/it]Evaluating task CodeTransOceanDL: 100%|██████████| 1/1 [00:21<00:00, 21.61s/it]
+eval done CodeTransOceanDL in 0.4 min
+Evaluating tasks:   0%|          | 0/1 [00:00<?, ?it/s]Evaluating task CosQA:   0%|          | 0/1 [00:00<?, ?it/s]
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/20604 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:  10%|█         | 2094/20604 [00:00<00:00, 20518.91 examples/s][A[A
+
+Standardizing text corpus format:  21%|██        | 4321/20604 [00:00<00:00, 21535.34 examples/s][A[A
+
+Standardizing text corpus format:  32%|███▏      | 6535/20604 [00:00<00:00, 21807.86 examples/s][A[A
+
+Standardizing text corpus format:  43%|████▎     | 8758/20604 [00:00<00:00, 21971.32 examples/s][A[A
+
+Standardizing text corpus format:  53%|█████▎    | 11000/20604 [00:00<00:00, 21640.19 examples/s][A[A
+
+Standardizing text corpus format:  64%|██████▍   | 13244/20604 [00:00<00:00, 21904.97 examples/s][A[A
+
+Standardizing text corpus format:  75%|███████▌  | 15472/20604 [00:00<00:00, 22022.96 examples/s][A[A
+
+Standardizing text corpus format:  86%|████████▌ | 17716/20604 [00:00<00:00, 22153.29 examples/s][A[A
+
+Standardizing text corpus format:  97%|█████████▋| 19949/20604 [00:00<00:00, 22205.87 examples/s][A[AStandardizing text corpus format: 100%|██████████| 20604/20604 [00:00<00:00, 21738.26 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:29<00:00, 29.38s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:29<00:00, 29.38s/it]
+Evaluating task CosQA: 100%|██████████| 1/1 [00:42<00:00, 42.28s/it]Evaluating task CosQA: 100%|██████████| 1/1 [00:42<00:00, 42.28s/it]
+eval done CosQA in 0.7 min
+Evaluating tasks:   0%|          | 0/1 [00:00<?, ?it/s]Evaluating task COIRCodeSearchNetRetrieval:   0%|          | 0/1 [00:00<?, ?it/s]
+Searching corpus chunks:   0%|          | 0/6 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   6%|▌         | 3073/50000 [00:00<00:01, 30570.34 examples/s][A[A
+
+Standardizing text corpus format:  13%|█▎        | 6304/50000 [00:00<00:01, 31590.03 examples/s][A[A
+
+Standardizing text corpus format:  19%|█▉        | 9552/50000 [00:00<00:01, 31989.89 examples/s][A[A
+
+Standardizing text corpus format:  26%|██▌       | 12860/50000 [00:00<00:01, 32415.91 examples/s][A[A
+
+Standardizing text corpus format:  35%|███▌      | 17694/50000 [00:00<00:00, 32325.92 examples/s][A[A
+
+Standardizing text corpus format:  42%|████▏     | 20955/50000 [00:00<00:00, 32409.86 examples/s][A[A
+
+Standardizing text corpus format:  52%|█████▏    | 25864/50000 [00:00<00:00, 32528.20 examples/s][A[A
+
+Standardizing text corpus format:  58%|█████▊    | 29132/50000 [00:00<00:00, 32568.41 examples/s][A[A
+
+Standardizing text corpus format:  68%|██████▊   | 33983/50000 [00:01<00:00, 32483.20 examples/s][A[A
+
+Standardizing text corpus format:  78%|███████▊  | 38913/50000 [00:01<00:00, 32611.89 examples/s][A[A
+
+Standardizing text corpus format:  84%|████████▍ | 42190/50000 [00:01<00:00, 32650.28 examples/s][A[A
+
+Standardizing text corpus format:  91%|█████████ | 45503/50000 [00:01<00:00, 32773.13 examples/s][A[A
+
+Standardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 32633.66 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 32440.16 examples/s]
+
+Searching corpus chunks:  17%|█▋        | 1/6 [01:15<06:15, 75.02s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   6%|▋         | 3201/50000 [00:00<00:01, 31878.09 examples/s][A[A
+
+Standardizing text corpus format:  13%|█▎        | 6450/50000 [00:00<00:01, 32232.88 examples/s][A[A
+
+Standardizing text corpus format:  20%|█▉        | 9755/50000 [00:00<00:01, 32597.80 examples/s][A[A
+
+Standardizing text corpus format:  29%|██▉       | 14678/50000 [00:00<00:01, 32642.96 examples/s][A[A
+
+Standardizing text corpus format:  36%|███▌      | 18000/50000 [00:00<00:00, 32483.58 examples/s][A[A
+
+Standardizing text corpus format:  43%|████▎     | 21287/50000 [00:00<00:00, 32602.54 examples/s][A[A
+
+Standardizing text corpus format:  49%|████▉     | 24592/50000 [00:00<00:00, 32735.36 examples/s][A[A
+
+Standardizing text corpus format:  56%|█████▌    | 27902/50000 [00:00<00:00, 32843.32 examples/s][A[A
+
+Standardizing text corpus format:  66%|██████▌   | 32817/50000 [00:01<00:00, 32808.37 examples/s][A[A
+
+Standardizing text corpus format:  75%|███████▍  | 37481/50000 [00:01<00:00, 32185.49 examples/s][A[A
+
+Standardizing text corpus format:  82%|████████▏ | 40770/50000 [00:01<00:00, 32363.91 examples/s][A[A
+
+Standardizing text corpus format:  91%|█████████▏| 45688/50000 [00:01<00:00, 32511.32 examples/s][A[A
+
+Standardizing text corpus format:  98%|█████████▊| 48995/50000 [00:01<00:00, 32648.81 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 32514.65 examples/s]
+
+Searching corpus chunks:  33%|███▎      | 2/6 [02:28<04:57, 74.30s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   6%|▌         | 3077/50000 [00:00<00:01, 30588.22 examples/s][A[A
+
+Standardizing text corpus format:  13%|█▎        | 6323/50000 [00:00<00:01, 31683.58 examples/s][A[A
+
+Standardizing text corpus format:  19%|█▉        | 9512/50000 [00:00<00:01, 31772.44 examples/s][A[A
+
+Standardizing text corpus format:  26%|██▌       | 12756/50000 [00:00<00:01, 32032.80 examples/s][A[A
+
+Standardizing text corpus format:  32%|███▏      | 16010/50000 [00:00<00:01, 32211.44 examples/s][A[A
+
+Standardizing text corpus format:  41%|████▏     | 20744/50000 [00:00<00:00, 31925.96 examples/s][A[A
+
+Standardizing text corpus format:  48%|████▊     | 23992/50000 [00:00<00:00, 32085.71 examples/s][A[A
+
+Standardizing text corpus format:  54%|█████▍    | 27214/50000 [00:00<00:00, 32123.42 examples/s][A[A
+
+Standardizing text corpus format:  61%|██████    | 30460/50000 [00:00<00:00, 32222.24 examples/s][A[A
+
+Standardizing text corpus format:  70%|███████   | 35113/50000 [00:01<00:00, 31750.75 examples/s][A[A
+
+Standardizing text corpus format:  77%|███████▋  | 38322/50000 [00:01<00:00, 31841.55 examples/s][A[A
+
+Standardizing text corpus format:  83%|████████▎ | 41567/50000 [00:01<00:00, 32008.76 examples/s][A[A
+
+Standardizing text corpus format:  90%|████████▉ | 44792/50000 [00:01<00:00, 32073.73 examples/s][A[A
+
+Standardizing text corpus format:  99%|█████████▉| 49675/50000 [00:01<00:00, 32250.68 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 31986.31 examples/s]
+
+Searching corpus chunks:  50%|█████     | 3/6 [03:47<03:49, 76.35s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   1%|          | 468/50000 [00:00<00:26, 1872.07 examples/s][A[A
+
+Standardizing text corpus format:   5%|▌         | 2694/50000 [00:00<00:09, 5199.11 examples/s][A[A
+
+Standardizing text corpus format:  12%|█▏        | 5893/50000 [00:00<00:03, 11234.82 examples/s][A[A
+
+Standardizing text corpus format:  18%|█▊        | 9095/50000 [00:00<00:02, 16294.75 examples/s][A[A
+
+Standardizing text corpus format:  25%|██▍       | 12394/50000 [00:00<00:01, 20601.83 examples/s][A[A
+
+Standardizing text corpus format:  31%|███▏      | 15671/50000 [00:00<00:01, 23876.84 examples/s][A[A
+
+Standardizing text corpus format:  38%|███▊      | 18875/50000 [00:01<00:01, 26141.29 examples/s][A[A
+
+Standardizing text corpus format:  44%|████▍     | 22086/50000 [00:01<00:01, 27835.65 examples/s][A[A
+
+Standardizing text corpus format:  51%|█████     | 25347/50000 [00:01<00:00, 29211.06 examples/s][A[A
+
+Standardizing text corpus format:  57%|█████▋    | 28681/50000 [00:01<00:00, 30299.73 examples/s][A[A
+
+Standardizing text corpus format:  67%|██████▋   | 33397/50000 [00:01<00:00, 30733.87 examples/s][A[A
+
+Standardizing text corpus format:  73%|███████▎  | 36682/50000 [00:01<00:00, 31299.28 examples/s][A[A
+
+Standardizing text corpus format:  80%|███████▉  | 39952/50000 [00:01<00:00, 31685.34 examples/s][A[A
+
+Standardizing text corpus format:  86%|████████▋ | 43190/50000 [00:01<00:00, 31879.75 examples/s][A[A
+
+Standardizing text corpus format:  93%|█████████▎| 46468/50000 [00:01<00:00, 32136.13 examples/s][A[A
+
+Standardizing text corpus format:  99%|█████████▉| 49736/50000 [00:02<00:00, 32293.52 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:02<00:00, 24649.81 examples/s]
+
+Searching corpus chunks:  67%|██████▋   | 4/6 [05:02<02:31, 75.73s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   6%|▋         | 3159/50000 [00:00<00:01, 31433.18 examples/s][A[A
+
+Standardizing text corpus format:  15%|█▍        | 7264/50000 [00:00<00:03, 13079.34 examples/s][A[A
+
+Standardizing text corpus format:  21%|██        | 10503/50000 [00:00<00:02, 17486.76 examples/s][A[A
+
+Standardizing text corpus format:  27%|██▋       | 13679/50000 [00:00<00:01, 20884.19 examples/s][A[A
+
+Standardizing text corpus format:  34%|███▍      | 16969/50000 [00:00<00:01, 23994.78 examples/s][A[A
+
+Standardizing text corpus format:  40%|████      | 20093/50000 [00:00<00:01, 25949.45 examples/s][A[A
+
+Standardizing text corpus format:  47%|████▋     | 23354/50000 [00:01<00:00, 27800.29 examples/s][A[A
+
+Standardizing text corpus format:  53%|█████▎    | 26677/50000 [00:01<00:00, 29282.11 examples/s][A[A
+
+Standardizing text corpus format:  60%|█████▉    | 29965/50000 [00:01<00:00, 30317.37 examples/s][A[A
+
+Standardizing text corpus format:  66%|██████▋   | 33184/50000 [00:01<00:00, 30859.24 examples/s][A[A
+
+Standardizing text corpus format:  76%|███████▌  | 37980/50000 [00:01<00:00, 31284.48 examples/s][A[A
+
+Standardizing text corpus format:  82%|████████▏ | 41235/50000 [00:01<00:00, 31622.26 examples/s][A[A
+
+Standardizing text corpus format:  89%|████████▉ | 44550/50000 [00:01<00:00, 32043.03 examples/s][A[A
+
+Standardizing text corpus format:  96%|█████████▌| 47831/50000 [00:01<00:00, 32258.01 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 27243.48 examples/s]
+
+Searching corpus chunks:  83%|████████▎ | 5/6 [06:14<01:14, 74.30s/it][A
+
+Standardizing text corpus format:   0%|          | 0/30310 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   2%|▏         | 467/30310 [00:00<00:22, 1353.61 examples/s][A[A
+
+Standardizing text corpus format:   6%|▌         | 1694/30310 [00:00<00:13, 2173.51 examples/s][A[A
+
+Standardizing text corpus format:  15%|█▌        | 4652/30310 [00:00<00:03, 6737.56 examples/s][A[A
+
+Standardizing text corpus format:  26%|██▌       | 7844/30310 [00:01<00:01, 11576.50 examples/s][A[A
+
+Standardizing text corpus format:  36%|███▋      | 11042/30310 [00:01<00:01, 15971.26 examples/s][A[A
+
+Standardizing text corpus format:  47%|████▋     | 14242/30310 [00:01<00:00, 19741.28 examples/s][A[A
+
+Standardizing text corpus format:  58%|█████▊    | 17485/30310 [00:01<00:00, 22931.47 examples/s][A[A
+
+Standardizing text corpus format:  68%|██████▊   | 20646/30310 [00:01<00:00, 25079.96 examples/s][A[A
+
+Standardizing text corpus format:  79%|███████▊  | 23813/30310 [00:01<00:00, 26874.70 examples/s][A[A
+
+Standardizing text corpus format:  89%|████████▉ | 27000/30310 [00:01<00:00, 28023.40 examples/s][A[A
+
+Standardizing text corpus format: 100%|█████████▉| 30260/30310 [00:01<00:00, 29324.05 examples/s][A[AStandardizing text corpus format: 100%|██████████| 30310/30310 [00:01<00:00, 17546.48 examples/s]
+
+Searching corpus chunks: 100%|██████████| 6/6 [07:05<00:00, 66.53s/it][ASearching corpus chunks: 100%|██████████| 6/6 [07:05<00:00, 70.93s/it]
+
+Searching corpus chunks:   0%|          | 0/2 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   6%|▋         | 3169/50000 [00:00<00:01, 31276.10 examples/s][A[A
+
+Standardizing text corpus format:  13%|█▎        | 6438/50000 [00:00<00:01, 32097.81 examples/s][A[A
+
+Standardizing text corpus format:  19%|█▉        | 9705/50000 [00:00<00:01, 32355.14 examples/s][A[A
+
+Standardizing text corpus format:  26%|██▌       | 12949/50000 [00:00<00:01, 32383.12 examples/s][A[A
+
+Standardizing text corpus format:  32%|███▏      | 16198/50000 [00:00<00:01, 32417.05 examples/s][A[A
+
+Standardizing text corpus format:  39%|███▉      | 19495/50000 [00:00<00:00, 32604.30 examples/s][A[A
+
+Standardizing text corpus format:  48%|████▊     | 24101/50000 [00:00<00:00, 31799.38 examples/s][A[A
+
+Standardizing text corpus format:  55%|█████▍    | 27380/50000 [00:00<00:00, 32078.31 examples/s][A[A
+
+Standardizing text corpus format:  61%|██████▏   | 30638/50000 [00:00<00:00, 32175.16 examples/s][A[A
+
+Standardizing text corpus format:  71%|███████   | 35431/50000 [00:01<00:00, 32087.15 examples/s][A[A
+
+Standardizing text corpus format:  77%|███████▋  | 38732/50000 [00:01<00:00, 32331.88 examples/s][A[A
+
+Standardizing text corpus format:  84%|████████▍ | 42000/50000 [00:01<00:00, 32403.68 examples/s][A[A
+
+Standardizing text corpus format:  93%|█████████▎| 46749/50000 [00:01<00:00, 32124.55 examples/s][A[A
+
+Standardizing text corpus format: 100%|█████████▉| 49986/50000 [00:01<00:00, 32184.94 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 32132.50 examples/s]
+
+Searching corpus chunks:  50%|█████     | 1/2 [00:48<00:48, 48.05s/it][A
+
+Standardizing text corpus format:   0%|          | 0/14854 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:  21%|██        | 3112/14854 [00:00<00:00, 30966.02 examples/s][A[A
+
+Standardizing text corpus format:  43%|████▎     | 6314/14854 [00:00<00:00, 31576.01 examples/s][A[A
+
+Standardizing text corpus format:  65%|██████▍   | 9599/14854 [00:00<00:00, 32150.87 examples/s][A[A
+
+Standardizing text corpus format:  86%|████████▋ | 12835/14854 [00:00<00:00, 32229.61 examples/s][A[AStandardizing text corpus format: 100%|██████████| 14854/14854 [00:00<00:00, 31952.10 examples/s]
+
+Searching corpus chunks: 100%|██████████| 2/2 [01:02<00:00, 28.54s/it][ASearching corpus chunks: 100%|██████████| 2/2 [01:02<00:00, 31.47s/it]
+
+Searching corpus chunks:   0%|          | 0/4 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   6%|▋         | 3158/50000 [00:00<00:01, 31457.70 examples/s][A[A
+
+Standardizing text corpus format:  13%|█▎        | 6386/50000 [00:00<00:01, 31934.57 examples/s][A[A
+
+Standardizing text corpus format:  19%|█▉        | 9659/50000 [00:00<00:01, 32151.27 examples/s][A[A
+
+Standardizing text corpus format:  29%|██▉       | 14381/50000 [00:00<00:01, 31815.02 examples/s][A[A
+
+Standardizing text corpus format:  35%|███▌      | 17645/50000 [00:00<00:01, 32051.18 examples/s][A[A
+
+Standardizing text corpus format:  42%|████▏     | 20913/50000 [00:00<00:00, 32244.19 examples/s][A[A
+
+Standardizing text corpus format:  52%|█████▏    | 25751/50000 [00:00<00:00, 32245.36 examples/s][A[A
+
+Standardizing text corpus format:  58%|█████▊    | 29015/50000 [00:00<00:00, 32352.20 examples/s][A[A
+
+Standardizing text corpus format:  65%|██████▍   | 32294/50000 [00:01<00:00, 32474.24 examples/s][A[A
+
+Standardizing text corpus format:  71%|███████   | 35579/50000 [00:01<00:00, 32580.72 examples/s][A[A
+
+Standardizing text corpus format:  78%|███████▊  | 38873/50000 [00:01<00:00, 32684.20 examples/s][A[A
+
+Standardizing text corpus format:  87%|████████▋ | 43581/50000 [00:01<00:00, 32182.94 examples/s][A[A
+
+Standardizing text corpus format:  94%|█████████▎| 46852/50000 [00:01<00:00, 32321.69 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 32248.08 examples/s]
+
+Searching corpus chunks:  25%|██▌       | 1/4 [00:31<01:34, 31.65s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   6%|▋         | 3221/50000 [00:00<00:01, 32064.70 examples/s][A[A
+
+Standardizing text corpus format:  13%|█▎        | 6485/50000 [00:00<00:01, 32397.97 examples/s][A[A
+
+Standardizing text corpus format:  19%|█▉        | 9737/50000 [00:00<00:01, 32447.54 examples/s][A[A
+
+Standardizing text corpus format:  26%|██▌       | 13005/50000 [00:00<00:01, 32534.75 examples/s][A[A
+
+Standardizing text corpus format:  33%|███▎      | 16328/50000 [00:00<00:01, 32783.25 examples/s][A[A
+
+Standardizing text corpus format:  39%|███▉      | 19621/50000 [00:00<00:00, 32691.76 examples/s][A[A
+
+Standardizing text corpus format:  46%|████▌     | 22913/50000 [00:00<00:00, 32763.25 examples/s][A[A
+
+Standardizing text corpus format:  56%|█████▌    | 27867/50000 [00:00<00:00, 32864.69 examples/s][A[A
+
+Standardizing text corpus format:  66%|██████▌   | 32818/50000 [00:01<00:00, 32915.74 examples/s][A[A
+
+Standardizing text corpus format:  76%|███████▌  | 37785/50000 [00:01<00:00, 32981.57 examples/s][A[A
+
+Standardizing text corpus format:  85%|████████▌ | 42657/50000 [00:01<00:00, 32586.80 examples/s][A[A
+
+Standardizing text corpus format:  92%|█████████▏| 45977/50000 [00:01<00:00, 32732.03 examples/s][A[A
+
+Standardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 32711.97 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 32686.39 examples/s]
+
+Searching corpus chunks:  50%|█████     | 2/4 [01:02<01:02, 31.46s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   1%|          | 468/50000 [00:00<00:27, 1816.76 examples/s][A[A
+
+Standardizing text corpus format:   7%|▋         | 3699/50000 [00:00<00:03, 12694.44 examples/s][A[A
+
+Standardizing text corpus format:  14%|█▍        | 7000/50000 [00:00<00:02, 19547.70 examples/s][A[A
+
+Standardizing text corpus format:  20%|██        | 10242/50000 [00:00<00:01, 23733.91 examples/s][A[A
+
+Standardizing text corpus format:  28%|██▊       | 13986/50000 [00:00<00:01, 20857.94 examples/s][A[A
+
+Standardizing text corpus format:  35%|███▍      | 17257/50000 [00:00<00:01, 23841.02 examples/s][A[A
+
+Standardizing text corpus format:  41%|████      | 20538/50000 [00:00<00:01, 26210.97 examples/s][A[A
+
+Standardizing text corpus format:  48%|████▊     | 23809/50000 [00:01<00:00, 27989.99 examples/s][A[A
+
+Standardizing text corpus format:  54%|█████▍    | 27000/50000 [00:01<00:00, 29030.23 examples/s][A[A
+
+Standardizing text corpus format:  61%|██████    | 30283/50000 [00:01<00:00, 30115.93 examples/s][A[A
+
+Standardizing text corpus format:  67%|██████▋   | 33601/50000 [00:01<00:00, 31003.05 examples/s][A[A
+
+Standardizing text corpus format:  74%|███████▍  | 36881/50000 [00:01<00:00, 31525.83 examples/s][A[A
+
+Standardizing text corpus format:  83%|████████▎ | 41526/50000 [00:01<00:00, 31306.96 examples/s][A[A
+
+Standardizing text corpus format:  89%|████████▉ | 44716/50000 [00:01<00:00, 31464.22 examples/s][A[A
+
+Standardizing text corpus format:  96%|█████████▌| 47900/50000 [00:01<00:00, 31567.03 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 26526.88 examples/s]
+
+Searching corpus chunks:  75%|███████▌  | 3/4 [01:36<00:32, 32.18s/it][A
+
+Standardizing text corpus format:   0%|          | 0/32440 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   1%|▏         | 468/32440 [00:00<00:10, 3122.06 examples/s][A[A
+
+Standardizing text corpus format:  11%|█▏        | 3671/32440 [00:00<00:01, 17225.56 examples/s][A[A
+
+Standardizing text corpus format:  21%|██        | 6694/32440 [00:00<00:01, 14984.13 examples/s][A[A
+
+Standardizing text corpus format:  29%|██▊       | 9265/32440 [00:01<00:04, 5617.69 examples/s] [A[A
+
+Standardizing text corpus format:  39%|███▉      | 12601/32440 [00:01<00:02, 8701.02 examples/s][A[A
+
+Standardizing text corpus format:  49%|████▉     | 15930/32440 [00:01<00:01, 12069.82 examples/s][A[A
+
+Standardizing text corpus format:  59%|█████▉    | 19184/32440 [00:01<00:00, 15420.46 examples/s][A[A
+
+Standardizing text corpus format:  69%|██████▉   | 22503/32440 [00:01<00:00, 18787.27 examples/s][A[A
+
+Standardizing text corpus format:  80%|███████▉  | 25826/32440 [00:01<00:00, 21864.18 examples/s][A[A
+
+Standardizing text corpus format:  90%|████████▉ | 29100/32440 [00:01<00:00, 24400.41 examples/s][A[A
+
+Standardizing text corpus format: 100%|█████████▉| 32402/32440 [00:02<00:00, 26552.92 examples/s][A[AStandardizing text corpus format: 100%|██████████| 32440/32440 [00:02<00:00, 15730.66 examples/s]
+
+Searching corpus chunks: 100%|██████████| 4/4 [01:58<00:00, 28.46s/it][ASearching corpus chunks: 100%|██████████| 4/4 [01:58<00:00, 29.69s/it]
+
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/27570 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:  11%|█         | 3088/27570 [00:00<00:00, 30696.77 examples/s][A[A
+
+Standardizing text corpus format:  23%|██▎       | 6286/27570 [00:00<00:00, 31441.90 examples/s][A[A
+
+Standardizing text corpus format:  34%|███▍      | 9492/27570 [00:00<00:00, 31719.33 examples/s][A[A
+
+Standardizing text corpus format:  52%|█████▏    | 14223/27570 [00:00<00:00, 31627.74 examples/s][A[A
+
+Standardizing text corpus format:  69%|██████▉   | 18959/27570 [00:00<00:00, 31600.81 examples/s][A[A
+
+Standardizing text corpus format:  80%|████████  | 22150/27570 [00:00<00:00, 31685.27 examples/s][A[A
+
+Standardizing text corpus format:  92%|█████████▏| 25347/27570 [00:00<00:00, 31764.08 examples/s][A[AStandardizing text corpus format: 100%|██████████| 27570/27570 [00:00<00:00, 31635.97 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:32<00:00, 32.21s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:32<00:00, 32.21s/it]
+
+Searching corpus chunks:   0%|          | 0/4 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   6%|▌         | 3123/50000 [00:00<00:01, 31098.13 examples/s][A[A
+
+Standardizing text corpus format:  13%|█▎        | 6331/50000 [00:00<00:01, 31669.17 examples/s][A[A
+
+Standardizing text corpus format:  19%|█▉        | 9669/50000 [00:00<00:01, 32264.76 examples/s][A[A
+
+Standardizing text corpus format:  26%|██▌       | 12983/50000 [00:00<00:01, 32607.95 examples/s][A[A
+
+Standardizing text corpus format:  36%|███▌      | 17885/50000 [00:00<00:00, 32635.52 examples/s][A[A
+
+Standardizing text corpus format:  46%|████▌     | 22829/50000 [00:00<00:00, 32761.63 examples/s][A[A
+
+Standardizing text corpus format:  55%|█████▌    | 27678/50000 [00:00<00:00, 32526.76 examples/s][A[A
+
+Standardizing text corpus format:  62%|██████▏   | 30983/50000 [00:00<00:00, 32657.97 examples/s][A[A
+
+Standardizing text corpus format:  72%|███████▏  | 35938/50000 [00:01<00:00, 32786.88 examples/s][A[A
+
+Standardizing text corpus format:  82%|████████▏ | 40890/50000 [00:01<00:00, 32860.52 examples/s][A[A
+
+Standardizing text corpus format:  91%|█████████▏| 45638/50000 [00:01<00:00, 32355.37 examples/s][A[A
+
+Standardizing text corpus format:  98%|█████████▊| 48965/50000 [00:01<00:00, 32566.76 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 32491.87 examples/s]
+
+Searching corpus chunks:  25%|██▌       | 1/4 [00:52<02:38, 52.68s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   6%|▋         | 3144/50000 [00:00<00:01, 31300.40 examples/s][A[A
+
+Standardizing text corpus format:  13%|█▎        | 6363/50000 [00:00<00:01, 31817.14 examples/s][A[A
+
+Standardizing text corpus format:  19%|█▉        | 9669/50000 [00:00<00:01, 32330.50 examples/s][A[A
+
+Standardizing text corpus format:  26%|██▌       | 12909/50000 [00:00<00:01, 32354.05 examples/s][A[A
+
+Standardizing text corpus format:  32%|███▏      | 16168/50000 [00:00<00:01, 32436.51 examples/s][A[A
+
+Standardizing text corpus format:  39%|███▉      | 19458/50000 [00:00<00:00, 32591.34 examples/s][A[A
+
+Standardizing text corpus format:  46%|████▌     | 22771/50000 [00:00<00:00, 32763.03 examples/s][A[A
+
+Standardizing text corpus format:  55%|█████▌    | 27619/50000 [00:00<00:00, 32577.57 examples/s][A[A
+
+Standardizing text corpus format:  62%|██████▏   | 30924/50000 [00:00<00:00, 32709.18 examples/s][A[A
+
+Standardizing text corpus format:  72%|███████▏  | 35849/50000 [00:01<00:00, 32752.04 examples/s][A[A
+
+Standardizing text corpus format:  82%|████████▏ | 40769/50000 [00:01<00:00, 32765.93 examples/s][A[A
+
+Standardizing text corpus format:  91%|█████████▏| 45714/50000 [00:01<00:00, 32828.13 examples/s][A[A
+
+Standardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 32287.97 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 32454.36 examples/s]
+
+Searching corpus chunks:  50%|█████     | 2/4 [01:44<01:43, 52.00s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   1%|          | 468/50000 [00:00<00:35, 1414.38 examples/s][A[A
+
+Standardizing text corpus format:   7%|▋         | 3623/50000 [00:00<00:04, 10486.69 examples/s][A[A
+
+Standardizing text corpus format:  14%|█▎        | 6821/50000 [00:00<00:02, 16949.29 examples/s][A[A
+
+Standardizing text corpus format:  20%|██        | 10000/50000 [00:00<00:01, 21242.64 examples/s][A[A
+
+Standardizing text corpus format:  28%|██▊       | 13905/50000 [00:00<00:01, 18335.34 examples/s][A[A
+
+Standardizing text corpus format:  34%|███▍      | 17145/50000 [00:00<00:01, 21533.88 examples/s][A[A
+
+Standardizing text corpus format:  41%|████      | 20398/50000 [00:01<00:01, 24229.78 examples/s][A[A
+
+Standardizing text corpus format:  47%|████▋     | 23586/50000 [00:01<00:01, 26211.58 examples/s][A[A
+
+Standardizing text corpus format:  54%|█████▎    | 26757/50000 [00:01<00:00, 27697.08 examples/s][A[A
+
+Standardizing text corpus format:  60%|██████    | 30022/50000 [00:01<00:00, 29074.68 examples/s][A[A
+
+Standardizing text corpus format:  67%|██████▋   | 33325/50000 [00:01<00:00, 30198.50 examples/s][A[A
+
+Standardizing text corpus format:  73%|███████▎  | 36626/50000 [00:01<00:00, 31008.62 examples/s][A[A
+
+Standardizing text corpus format:  80%|███████▉  | 39927/50000 [00:01<00:00, 31588.71 examples/s][A[A
+
+Standardizing text corpus format:  86%|████████▋ | 43163/50000 [00:01<00:00, 31811.03 examples/s][A[A
+
+Standardizing text corpus format:  96%|█████████▌| 47847/50000 [00:01<00:00, 31582.61 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:02<00:00, 24958.12 examples/s]
+
+Searching corpus chunks:  75%|███████▌  | 3/4 [02:36<00:52, 52.30s/it][A
+
+Standardizing text corpus format:   0%|          | 0/30866 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   2%|▏         | 468/30866 [00:00<00:11, 2602.74 examples/s][A[A
+
+Standardizing text corpus format:  12%|█▏        | 3669/30866 [00:00<00:01, 15620.83 examples/s][A[A
+
+Standardizing text corpus format:  22%|██▏       | 6694/30866 [00:00<00:01, 12851.12 examples/s][A[A
+
+Standardizing text corpus format:  30%|███       | 9288/30866 [00:01<00:04, 4749.65 examples/s] [A[A
+
+Standardizing text corpus format:  41%|████      | 12520/30866 [00:01<00:02, 7377.25 examples/s][A[A
+
+Standardizing text corpus format:  51%|█████     | 15760/30866 [00:01<00:01, 10375.67 examples/s][A[A
+
+Standardizing text corpus format:  61%|██████▏   | 18957/30866 [00:01<00:00, 13531.66 examples/s][A[A
+
+Standardizing text corpus format:  72%|███████▏  | 22173/30866 [00:02<00:00, 16749.00 examples/s][A[A
+
+Standardizing text corpus format:  82%|████████▏ | 25356/30866 [00:02<00:00, 19733.02 examples/s][A[A
+
+Standardizing text corpus format:  93%|█████████▎| 28663/30866 [00:02<00:00, 22644.81 examples/s][A[AStandardizing text corpus format: 100%|██████████| 30866/30866 [00:02<00:00, 13558.03 examples/s]
+
+Searching corpus chunks: 100%|██████████| 4/4 [03:11<00:00, 45.31s/it][ASearching corpus chunks: 100%|██████████| 4/4 [03:11<00:00, 47.86s/it]
+
+Searching corpus chunks:   0%|          | 0/6 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   6%|▋         | 3152/50000 [00:00<00:01, 31387.50 examples/s][A[A
+
+Standardizing text corpus format:  13%|█▎        | 6451/50000 [00:00<00:01, 32319.62 examples/s][A[A
+
+Standardizing text corpus format:  20%|█▉        | 9751/50000 [00:00<00:01, 32627.63 examples/s][A[A
+
+Standardizing text corpus format:  29%|██▉       | 14668/50000 [00:00<00:01, 32319.45 examples/s][A[A
+
+Standardizing text corpus format:  36%|███▌      | 17953/50000 [00:00<00:00, 32485.28 examples/s][A[A
+
+Standardizing text corpus format:  43%|████▎     | 21252/50000 [00:00<00:00, 32640.06 examples/s][A[A
+
+Standardizing text corpus format:  52%|█████▏    | 26090/50000 [00:00<00:00, 32481.99 examples/s][A[A
+
+Standardizing text corpus format:  59%|█████▉    | 29395/50000 [00:00<00:00, 32637.01 examples/s][A[A
+
+Standardizing text corpus format:  65%|██████▌   | 32702/50000 [00:01<00:00, 32749.68 examples/s][A[A
+
+Standardizing text corpus format:  72%|███████▏  | 36000/50000 [00:01<00:00, 32771.25 examples/s][A[A
+
+Standardizing text corpus format:  79%|███████▊  | 39316/50000 [00:01<00:00, 32881.62 examples/s][A[A
+
+Standardizing text corpus format:  85%|████████▌ | 42633/50000 [00:01<00:00, 32963.96 examples/s][A[A
+
+Standardizing text corpus format:  92%|█████████▏| 45966/50000 [00:01<00:00, 33069.16 examples/s][A[A
+
+Standardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 32379.89 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 32544.62 examples/s]
+
+Searching corpus chunks:  17%|█▋        | 1/6 [00:53<04:25, 53.00s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   6%|▋         | 3209/50000 [00:00<00:01, 31956.32 examples/s][A[A
+
+Standardizing text corpus format:  13%|█▎        | 6477/50000 [00:00<00:01, 32374.27 examples/s][A[A
+
+Standardizing text corpus format:  23%|██▎       | 11339/50000 [00:00<00:01, 32390.77 examples/s][A[A
+
+Standardizing text corpus format:  32%|███▏      | 16183/50000 [00:00<00:01, 32343.37 examples/s][A[A
+
+Standardizing text corpus format:  39%|███▉      | 19464/50000 [00:00<00:00, 32479.97 examples/s][A[A
+
+Standardizing text corpus format:  46%|████▌     | 22771/50000 [00:00<00:00, 32651.44 examples/s][A[A
+
+Standardizing text corpus format:  55%|█████▌    | 27594/50000 [00:00<00:00, 32453.35 examples/s][A[A
+
+Standardizing text corpus format:  62%|██████▏   | 30913/50000 [00:00<00:00, 32650.35 examples/s][A[A
+
+Standardizing text corpus format:  68%|██████▊   | 34187/50000 [00:01<00:00, 32672.37 examples/s][A[A
+
+Standardizing text corpus format:  75%|███████▍  | 37499/50000 [00:01<00:00, 32796.49 examples/s][A[A
+
+Standardizing text corpus format:  82%|████████▏ | 40811/50000 [00:01<00:00, 32887.75 examples/s][A[A
+
+Standardizing text corpus format:  92%|█████████▏| 45767/50000 [00:01<00:00, 32942.84 examples/s][A[A
+
+Standardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 32379.33 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 32513.53 examples/s]
+
+Searching corpus chunks:  33%|███▎      | 2/6 [01:45<03:30, 52.75s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   1%|          | 465/50000 [00:00<01:10, 706.06 examples/s][A[A
+
+Standardizing text corpus format:   7%|▋         | 3656/50000 [00:00<00:07, 6266.76 examples/s][A[A
+
+Standardizing text corpus format:  14%|█▍        | 6889/50000 [00:00<00:03, 11554.30 examples/s][A[A
+
+Standardizing text corpus format:  20%|██        | 10138/50000 [00:00<00:02, 16257.25 examples/s][A[A
+
+Standardizing text corpus format:  27%|██▋       | 13353/50000 [00:01<00:01, 20117.54 examples/s][A[A
+
+Standardizing text corpus format:  33%|███▎      | 16659/50000 [00:01<00:01, 23404.97 examples/s][A[A
+
+Standardizing text corpus format:  40%|███▉      | 19934/50000 [00:01<00:01, 25914.96 examples/s][A[A
+
+Standardizing text corpus format:  46%|████▋     | 23157/50000 [00:01<00:00, 27664.45 examples/s][A[A
+
+Standardizing text corpus format:  56%|█████▌    | 27991/50000 [00:01<00:00, 29362.08 examples/s][A[A
+
+Standardizing text corpus format:  63%|██████▎   | 31258/50000 [00:01<00:00, 30225.83 examples/s][A[A
+
+Standardizing text corpus format:  69%|██████▉   | 34561/50000 [00:01<00:00, 30987.80 examples/s][A[A
+
+Standardizing text corpus format:  76%|███████▌  | 37868/50000 [00:01<00:00, 31568.41 examples/s][A[A
+
+Standardizing text corpus format:  86%|████████▌ | 42764/50000 [00:01<00:00, 31967.02 examples/s][A[A
+
+Standardizing text corpus format:  95%|█████████▌| 47694/50000 [00:02<00:00, 32277.94 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:02<00:00, 22854.80 examples/s]
+
+Searching corpus chunks:  50%|█████     | 3/6 [02:38<02:38, 52.72s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   1%|          | 468/50000 [00:00<00:26, 1880.78 examples/s][A[A
+
+Standardizing text corpus format:   7%|▋         | 3624/50000 [00:00<00:03, 12704.48 examples/s][A[A
+
+Standardizing text corpus format:  14%|█▍        | 6895/50000 [00:00<00:02, 19554.97 examples/s][A[A
+
+Standardizing text corpus format:  19%|█▉        | 9694/50000 [00:02<00:10, 3858.53 examples/s] [A[A
+
+Standardizing text corpus format:  26%|██▌       | 13000/50000 [00:02<00:06, 6032.17 examples/s][A[A
+
+Standardizing text corpus format:  33%|███▎      | 16314/50000 [00:02<00:03, 8649.55 examples/s][A[A
+
+Standardizing text corpus format:  39%|███▉      | 19635/50000 [00:02<00:02, 11626.30 examples/s][A[A
+
+Standardizing text corpus format:  46%|████▌     | 22940/50000 [00:02<00:01, 14787.85 examples/s][A[A
+
+Standardizing text corpus format:  52%|█████▏    | 26089/50000 [00:02<00:01, 17695.09 examples/s][A[A
+
+Standardizing text corpus format:  59%|█████▉    | 29415/50000 [00:02<00:00, 20794.72 examples/s][A[A
+
+Standardizing text corpus format:  65%|██████▌   | 32730/50000 [00:02<00:00, 23530.90 examples/s][A[A
+
+Standardizing text corpus format:  72%|███████▏  | 36000/50000 [00:02<00:00, 25716.23 examples/s][A[A
+
+Standardizing text corpus format:  79%|███████▊  | 39289/50000 [00:02<00:00, 27546.57 examples/s][A[A
+
+Standardizing text corpus format:  85%|████████▌ | 42615/50000 [00:03<00:00, 29071.55 examples/s][A[A
+
+Standardizing text corpus format:  92%|█████████▏| 45946/50000 [00:03<00:00, 30240.60 examples/s][A[A
+
+Standardizing text corpus format: 100%|██████████| 50000/50000 [00:03<00:00, 30446.04 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:03<00:00, 15417.64 examples/s]
+
+Searching corpus chunks:  67%|██████▋   | 4/6 [03:32<01:46, 53.13s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   2%|▏         | 859/50000 [00:00<00:18, 2719.19 examples/s][A[A
+
+Standardizing text corpus format:   8%|▊         | 4033/50000 [00:00<00:03, 11754.75 examples/s][A[A
+
+Standardizing text corpus format:  15%|█▍        | 7297/50000 [00:00<00:02, 18181.88 examples/s][A[A
+
+Standardizing text corpus format:  21%|██        | 10617/50000 [00:00<00:01, 22767.11 examples/s][A[A
+
+Standardizing text corpus format:  28%|██▊       | 13777/50000 [00:00<00:01, 25448.37 examples/s][A[A
+
+Standardizing text corpus format:  34%|███▍      | 17014/50000 [00:00<00:01, 27541.46 examples/s][A[A
+
+Standardizing text corpus format:  41%|████      | 20314/50000 [00:00<00:01, 29187.17 examples/s][A[A
+
+Standardizing text corpus format:  47%|████▋     | 23509/50000 [00:01<00:00, 30016.38 examples/s][A[A
+
+Standardizing text corpus format:  54%|█████▎    | 26805/50000 [00:01<00:00, 30900.26 examples/s][A[A
+
+Standardizing text corpus format:  60%|██████    | 30074/50000 [00:01<00:00, 31434.68 examples/s][A[A
+
+Standardizing text corpus format:  67%|██████▋   | 33385/50000 [00:01<00:00, 31935.10 examples/s][A[A
+
+Standardizing text corpus format:  73%|███████▎  | 36703/50000 [00:01<00:00, 32306.55 examples/s][A[A
+
+Standardizing text corpus format:  80%|████████  | 40000/50000 [00:01<00:00, 32427.96 examples/s][A[A
+
+Standardizing text corpus format:  87%|████████▋ | 43319/50000 [00:01<00:00, 32654.02 examples/s][A[A
+
+Standardizing text corpus format:  93%|█████████▎| 46626/50000 [00:01<00:00, 32777.67 examples/s][A[A
+
+Standardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 32039.35 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:01<00:00, 27333.35 examples/s]
+
+Searching corpus chunks:  83%|████████▎ | 5/6 [04:24<00:53, 53.05s/it][A
+
+Standardizing text corpus format:   0%|          | 0/17725 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   3%|▎         | 467/17725 [00:00<00:11, 1497.80 examples/s][A[A
+
+Standardizing text corpus format:  21%|██        | 3696/17725 [00:00<00:01, 11171.39 examples/s][A[A
+
+Standardizing text corpus format:  39%|███▉      | 6978/17725 [00:00<00:00, 17875.27 examples/s][A[A
+
+Standardizing text corpus format:  58%|█████▊    | 10301/17725 [00:00<00:00, 11853.14 examples/s][A[A
+
+Standardizing text corpus format:  76%|███████▌  | 13494/17725 [00:01<00:00, 15605.84 examples/s][A[A
+
+Standardizing text corpus format:  95%|█████████▍| 16794/17725 [00:01<00:00, 19271.22 examples/s][A[AStandardizing text corpus format: 100%|██████████| 17725/17725 [00:01<00:00, 15575.60 examples/s]
+
+Searching corpus chunks: 100%|██████████| 6/6 [04:47<00:00, 42.73s/it][ASearching corpus chunks: 100%|██████████| 6/6 [04:47<00:00, 47.94s/it]
+Evaluating task COIRCodeSearchNetRetrieval: 100%|██████████| 1/1 [24:57<00:00, 1497.04s/it]Evaluating task COIRCodeSearchNetRetrieval: 100%|██████████| 1/1 [24:57<00:00, 1497.04s/it]
+eval done COIRCodeSearchNetRetrieval in 25.0 min
+Evaluating tasks:   0%|          | 0/1 [00:00<?, ?it/s]Evaluating task StackOverflowQA:   0%|          | 0/1 [00:00<?, ?it/s]
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/19931 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:  15%|█▍        | 2947/19931 [00:00<00:00, 29328.08 examples/s][A[A
+
+Standardizing text corpus format:  30%|██▉       | 5886/19931 [00:00<00:00, 29362.23 examples/s][A[A
+
+Standardizing text corpus format:  44%|████▍     | 8841/19931 [00:00<00:00, 29443.47 examples/s][A[A
+
+Standardizing text corpus format:  59%|█████▉    | 11828/19931 [00:00<00:00, 29609.37 examples/s][A[A
+
+Standardizing text corpus format:  74%|███████▍  | 14790/19931 [00:00<00:00, 29610.97 examples/s][A[A
+
+Standardizing text corpus format:  96%|█████████▌| 19157/19931 [00:00<00:00, 29390.56 examples/s][A[AStandardizing text corpus format: 100%|██████████| 19931/19931 [00:00<00:00, 29347.24 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [01:44<00:00, 104.59s/it][ASearching corpus chunks: 100%|██████████| 1/1 [01:44<00:00, 104.59s/it]
+Evaluating task StackOverflowQA: 100%|██████████| 1/1 [02:11<00:00, 131.97s/it]Evaluating task StackOverflowQA: 100%|██████████| 1/1 [02:11<00:00, 131.97s/it]
+eval done StackOverflowQA in 2.2 min
+Evaluating tasks:   0%|          | 0/1 [00:00<?, ?it/s]Evaluating task SyntheticText2SQL:   0%|          | 0/1 [00:00<?, ?it/s]
+Searching corpus chunks:   0%|          | 0/3 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   4%|▍         | 2000/50000 [00:00<00:02, 17887.03 examples/s][A[A
+
+Standardizing text corpus format:   8%|▊         | 4000/50000 [00:00<00:02, 18671.30 examples/s][A[A
+
+Standardizing text corpus format:  12%|█▏        | 6000/50000 [00:00<00:02, 18741.46 examples/s][A[A
+
+Standardizing text corpus format:  16%|█▌        | 8000/50000 [00:00<00:02, 18953.30 examples/s][A[A
+
+Standardizing text corpus format:  20%|██        | 10000/50000 [00:00<00:02, 19102.79 examples/s][A[A
+
+Standardizing text corpus format:  24%|██▍       | 12000/50000 [00:00<00:01, 19243.05 examples/s][A[A
+
+Standardizing text corpus format:  28%|██▊       | 14000/50000 [00:00<00:01, 19298.35 examples/s][A[A
+
+Standardizing text corpus format:  32%|███▏      | 16000/50000 [00:00<00:01, 19372.31 examples/s][A[A
+
+Standardizing text corpus format:  36%|███▌      | 18000/50000 [00:01<00:04, 7936.73 examples/s] [A[A
+
+Standardizing text corpus format:  40%|████      | 20000/50000 [00:01<00:03, 9693.47 examples/s][A[A
+
+Standardizing text corpus format:  44%|████▍     | 22000/50000 [00:01<00:02, 11438.67 examples/s][A[A
+
+Standardizing text corpus format:  48%|████▊     | 24000/50000 [00:01<00:01, 13048.56 examples/s][A[A
+
+Standardizing text corpus format:  52%|█████▏    | 26000/50000 [00:01<00:01, 14453.93 examples/s][A[A
+
+Standardizing text corpus format:  56%|█████▌    | 28000/50000 [00:01<00:01, 15610.84 examples/s][A[A
+
+Standardizing text corpus format:  60%|██████    | 30000/50000 [00:02<00:01, 16392.85 examples/s][A[A
+
+Standardizing text corpus format:  64%|██████▍   | 32000/50000 [00:02<00:01, 16994.83 examples/s][A[A
+
+Standardizing text corpus format:  69%|██████▉   | 34665/50000 [00:02<00:00, 17265.77 examples/s][A[A
+
+Standardizing text corpus format:  73%|███████▎  | 36541/50000 [00:02<00:00, 17640.25 examples/s][A[A
+
+Standardizing text corpus format:  77%|███████▋  | 38435/50000 [00:02<00:00, 17982.45 examples/s][A[A
+
+Standardizing text corpus format:  82%|████████▏ | 41000/50000 [00:02<00:00, 17599.53 examples/s][A[A
+
+Standardizing text corpus format:  86%|████████▌ | 43000/50000 [00:02<00:00, 17738.72 examples/s][A[A
+
+Standardizing text corpus format:  90%|█████████ | 45000/50000 [00:02<00:00, 17856.56 examples/s][A[A
+
+Standardizing text corpus format:  94%|█████████▍| 47000/50000 [00:02<00:00, 18172.60 examples/s][A[A
+
+Standardizing text corpus format:  98%|█████████▊| 49000/50000 [00:03<00:00, 18457.74 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:03<00:00, 15923.47 examples/s]
+
+Searching corpus chunks:  33%|███▎      | 1/3 [00:46<01:32, 46.03s/it][A
+
+Standardizing text corpus format:   0%|          | 0/50000 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   4%|▍         | 2000/50000 [00:00<00:02, 17213.72 examples/s][A[A
+
+Standardizing text corpus format:   8%|▊         | 4000/50000 [00:00<00:02, 18292.58 examples/s][A[A
+
+Standardizing text corpus format:  12%|█▏        | 6000/50000 [00:00<00:02, 18705.77 examples/s][A[A
+
+Standardizing text corpus format:  16%|█▌        | 8000/50000 [00:00<00:02, 18881.07 examples/s][A[A
+
+Standardizing text corpus format:  20%|██        | 10000/50000 [00:00<00:02, 18881.13 examples/s][A[A
+
+Standardizing text corpus format:  24%|██▍       | 12000/50000 [00:00<00:02, 18972.43 examples/s][A[A
+
+Standardizing text corpus format:  28%|██▊       | 14000/50000 [00:00<00:01, 18979.93 examples/s][A[A
+
+Standardizing text corpus format:  32%|███▏      | 16000/50000 [00:00<00:01, 19092.01 examples/s][A[A
+
+Standardizing text corpus format:  36%|███▌      | 18000/50000 [00:00<00:01, 19142.45 examples/s][A[A
+
+Standardizing text corpus format:  40%|████      | 20000/50000 [00:01<00:01, 19180.68 examples/s][A[A
+
+Standardizing text corpus format:  44%|████▍     | 22000/50000 [00:01<00:01, 19293.23 examples/s][A[A
+
+Standardizing text corpus format:  48%|████▊     | 24000/50000 [00:01<00:01, 19186.74 examples/s][A[A
+
+Standardizing text corpus format:  52%|█████▏    | 26000/50000 [00:01<00:01, 19175.78 examples/s][A[A
+
+Standardizing text corpus format:  56%|█████▌    | 28000/50000 [00:01<00:01, 19030.87 examples/s][A[A
+
+Standardizing text corpus format:  60%|██████    | 30000/50000 [00:01<00:01, 18979.77 examples/s][A[A
+
+Standardizing text corpus format:  64%|██████▍   | 32000/50000 [00:01<00:00, 19106.82 examples/s][A[A
+
+Standardizing text corpus format:  68%|██████▊   | 34000/50000 [00:01<00:00, 19132.70 examples/s][A[A
+
+Standardizing text corpus format:  72%|███████▏  | 35977/50000 [00:02<00:02, 5993.45 examples/s] [A[A
+
+Standardizing text corpus format:  75%|███████▌  | 37709/50000 [00:02<00:01, 7288.15 examples/s][A[A
+
+Standardizing text corpus format:  79%|███████▉  | 39581/50000 [00:02<00:01, 8892.70 examples/s][A[A
+
+Standardizing text corpus format:  83%|████████▎ | 41424/50000 [00:02<00:00, 10485.21 examples/s][A[A
+
+Standardizing text corpus format:  87%|████████▋ | 43294/50000 [00:03<00:00, 12066.61 examples/s][A[A
+
+Standardizing text corpus format:  90%|█████████ | 45180/50000 [00:03<00:00, 13531.62 examples/s][A[A
+
+Standardizing text corpus format:  94%|█████████▍| 47002/50000 [00:03<00:00, 14633.72 examples/s][A[A
+
+Standardizing text corpus format:  98%|█████████▊| 49000/50000 [00:03<00:00, 15775.38 examples/s][A[AStandardizing text corpus format: 100%|██████████| 50000/50000 [00:03<00:00, 14650.14 examples/s]
+
+Searching corpus chunks:  67%|██████▋   | 2/3 [01:31<00:45, 45.64s/it][A
+
+Standardizing text corpus format:   0%|          | 0/5851 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format:   7%|▋         | 422/5851 [00:00<00:01, 3113.16 examples/s][A[A
+
+Standardizing text corpus format:  37%|███▋      | 2144/5851 [00:00<00:00, 10349.60 examples/s][A[A
+
+Standardizing text corpus format:  70%|██████▉   | 4069/5851 [00:00<00:00, 14113.03 examples/s][A[AStandardizing text corpus format: 100%|██████████| 5851/5851 [00:00<00:00, 13554.71 examples/s]
+
+Searching corpus chunks: 100%|██████████| 3/3 [01:38<00:00, 27.92s/it][ASearching corpus chunks: 100%|██████████| 3/3 [01:38<00:00, 32.75s/it]
+Evaluating task SyntheticText2SQL: 100%|██████████| 1/1 [02:06<00:00, 126.16s/it]Evaluating task SyntheticText2SQL: 100%|██████████| 1/1 [02:06<00:00, 126.16s/it]
+eval done SyntheticText2SQL in 2.1 min
+Evaluating tasks:   0%|          | 0/1 [00:00<?, ?it/s]Evaluating task CorebC2TRetrieval:   0%|          | 0/1 [00:00<?, ?it/s]
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/875 [00:00<?, ? examples/s][A[AStandardizing text corpus format: 100%|██████████| 875/875 [00:00<00:00, 14788.79 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:09<00:00,  9.93s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:09<00:00,  9.93s/it]
+Evaluating task CorebC2TRetrieval: 100%|██████████| 1/1 [00:30<00:00, 30.23s/it]Evaluating task CorebC2TRetrieval: 100%|██████████| 1/1 [00:30<00:00, 30.23s/it]
+eval done CorebC2TRetrieval in 0.5 min
+Evaluating tasks:   0%|          | 0/1 [00:00<?, ?it/s]Evaluating task CorebC2CRetrieval:   0%|          | 0/1 [00:00<?, ?it/s]
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/1744 [00:00<?, ? examples/s][A[AStandardizing text corpus format: 100%|██████████| 1744/1744 [00:00<00:00, 17128.99 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:14<00:00, 14.87s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:14<00:00, 14.87s/it]
+Evaluating task CorebC2CRetrieval: 100%|██████████| 1/1 [00:30<00:00, 30.63s/it]Evaluating task CorebC2CRetrieval: 100%|██████████| 1/1 [00:30<00:00, 30.63s/it]
+eval done CorebC2CRetrieval in 0.5 min
+Evaluating tasks:   0%|          | 0/1 [00:00<?, ?it/s]Evaluating task CorebT2CRetrieval:   0%|          | 0/1 [00:00<?, ?it/s]
+Searching corpus chunks:   0%|          | 0/1 [00:00<?, ?it/s][A
+
+Standardizing text corpus format:   0%|          | 0/1744 [00:00<?, ? examples/s][A[A
+
+Standardizing text corpus format: 100%|██████████| 1744/1744 [00:00<00:00, 17265.40 examples/s][A[AStandardizing text corpus format: 100%|██████████| 1744/1744 [00:00<00:00, 16858.18 examples/s]
+
+Searching corpus chunks: 100%|██████████| 1/1 [00:15<00:00, 15.38s/it][ASearching corpus chunks: 100%|██████████| 1/1 [00:15<00:00, 15.38s/it]
+Evaluating task CorebT2CRetrieval: 100%|██████████| 1/1 [00:35<00:00, 35.37s/it]Evaluating task CorebT2CRetrieval: 100%|██████████| 1/1 [00:35<00:00, 35.37s/it]
+eval done CorebT2CRetrieval in 0.6 min
+Evaluating tasks:   0%|          | 0/1 [00:00<?, ?it/s]Evaluating task CorebC2TReranking:   0%|          | 0/1 [00:00<?, ?it/s]
+Standardizing text corpus format:   0%|          | 0/875 [00:00<?, ? examples/s][AStandardizing text corpus format: 100%|██████████| 875/875 [00:00<00:00, 21866.03 examples/s]
+
+Reranking queries:   0%|          | 0/1010 [00:00<?, ?it/s][A
+Reranking queries:  66%|██████▋   | 670/1010 [00:00<00:00, 6692.48it/s][AReranking queries: 100%|██████████| 1010/1010 [00:00<00:00, 6737.52it/s]
+Evaluating task CorebC2TReranking: 100%|██████████| 1/1 [00:29<00:00, 29.10s/it]Evaluating task CorebC2TReranking: 100%|██████████| 1/1 [00:29<00:00, 29.10s/it]
+eval done CorebC2TReranking in 0.5 min
+Evaluating tasks:   0%|          | 0/1 [00:00<?, ?it/s]Evaluating task CorebC2CReranking:   0%|          | 0/1 [00:00<?, ?it/s]
+Standardizing text corpus format:   0%|          | 0/1735 [00:00<?, ? examples/s][AStandardizing text corpus format: 100%|██████████| 1735/1735 [00:00<00:00, 31302.93 examples/s]
+
+Reranking queries:   0%|          | 0/623 [00:00<?, ?it/s][AReranking queries: 100%|██████████| 623/623 [00:00<00:00, 6713.09it/s]
+Evaluating task CorebC2CReranking: 100%|██████████| 1/1 [00:42<00:00, 42.94s/it]Evaluating task CorebC2CReranking: 100%|██████████| 1/1 [00:42<00:00, 42.94s/it]
+eval done CorebC2CReranking in 0.7 min
+Evaluating tasks:   0%|          | 0/1 [00:00<?, ?it/s]Evaluating task CorebT2CReranking:   0%|          | 0/1 [00:00<?, ?it/s]
+Standardizing text corpus format:   0%|          | 0/1744 [00:00<?, ? examples/s][AStandardizing text corpus format: 100%|██████████| 1744/1744 [00:00<00:00, 31082.12 examples/s]
+
+Reranking queries:   0%|          | 0/2249 [00:00<?, ?it/s][A
+Reranking queries:  29%|██▉       | 649/2249 [00:00<00:00, 6481.54it/s][A
+Reranking queries:  58%|█████▊    | 1312/2249 [00:00<00:00, 6566.88it/s][A
+Reranking queries:  88%|████████▊ | 1977/2249 [00:00<00:00, 6601.86it/s][AReranking queries: 100%|██████████| 2249/2249 [00:00<00:00, 6594.25it/s]
+Evaluating task CorebT2CReranking: 100%|██████████| 1/1 [00:39<00:00, 39.71s/it]Evaluating task CorebT2CReranking: 100%|██████████| 1/1 [00:39<00:00, 39.71s/it]
+eval done CorebT2CReranking in 0.7 min

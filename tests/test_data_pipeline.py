@@ -161,6 +161,32 @@ class TestDatasetsAndCollators:
         assert res["query_input_ids"].shape[0] == 2
         assert res["code_input_ids"].shape[0] == 2
 
+    def test_multilingual_dataset_loading(self) -> None:
+        from scripts.train import load_multilingual_dataset_samples
+
+        for lang in ["go", "java", "ruby", "php", "javascript"]:
+            queries, codes, langs = load_multilingual_dataset_samples(
+                "data/processed", target_languages=[lang]
+            )
+            assert len(queries) == len(codes) == len(langs)
+            assert len(queries) > 0
+            assert all(lang_item == lang for lang_item in langs)
+
+    def test_codesearchnet_multilingual_benchmarks(self) -> None:
+        import numpy as np
+
+        from src.evaluation.benchmarks import CodeSearchNetBenchmark
+
+        def dummy_encode(texts: list[str], **kwargs: Any) -> np.ndarray:
+            return np.ones((len(texts), 32))
+
+        for lang in ["go", "java", "ruby", "php", "javascript"]:
+            bench = CodeSearchNetBenchmark(language=lang, max_queries=3)
+            res = bench.run(dummy_encode)
+            assert res.benchmark_name == f"CodeSearchNet-{lang.capitalize()}"
+            assert "MRR@10" in res.metrics
+            assert res.n_queries > 0
+
 
 class TestHardNegatives:
     """Test BM25 negative mining."""

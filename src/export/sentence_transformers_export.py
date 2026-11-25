@@ -24,7 +24,12 @@ try:
         Transformer,
     )
 except ImportError:
-    from sentence_transformers.models import Dense, Normalize, Pooling, Transformer
+    from sentence_transformers.models import (  # type: ignore[no-redef]
+        Dense,
+        Normalize,
+        Pooling,
+        Transformer,
+    )
 
 if TYPE_CHECKING:
     from src.model.encoder import CodeEncoder

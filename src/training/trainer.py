@@ -11,12 +11,15 @@ device detection (MPS / CUDA / CPU), periodic evaluation, and callbacks.
 
 from __future__ import annotations
 
+import json
 import logging
+import random
 import time
 from collections.abc import Callable, Sequence
 from pathlib import Path
 from typing import Any
 
+import numpy as np
 import torch
 import torch.nn as nn
 from torch.optim import AdamW
@@ -99,6 +102,7 @@ class CodeEmbeddingTrainer:
         warmup_ratio: float = 0.1,
         scheduler_name: str = "cosine",
         fp16: bool = True,
+        bf16: bool = False,
         device: str | torch.device = "auto",
         eval_every_n_steps: int = 500,
         callbacks: Sequence[Callback] | None = None,
@@ -119,6 +123,7 @@ class CodeEmbeddingTrainer:
         self.warmup_ratio = warmup_ratio
         self.scheduler_name = scheduler_name
         self.fp16 = fp16
+        self.bf16 = bf16
         self.eval_every_n_steps = eval_every_n_steps
         self.callbacks = list(callbacks or [])
 
@@ -156,18 +161,33 @@ class CodeEmbeddingTrainer:
             num_training_steps=self.total_training_steps,
         )
 
-        # Mixed precision scaler (CUDA only; MPS uses autocast without GradScaler)
-        self.use_amp = self.fp16 and self.device.type in ("cuda", "mps", "cpu")
-        self.amp_dtype = (
-            torch.float16
-            if self.device.type == "cuda"
-            else torch.bfloat16
-            if self.device.type in ("mps", "cpu")
-            else torch.float32
-        )
-        self.scaler = torch.amp.GradScaler(
-            "cuda", enabled=(self.fp16 and self.device.type == "cuda")
-        )
+        # Mixed precision and accelerator configuration
+        if self.device.type == "cuda":
+            # Enable TF32 by default on Ampere / Ada / Hopper architecture
+            if torch.cuda.get_device_capability(0)[0] >= 8:
+                torch.backends.cuda.matmul.allow_tf32 = True
+                torch.backends.cudnn.allow_tf32 = True
+
+            if self.bf16:
+                self.use_amp = True
+                self.amp_dtype = torch.bfloat16
+                self.scaler = torch.amp.GradScaler("cuda", enabled=False)
+            elif self.fp16:
+                self.use_amp = True
+                self.amp_dtype = torch.float16
+                self.scaler = torch.amp.GradScaler("cuda", enabled=True)
+            else:
+                self.use_amp = False
+                self.amp_dtype = torch.float32
+                self.scaler = torch.amp.GradScaler("cuda", enabled=False)
+        elif self.device.type in ("mps", "cpu"):
+            self.use_amp = self.fp16 or self.bf16
+            self.amp_dtype = torch.bfloat16 if self.use_amp else torch.float32
+            self.scaler = torch.amp.GradScaler("cpu", enabled=False)
+        else:
+            self.use_amp = False
+            self.amp_dtype = torch.float32
+            self.scaler = torch.amp.GradScaler("cpu", enabled=False)
 
         # State
         self.global_step = 0
@@ -198,15 +218,33 @@ class CodeEmbeddingTrainer:
             if self.should_stop:
                 break
 
+            if epoch < self.current_epoch:
+                continue
+
             self.current_epoch = epoch
             self.model.train()
 
             for cb in self.callbacks:
                 cb.on_epoch_begin(self, epoch)
 
+            steps_per_epoch = len(self.train_dataloader) // self.gradient_accumulation_steps
+            steps_already_done_in_epoch = max(0, self.global_step - (epoch * steps_per_epoch))
+            batches_to_skip = steps_already_done_in_epoch * self.gradient_accumulation_steps
+
+            if batches_to_skip > 0:
+                logger.info(
+                    "Resuming epoch %d: fast-forwarding %d micro-batches (%d global steps already completed).",
+                    epoch,
+                    batches_to_skip,
+                    steps_already_done_in_epoch,
+                )
+
             for batch_idx, batch in enumerate(self.train_dataloader):
                 if self.should_stop:
                     break
+
+                if batch_idx < batches_to_skip:
+                    continue
 
                 for cb in self.callbacks:
                     cb.on_step_begin(self, self.global_step)
@@ -291,10 +329,10 @@ class CodeEmbeddingTrainer:
         """Dispatch batch to model and loss function based on batch structure."""
         # Case A: Pair dictionary (queries, codes) from PairCollator
         if isinstance(batch, dict) and "query_input_ids" in batch:
-            q_ids = batch["query_input_ids"].to(self.device)
-            q_mask = batch["query_attention_mask"].to(self.device)
-            c_ids = batch["code_input_ids"].to(self.device)
-            c_mask = batch["code_attention_mask"].to(self.device)
+            q_ids = batch["query_input_ids"].to(self.device, non_blocking=True)
+            q_mask = batch["query_attention_mask"].to(self.device, non_blocking=True)
+            c_ids = batch["code_input_ids"].to(self.device, non_blocking=True)
+            c_mask = batch["code_attention_mask"].to(self.device, non_blocking=True)
 
             with torch.amp.autocast(self.device.type, dtype=self.amp_dtype, enabled=self.use_amp):
                 q_embeds = self.model(input_ids=q_ids, attention_mask=q_mask)
@@ -303,8 +341,8 @@ class CodeEmbeddingTrainer:
                 # Optional hard negatives
                 neg_embeds = None
                 if "neg_input_ids" in batch:
-                    neg_ids = batch["neg_input_ids"].to(self.device)
-                    neg_mask = batch["neg_attention_mask"].to(self.device)
+                    neg_ids = batch["neg_input_ids"].to(self.device, non_blocking=True)
+                    neg_mask = batch["neg_attention_mask"].to(self.device, non_blocking=True)
                     neg_embeds = self.model(input_ids=neg_ids, attention_mask=neg_mask)
 
                 if neg_embeds is not None:
@@ -316,8 +354,8 @@ class CodeEmbeddingTrainer:
 
         # Case B: SimCSE single-text batch (pass twice with dropout)
         if isinstance(batch, dict) and "input_ids" in batch:
-            input_ids = batch["input_ids"].to(self.device)
-            attention_mask = batch["attention_mask"].to(self.device)
+            input_ids = batch["input_ids"].to(self.device, non_blocking=True)
+            attention_mask = batch["attention_mask"].to(self.device, non_blocking=True)
 
             with torch.amp.autocast(self.device.type, dtype=self.amp_dtype, enabled=self.use_amp):
                 # Pass 1
@@ -372,35 +410,137 @@ class CodeEmbeddingTrainer:
     # ------------------------------------------------------------------
 
     def save_checkpoint(self, path: str | Path) -> None:
-        """Save model checkpoint to target directory."""
+        """Save complete Hugging Face compatible checkpoint to target directory."""
         dest = Path(path)
         dest.mkdir(parents=True, exist_ok=True)
+
+        # 1. Save model weights and configuration
         if hasattr(self.model, "save_pretrained"):
             self.model.save_pretrained(dest)
         else:
             torch.save(self.model.state_dict(), dest / "model.pt")
 
+        # 2. Save SentenceTransformers format for seamless ecosystem integration
+        try:
+            if hasattr(self.model, "save_as_sentence_transformer"):
+                self.model.save_as_sentence_transformer(dest / "sentence_transformers")
+            elif hasattr(self.model, "encoder") and hasattr(
+                self.model.encoder, "save_as_sentence_transformer"
+            ):
+                self.model.encoder.save_as_sentence_transformer(dest / "sentence_transformers")
+        except Exception as exc:  # noqa: BLE001
+            logger.debug("SentenceTransformers export skipped during checkpoint: %s", exc)
+
+        # 3. Save optimizer, scheduler, and scaler states
         torch.save(self.optimizer.state_dict(), dest / "optimizer.pt")
         torch.save(self.scheduler.state_dict(), dest / "scheduler.pt")
+        if hasattr(self, "scaler") and self.scaler.is_enabled():
+            torch.save(self.scaler.state_dict(), dest / "scaler.pt")
 
-    def load_checkpoint(self, path: str | Path) -> None:
-        """Load model checkpoint from disk."""
+        # 4. Save trainer metadata and progress
+        trainer_state = {
+            "global_step": self.global_step,
+            "current_epoch": self.current_epoch,
+            "total_training_steps": self.total_training_steps,
+            "learning_rate": self.optimizer.param_groups[0]["lr"],
+            "scheduler_name": self.scheduler_name,
+            "fp16": self.fp16,
+            "bf16": self.bf16,
+        }
+        with open(dest / "trainer_state.json", "w", encoding="utf-8") as f:
+            json.dump(trainer_state, f, indent=2)
+
+        # 5. Save RNG states for deterministic resumption
+        rng_state = {
+            "python": random.getstate(),
+            "numpy": np.random.get_state(),
+            "torch": torch.get_rng_state(),
+            "cuda": torch.cuda.get_rng_state_all() if torch.cuda.is_available() else None,
+        }
+        torch.save(rng_state, dest / "rng_state.pt")
+        logger.info("Saved complete HF checkpoint to %s (step=%d)", dest, self.global_step)
+
+    def load_checkpoint(self, path: str | Path) -> dict[str, Any]:
+        """Load complete model checkpoint and training state from disk."""
         src = Path(path)
+        logger.info("Loading checkpoint from %s ...", src)
+
+        # 1. Load model weights
         model_weights = src / "model.pt"
         if model_weights.exists():
             self.model.load_state_dict(torch.load(model_weights, map_location=self.device))
-        elif (src / "code_embed_config.json").exists() or (src / "pycode_embed_config.json").exists():
-            from src.model.encoder import CodeEncoder
+        elif (
+            (src / "code_embed_config.json").exists()
+            or (src / "pycode_embed_config.json").exists()
+        ):
+            target_encoder = (
+                self.model.encoder
+                if hasattr(self.model, "encoder") and hasattr(self.model.encoder, "projection_head")
+                else self.model
+            )
+            proj_pt = src / "projection_head.pt"
+            if proj_pt.exists() and hasattr(target_encoder, "projection_head") and target_encoder.projection_head is not None:
+                try:
+                    target_encoder.projection_head.load_state_dict(
+                        torch.load(proj_pt, map_location=self.device)
+                    )
+                except Exception:
+                    pass
+            if (src / "backbone").exists() and hasattr(target_encoder, "backbone"):
+                try:
+                    from transformers import AutoModel
 
-            loaded = CodeEncoder.from_pretrained(src).to(self.device)
-            if hasattr(self.model, "encoder") and isinstance(self.model.encoder, CodeEncoder):
-                self.model.encoder = loaded
-            else:
-                self.model = loaded
+                    target_encoder.backbone = AutoModel.from_pretrained(str(src / "backbone")).to(
+                        self.device
+                    )
+                except Exception:
+                    pass
+        else:
+            logger.warning("No model weight files found in checkpoint %s", src)
 
+        # 2. Load optimizer, scheduler, and scaler states
         opt_path = src / "optimizer.pt"
         if opt_path.exists():
             self.optimizer.load_state_dict(torch.load(opt_path, map_location=self.device))
         sched_path = src / "scheduler.pt"
         if sched_path.exists():
             self.scheduler.load_state_dict(torch.load(sched_path, map_location=self.device))
+        scaler_path = src / "scaler.pt"
+        if scaler_path.exists() and hasattr(self, "scaler"):
+            self.scaler.load_state_dict(torch.load(scaler_path, map_location=self.device))
+
+        # 3. Load RNG state if available
+        rng_path = src / "rng_state.pt"
+        if rng_path.exists():
+            try:
+                rng_state = torch.load(rng_path, map_location="cpu")
+                if "python" in rng_state:
+                    random.setstate(rng_state["python"])
+                if "numpy" in rng_state:
+                    np.random.set_state(rng_state["numpy"])
+                if "torch" in rng_state:
+                    torch.set_rng_state(rng_state["torch"])
+                if (
+                    "cuda" in rng_state
+                    and rng_state["cuda"] is not None
+                    and torch.cuda.is_available()
+                ):
+                    torch.cuda.set_rng_state_all(rng_state["cuda"])
+            except Exception as rng_err:  # noqa: BLE001
+                logger.debug("Could not restore RNG states: %s", rng_err)
+
+        # 4. Load trainer state
+        state_path = src / "trainer_state.json"
+        trainer_state: dict[str, Any] = {}
+        if state_path.exists():
+            with open(state_path, encoding="utf-8") as f:
+                trainer_state = json.load(f)
+            self.global_step = trainer_state.get("global_step", self.global_step)
+            self.current_epoch = trainer_state.get("current_epoch", self.current_epoch)
+            logger.info(
+                "Restored training state: resumed from global_step=%d, epoch=%d",
+                self.global_step,
+                self.current_epoch,
+            )
+
+        return trainer_state

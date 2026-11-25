@@ -48,9 +48,20 @@ def set_seed(seed: int) -> None:
         torch.cuda.manual_seed_all(seed)
 
 
-def load_dataset_samples(data_dir: str | Path) -> tuple[list[str], list[str]]:
+def load_dataset_samples(
+    data_dir: str | Path, target_languages: list[str] | None = None
+) -> tuple[list[str], list[str]]:
     """Load query and code pairs from disk or fallback to synthetic data."""
     path = Path(data_dir)
+    try:
+        from scripts.train import load_multilingual_dataset_samples
+
+        q, c, _ = load_multilingual_dataset_samples(path, target_languages=target_languages)
+        if q and c:
+            return q, c
+    except Exception:
+        pass
+
     if path.exists() and (path / "dataset_info.json").exists():
         from datasets import load_from_disk
 
@@ -289,9 +300,7 @@ def tune(
         "-r",
         help="Path to save trial results summary JSON",
     ),
-    study_name: str = typer.Option(
-        "code-embed-tune", "--study-name", help="Name of Optuna study"
-    ),
+    study_name: str = typer.Option("code-embed-tune", "--study-name", help="Name of Optuna study"),
     storage: str | None = typer.Option(
         "sqlite:///outputs/tuning/optuna_study.db",
         "--storage",

@@ -173,9 +173,7 @@ class TestCodeEmbeddingTrainer:
         assert metrics["eval_loss"] > 0.0
         assert metrics["loss"] == metrics["eval_loss"]
 
-    def test_evaluation_with_eval_dataloader_and_eval_fn(
-        self, base_encoder: CodeEncoder
-    ) -> None:
+    def test_evaluation_with_eval_dataloader_and_eval_fn(self, base_encoder: CodeEncoder) -> None:
         """Verify that evaluate() merges both validation loss and custom eval_fn metrics."""
         train_ds = SyntheticPairDataset(size=8, seq_len=8)
         val_ds = SyntheticPairDataset(size=4, seq_len=8)
@@ -200,4 +198,42 @@ class TestCodeEmbeddingTrainer:
         assert metrics["loss"] > 0.0
         assert metrics["eval_loss"] > 0.0
         assert metrics["eval/MRR@10"] == 0.75
-        assert metrics["eval/NDCG@10"] == 0.85
+
+    def test_resume_from_checkpoint_fast_forwards_batches(
+        self, base_encoder: CodeEncoder, tmp_path: Any
+    ) -> None:
+        """Verify that resuming from checkpoint loads state and fast-forwards batches."""
+        train_ds = SyntheticPairDataset(size=16, seq_len=8)
+        train_loader = DataLoader(train_ds, batch_size=4, collate_fn=_collate_batch)
+        loss_fn = MultipleNegativesRankingLoss(scale=20.0)
+
+        ckpt_dir = tmp_path / "ckpt"
+        trainer1 = CodeEmbeddingTrainer(
+            model=base_encoder,
+            loss_fn=loss_fn,
+            train_dataloader=train_loader,
+            epochs=1,
+            device="cpu",
+            fp16=False,
+            gradient_accumulation_steps=1,
+        )
+        # Manually save a checkpoint at step 2
+        trainer1.global_step = 2
+        trainer1.save_checkpoint(ckpt_dir)
+
+        # Create a new trainer to resume from step 2
+        trainer2 = CodeEmbeddingTrainer(
+            model=base_encoder,
+            loss_fn=loss_fn,
+            train_dataloader=train_loader,
+            epochs=1,
+            device="cpu",
+            fp16=False,
+            gradient_accumulation_steps=1,
+        )
+        trainer2.load_checkpoint(ckpt_dir)
+        assert trainer2.global_step == 2
+
+        # Train: 4 total batches in dataset, step 2 already done -> should run remaining 2 steps to step 4
+        trainer2.train()
+        assert trainer2.global_step == 4

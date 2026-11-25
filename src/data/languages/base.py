@@ -35,6 +35,9 @@ class BaseLanguageHandler(ABC):
     tree_sitter_name: str | None = None
     file_extensions: list[str] = []
 
+    function_node_types: set[str] = set()
+    comment_prefixes: tuple[str, ...] = ("#", "//", "/*", "*")
+
     def __init__(self) -> None:
         self._parser: Any = None
         self._parser_initialized: bool = False
@@ -46,9 +49,11 @@ class BaseLanguageHandler(ABC):
             if self.tree_sitter_name:
                 try:
                     import warnings
+
                     with warnings.catch_warnings():
                         warnings.simplefilter("ignore")
                         from tree_sitter_languages import get_parser
+
                         self._parser = get_parser(self.tree_sitter_name)
                 except Exception as exc:  # noqa: BLE001
                     logger.debug("Tree-sitter parser unavailable for %s: %s", self.name, exc)
@@ -74,6 +79,41 @@ class BaseLanguageHandler(ABC):
     def _fallback_syntax_check(self, code: str) -> bool:
         """Basic fallback check when Tree-sitter is unavailable."""
         return len(code.strip()) > 0
+
+    def has_function_definition(self, code: str) -> bool:
+        """Check if code contains a function or method definition."""
+        if not code or not code.strip():
+            return False
+
+        parser = self.get_parser()
+        if parser is not None and self.function_node_types:
+            try:
+                tree = parser.parse(bytes(code, "utf-8", errors="replace"))
+                stack = [tree.root_node]
+                while stack:
+                    curr = stack.pop()
+                    if curr.type in self.function_node_types:
+                        return True
+                    stack.extend(curr.children)
+            except Exception:  # noqa: BLE001
+                pass
+
+        return self._fallback_has_function_definition(code)
+
+    def _fallback_has_function_definition(self, code: str) -> bool:
+        """Fallback check for function definition."""
+        return len(code.strip()) > 0
+
+    def compute_comment_ratio(self, code: str) -> float:
+        """Return the ratio of comment lines to total non-blank lines."""
+        lines = code.splitlines()
+        non_blank = [line.strip() for line in lines if line.strip()]
+        if not non_blank:
+            return 0.0
+        comment_lines = sum(
+            1 for line in non_blank if any(line.startswith(p) for p in self.comment_prefixes)
+        )
+        return comment_lines / len(non_blank)
 
     def is_auto_generated(self, code: str, max_check_lines: int = 10) -> bool:
         """Check if snippet contains auto-generation header comments."""

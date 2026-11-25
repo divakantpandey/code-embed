@@ -97,4 +97,5 @@ alerts:
   loss_spike_multiplier: 3.0
   grad_norm_threshold: 10.0
   nan_halt: true
+  min_loss_threshold: 0.01
 

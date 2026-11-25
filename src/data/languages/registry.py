@@ -27,13 +27,17 @@ class LanguageRegistry:
         from src.data.languages.go import GoLanguageHandler
         from src.data.languages.java import JavaLanguageHandler
         from src.data.languages.javascript import JavaScriptLanguageHandler
+        from src.data.languages.php import PhpLanguageHandler
         from src.data.languages.python import PythonLanguageHandler
+        from src.data.languages.ruby import RubyLanguageHandler
 
         builtins: list[BaseLanguageHandler] = [
             PythonLanguageHandler(),
             JavaScriptLanguageHandler(),
             JavaLanguageHandler(),
             GoLanguageHandler(),
+            RubyLanguageHandler(),
+            PhpLanguageHandler(),
         ]
 
         for h in builtins:
@@ -45,6 +49,8 @@ class LanguageRegistry:
         cls._handlers["typescript"] = cls._handlers["javascript"]
         cls._handlers["py"] = cls._handlers["python"]
         cls._handlers["golang"] = cls._handlers["go"]
+        cls._handlers["rb"] = cls._handlers["ruby"]
+        cls._handlers["php"] = cls._handlers["php"]
 
         cls._initialized = True
 
@@ -77,4 +83,4 @@ class LanguageRegistry:
     def supported_languages(cls) -> list[str]:
         """Return list of canonical supported language names."""
         cls._bootstrap()
-        return ["python", "javascript", "java", "go"]
+        return ["python", "javascript", "java", "go", "ruby", "php"]

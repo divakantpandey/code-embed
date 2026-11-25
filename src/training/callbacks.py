@@ -85,9 +85,7 @@ class WandBCallback(Callback):
     def on_eval_end(self, trainer: CodeEmbeddingTrainer, metrics: dict[str, float]) -> None:
         if not self.enabled or self._wandb is None:
             return
-        prefixed = {
-            k if k.startswith("eval/") else f"eval/{k}": v for k, v in metrics.items()
-        }
+        prefixed = {k if k.startswith("eval/") else f"eval/{k}": v for k, v in metrics.items()}
         self._wandb.log(prefixed, step=trainer.global_step)
 
     def on_train_end(self, trainer: CodeEmbeddingTrainer) -> None:
@@ -200,10 +198,13 @@ class AlertCallback(Callback):
         grad_norm_threshold: float = 10.0,
         nan_halt: bool = True,
         rolling_window_size: int = 20,
+        min_loss_threshold: float = 0.01,
     ) -> None:
         self.loss_spike_multiplier = loss_spike_multiplier
         self.grad_norm_threshold = grad_norm_threshold
         self.nan_halt = nan_halt
+        self.rolling_window_size = rolling_window_size
+        self.min_loss_threshold = min_loss_threshold
         self.loss_history: deque[float] = deque(maxlen=rolling_window_size)
 
     def on_step_end(self, trainer: CodeEmbeddingTrainer, step: int, logs: dict[str, float]) -> None:
@@ -218,12 +219,14 @@ class AlertCallback(Callback):
 
             if len(self.loss_history) >= 5:
                 avg_loss = sum(self.loss_history) / len(self.loss_history)
-                if loss > self.loss_spike_multiplier * avg_loss:
+                if loss > self.loss_spike_multiplier * avg_loss and loss > self.min_loss_threshold:
+                    loss_str = f"{loss:.4e}" if loss < 1e-3 else f"{loss:.4f}"
+                    avg_str = f"{avg_loss:.4e}" if avg_loss < 1e-3 else f"{avg_loss:.4f}"
                     logger.warning(
-                        "ALERT: Loss spike detected! Step %d: loss=%.4f (avg=%.4f, multiplier=%.1fx)",
+                        "ALERT: Loss spike detected! Step %d: loss=%s (avg=%s, multiplier=%.1fx)",
                         step,
-                        loss,
-                        avg_loss,
+                        loss_str,
+                        avg_str,
                         loss / max(avg_loss, 1e-8),
                     )
 
@@ -240,7 +243,7 @@ class AlertCallback(Callback):
 
 
 class CheckpointCallback(Callback):
-    """Saves best and periodic checkpoints to disk."""
+    """Saves best and periodic checkpoints to disk, with optional Hugging Face Hub synchronization."""
 
     def __init__(
         self,
@@ -250,6 +253,10 @@ class CheckpointCallback(Callback):
         save_last: bool = True,
         metric: str = "eval/MRR@10",
         mode: str = "max",
+        push_to_hub: bool = False,
+        hub_repo_id: str | None = None,
+        hub_token: str | None = None,
+        hub_private: bool = False,
     ) -> None:
         self.checkpoint_dir = Path(checkpoint_dir)
         self.save_every_n_steps = save_every_n_steps
@@ -259,13 +266,47 @@ class CheckpointCallback(Callback):
         self.mode = mode.lower()
         self.best_metric: float | None = None
 
+        self.push_to_hub = push_to_hub
+        self.hub_repo_id = hub_repo_id
+        self.hub_token = hub_token
+        self.hub_private = hub_private
+
         self.checkpoint_dir.mkdir(parents=True, exist_ok=True)
+
+    def _push_to_hub(self, directory: Path, commit_message: str) -> None:
+        """Push a checkpoint directory to Hugging Face Hub."""
+        if not self.push_to_hub or not self.hub_repo_id:
+            return
+        import os
+
+        from huggingface_hub import HfApi
+
+        token = (
+            self.hub_token or os.environ.get("HF_TOKEN") or os.environ.get("HUGGING_FACE_HUB_TOKEN")
+        )
+        try:
+            api = HfApi(token=token)
+            api.create_repo(repo_id=self.hub_repo_id, private=self.hub_private, exist_ok=True)
+            api.upload_folder(
+                folder_path=str(directory),
+                repo_id=self.hub_repo_id,
+                commit_message=commit_message,
+            )
+            logger.info("Successfully pushed checkpoint to Hugging Face Hub (%s)", self.hub_repo_id)
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("Could not push checkpoint to Hugging Face Hub: %s", exc)
 
     def on_step_end(self, trainer: CodeEmbeddingTrainer, step: int, logs: dict[str, float]) -> None:
         if step > 0 and step % self.save_every_n_steps == 0:
             step_dir = self.checkpoint_dir / f"checkpoint_step_{step}"
             trainer.save_checkpoint(step_dir)
             logger.info("Saved periodic checkpoint to %s", step_dir)
+            if self.push_to_hub:
+                loss_val = logs.get("loss", 0.0)
+                self._push_to_hub(
+                    step_dir,
+                    commit_message=f"Periodic checkpoint at step {step} (loss={loss_val:.5f})",
+                )
 
     def on_eval_end(self, trainer: CodeEmbeddingTrainer, metrics: dict[str, float]) -> None:
         if not self.save_best:
@@ -294,9 +335,17 @@ class CheckpointCallback(Callback):
             best_dir = self.checkpoint_dir / "best_model"
             trainer.save_checkpoint(best_dir)
             logger.info("New best model (%s=%.4f) saved to %s", self.metric, score, best_dir)
+            self._push_to_hub(
+                best_dir,
+                commit_message=f"New best model: {self.metric}={score:.4f} at step {trainer.global_step}",
+            )
 
     def on_train_end(self, trainer: CodeEmbeddingTrainer) -> None:
         if self.save_last:
             last_dir = self.checkpoint_dir / "last_model"
             trainer.save_checkpoint(last_dir)
             logger.info("Saved final checkpoint to %s", last_dir)
+            self._push_to_hub(
+                last_dir,
+                commit_message=f"Final model checkpoint at step {trainer.global_step}",
+            )

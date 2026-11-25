@@ -2,9 +2,12 @@
 
 from __future__ import annotations
 
+import re
 from typing import Any
 
 from src.data.languages.base import BaseLanguageHandler
+
+_JS_FUNC_RE = re.compile(r"(\bfunction\b|\=\>|\bclass\b)")
 
 
 class JavaScriptLanguageHandler(BaseLanguageHandler):
@@ -13,6 +16,17 @@ class JavaScriptLanguageHandler(BaseLanguageHandler):
     name = "javascript"
     tree_sitter_name = "javascript"
     file_extensions = [".js", ".jsx", ".mjs", ".cjs", ".ts", ".tsx"]
+    function_node_types = {
+        "function_declaration",
+        "method_definition",
+        "arrow_function",
+        "function",
+    }
+    comment_prefixes = ("//", "/*", "*")
+
+    def _fallback_has_function_definition(self, code: str) -> bool:
+        """Fallback check for function keyword or arrow in JavaScript."""
+        return bool(_JS_FUNC_RE.search(code))
 
     def extract_docstring_and_code(self, item: dict[str, Any]) -> tuple[str, str]:
         """Extract (JSDoc, code) pair."""
@@ -23,9 +37,6 @@ class JavaScriptLanguageHandler(BaseLanguageHandler):
             or ""
         ).strip()
         code = (
-            item.get("func_code_string")
-            or item.get("code")
-            or item.get("function")
-            or ""
+            item.get("func_code_string") or item.get("code") or item.get("function") or ""
         ).strip()
         return docstring, code

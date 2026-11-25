@@ -1,0 +1,142 @@
+# ==============================================================================
+# CodeEmbed v2: Full-Scale Multilingual Training Configuration (All 6 Languages)
+# Strategy A: Pure Multilingual 3-Stage Curriculum from Scratch
+# ==============================================================================
+# Corpus: 1,838,250 Clean AST-Validated Samples across All 6 Languages:
+#         PHP (511k), Java (444k), Python (405k), Go (312k), JS (117k), Ruby (48k)
+# Backbone: microsoft/unixcoder-base (1024 context window, mean pooling)
+# Curriculum:
+#   Stage 1: SimCSE Dual-Dropout Contrastive on Full 1.84M Multilingual Corpus (1 epoch)
+#   Stage 2: Supervised Multiple Negatives Ranking Loss (MNRL) on All 6 Languages (1 epoch)
+#   Stage 3: Matryoshka Representation Learning (MRL, dimensions 64..1536) (1 epoch)
+# Target Hub Repository: divakantpandey/code-embed-v2
+#
+# This is the config that produced divakantpandey/code-embed-v2 at revision d7759ca2,
+# the revision scored in embeddings-benchmark/results#803. Run with:
+#   python scripts/train.py --config configs/v2_multilingual_config.yaml --full-scale
+# Training data is the CodeSearchNet train split only. data_dir must hold the six
+# per-language Arrow shards written by preprocessing (1,838,250 rows); the run read
+# them from /dev/shm/multilingual. That loader path returns before the CoSQA branch
+# in load_multilingual_dataset_samples, which --full-scale otherwise enables, so with
+# any other data layout CoSQA would be added and the run would not match the paper.
+# ==============================================================================
+
+model:
+  base: "microsoft/unixcoder-base"
+  max_seq_length: 1024
+  embedding_dim: 1536
+  pooling: "mean"
+  projection_hidden_dim: 1536
+  dropout: 0.1
+
+data:
+  datasets:
+    - name: "code_search_net"
+      subset: "all"  # python, go, java, ruby, php, javascript
+      split: "train"
+  full_scale: true
+  data_dir: "/dev/shm/multilingual"
+  raw_dir: "data/raw"
+  preprocessing:
+    min_tokens: 10
+    max_tokens: 1024
+    dedup_jaccard_threshold: 0.85
+    require_function_def: true
+    require_valid_syntax: true
+    max_comment_ratio: 0.40
+  hard_negatives:
+    enabled: false
+    method: "in-batch"
+    bm25_top_k: 0
+    min_rank: 1
+    refresh_every_n_epochs: 2
+
+training:
+  seed: 42
+  output_dir: "./outputs_v2"
+  checkpoint_dir: "./checkpoints_v2"
+
+  stage1:
+    enabled: true
+    method: "simcse"
+    learning_rate: 3.0e-5
+    batch_size: 32  # effective batch = 128 (with accum 4), doubled in-batch negatives (31 vs 15)
+    gradient_accumulation_steps: 4
+    epochs: 1
+    warmup_ratio: 0.10
+    weight_decay: 0.01
+    max_grad_norm: 1.0
+    fp16: false
+    bf16: true
+    scheduler: "cosine"
+    temperature: 0.05
+
+  stage2:
+    enabled: true
+    method: "mnrl"
+    learning_rate: 2.6975e-5
+    batch_size: 32  # effective batch = 128 (with accum 4), safe VRAM ~29 GB (avoids OOM at bs=64)
+    gradient_accumulation_steps: 4
+    epochs: 1
+    warmup_ratio: 0.15
+    weight_decay: 0.01
+    max_grad_norm: 1.0
+    fp16: false
+    bf16: true
+    scheduler: "cosine_with_restarts"
+    scale: 25.0
+    early_stopping:
+      enabled: false
+
+  stage3:
+    enabled: true
+    method: "matryoshka"
+    learning_rate: 1.0e-5
+    batch_size: 32  # effective batch = 128 (with accum 4), safe VRAM ~29 GB
+    gradient_accumulation_steps: 4
+    epochs: 1
+    scale: 25.0
+    dimensions: [64, 128, 256, 384, 768, 1536]
+    dimension_weights: [0.1, 0.1, 0.15, 0.15, 0.25, 0.25]
+    fp16: false
+    bf16: true
+    scheduler: "cosine"
+
+hardware:
+  device: "auto"
+  num_workers: 24
+  prefetch_factor: 4
+  pin_memory: true
+  precision: "bf16"
+  allow_tf32: true
+
+hf_checkpointing:
+  enabled: true
+  save_every_n_steps: 2500
+  save_best: true
+  save_last: true
+  push_to_hub: false
+  hub_repo_id: "divakantpandey/code-embed-v2"
+  hub_private: false
+  sync_best_to_hub: true
+  sync_final_to_hub: true
+
+logging:
+  wandb:
+    enabled: true
+    project: "code-embed"
+    run_name: "v2-multilingual-strategy-a"
+    log_every_n_steps: 25
+  tensorboard:
+    enabled: true
+    log_dir: "./runs_v2"
+  eval_every_n_steps: 2500
+  save_every_n_steps: 2500
+  save_best: true
+  save_last: true
+
+alerts:
+  loss_spike_multiplier: 3.0
+  grad_norm_threshold: 10.0
+  nan_halt: true
+  min_loss_threshold: 0.01

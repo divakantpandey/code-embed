@@ -77,7 +77,19 @@ class CodeEncoder(nn.Module):
             self.backbone = transformer_backbone
             backbone_hidden_size = getattr(self.backbone.config, "hidden_size", 768)
         else:
-            self.backbone = AutoModel.from_pretrained(base_model_name_or_path)
+            try:
+                self.backbone = AutoModel.from_pretrained(
+                    base_model_name_or_path,
+                    attn_implementation="sdpa",
+                )
+                logger.info("Loaded backbone '%s' with PyTorch SDPA (Scaled Dot-Product Attention).", base_model_name_or_path)
+            except Exception as exc:  # noqa: BLE001
+                logger.warning(
+                    "Could not load '%s' with SDPA (%s). Falling back to default attention.",
+                    base_model_name_or_path,
+                    exc,
+                )
+                self.backbone = AutoModel.from_pretrained(base_model_name_or_path)
             backbone_hidden_size = getattr(self.backbone.config, "hidden_size", 768)
 
         # Extend position embeddings if requested sequence length exceeds backbone default
@@ -408,7 +420,9 @@ class CodeEncoder(nn.Module):
         if not config_path.exists():
             config_path = load_dir / "pycode_embed_config.json"
         if not config_path.exists():
-            raise FileNotFoundError(f"Config file not found at {load_dir / 'code_embed_config.json'}")
+            raise FileNotFoundError(
+                f"Config file not found at {load_dir / 'code_embed_config.json'}"
+            )
 
         with open(config_path, encoding="utf-8") as f:
             cfg = json.load(f)

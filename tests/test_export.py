@@ -69,5 +69,6 @@ class TestExport:
             assert embs.shape == (1, model.embedding_dim)
 
             import numpy as np
+
             ce_embs = model.encode(["def foo(): pass"])
             np.testing.assert_allclose(embs, ce_embs, atol=1e-4)
