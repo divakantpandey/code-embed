@@ -5,7 +5,8 @@ eval tasks. Results and discussion: `docs/zero_shot_retrain.md`.
 
 The data build, the contamination audit and `load_mix` come from
 [code-embed-v3](https://github.com/divakantpandey/code-embed-v3) at `d34068d`, which `onstart.sh` clones on the
-instance; nothing else from v3 is used.
+instance; nothing else from v3 is used. The modules they need are vendored, unchanged, in
+[`vendor/code-embed-v3/`](../../vendor/code-embed-v3/).
 
 | File | Role |
 |---|---|
@@ -19,5 +20,6 @@ instance; nothing else from v3 is used.
 | `three_way.py` | Builds the UniXcoder-base / v2 / retrain table from `unixcoder_scores.json` and the eval results |
 | `contamination_report.json`, `three_way.json` | Audit output and the per-task scores |
 | `results/unixcoder-base/`, `results/code-embed-v2-zeroshot/` | Raw MTEB result files for the base model and the retrain, copied from [code-embed-v3-src@b3a8737](https://huggingface.co/divakantpandey/code-embed-v3-src/tree/b3a8737180d583f4595428e82efc7cd0bfcf4eb8) (`baselines/unixcoder-base/`, `v2-zeroshot/results/`) |
+| `run_logs/` | The retrain's own logs and manifests (data build, audit, smoke test, eval, guard), copied from [code-embed-v3-src@b3a8737](https://huggingface.co/divakantpandey/code-embed-v3-src/tree/b3a8737180d583f4595428e82efc7cd0bfcf4eb8/v2-zeroshot/run); the 3.7 MB `train.log` stays there |
 
 `python three_way.py unixcoder_scores.json results/code-embed-v2-zeroshot three_way.json`

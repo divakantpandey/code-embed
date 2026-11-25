@@ -1,0 +1,61 @@
+[project]
+name = "code-embed-v3"
+version = "0.1.0"
+description = "Small, leaderboard-grade code embedding models (ModernBERT-150M flagship, Qwen3-0.6B sibling)"
+readme = "README.md"
+license = "Apache-2.0"
+authors = [
+    { name = "Divakant Pandey", email = "divakant01@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "datasets>=5.1",
+    "datasketch>=2.0",
+    "mteb>=2.26",
+    "pyyaml>=6",
+    "sentence-transformers[train]>=6.2",
+    "torch>=2.15",
+    "transformers>=5.21",
+    "wandb>=0.31.0",
+]
+
+[project.optional-dependencies]
+merge = ["sentence-transformers[merge]>=6.2"]
+faiss = ["faiss-cpu>=1.9"]
+flash = [
+    "kernels>=0.17.2,<0.18",
+]
+tune = [
+    "optuna>=5.0,<6",
+]
+
+[project.scripts]
+ce3 = "code_embed_v3.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.13.5,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "mypy>=2.4.1",
+    "pytest>=9.2.0",
+    "ruff>=0.17.3",
+    "types-pyyaml>=6.0.12.20260906",
+]
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["network: needs Hugging Face Hub access (deselect with -m 'not network')"]

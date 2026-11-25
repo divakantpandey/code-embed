@@ -1,0 +1,11 @@
+2026-11-19T19:24:17Z armed for instance 61413883
+2026-11-20T03:24:21Z run failed: {"note": "FAILED upload", "time": "03:23:27"}
+2026-11-20T03:24:23Z vastai stop instance 61413883
+stopping instance 61413883.
+2026-11-20T06:27:04Z armed for instance 61413883
+2026-11-20T06:35:04Z run failed: {"note": "FAILED eval", "time": "06:34:36"}
+2026-11-20T06:35:06Z vastai stop instance 61413883
+stopping instance 61413883.
+2026-11-20T10:31:15Z armed for instance 61413883
+verified: 14 model files, 19 result files
+2026-11-20T12:35:20Z outputs verified

@@ -1,0 +1,43 @@
+upload failed: booted
+upload failed: FAILED train
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+  File "/workspace/code/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/code/.venv/lib/python3.12/site-packages/huggingface_hub/hf_api.py", line 2036, in _inner
+    return fn(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/code/.venv/lib/python3.12/site-packages/huggingface_hub/hf_api.py", line 6011, in upload_folder
+    return pipelined_upload(
+           ^^^^^^^^^^^^^^^^^
+  File "/workspace/code/.venv/lib/python3.12/site-packages/huggingface_hub/_upload_pipeline.py", line 745, in pipelined_upload
+    ).run()
+      ^^^^^
+  File "/workspace/code/.venv/lib/python3.12/site-packages/huggingface_hub/_upload_pipeline.py", line 453, in run
+    self._coordinator_loop()
+  File "/workspace/code/.venv/lib/python3.12/site-packages/huggingface_hub/_upload_pipeline.py", line 515, in _coordinator_loop
+    batch.xet_commit = self.xet_session.new_upload_commit(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionError: Network error: Request middleware error: error sending request for url (https://huggingface.co/api/models/divakantpandey/code-embed-v2-zeroshot/xet-write-token/main)
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+  File "/workspace/code/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/code/.venv/lib/python3.12/site-packages/huggingface_hub/hf_api.py", line 2036, in _inner
+    return fn(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/code/.venv/lib/python3.12/site-packages/huggingface_hub/hf_api.py", line 6011, in upload_folder
+    return pipelined_upload(
+           ^^^^^^^^^^^^^^^^^
+  File "/workspace/code/.venv/lib/python3.12/site-packages/huggingface_hub/_upload_pipeline.py", line 745, in pipelined_upload
+    ).run()
+      ^^^^^
+  File "/workspace/code/.venv/lib/python3.12/site-packages/huggingface_hub/_upload_pipeline.py", line 453, in run
+    self._coordinator_loop()
+  File "/workspace/code/.venv/lib/python3.12/site-packages/huggingface_hub/_upload_pipeline.py", line 515, in _coordinator_loop
+    batch.xet_commit = self.xet_session.new_upload_commit(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionError: Network error: Request middleware error: error sending request for url (https://huggingface.co/api/models/divakantpandey/code-embed-v2-zeroshot/xet-write-token/main)
+attempt 1 failed: uv
