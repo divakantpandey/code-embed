@@ -11,7 +11,7 @@ SimCSE, stage 2 MNRL scale 25, stage 3 MNRL + Matryoshka; batch 32 x accum 4, bf
 CodeSearchNet 2,058, CodeSearchNetCC 78, Apps 13, CodeFeedbackST 3, CodeEdit 1. Stages took 6.8 h, 4.0 h, 4.0 h.
 Data build and audit used the tools from code-embed-v3 at `d34068d` (`ce3 build-data`, `ce3 audit`).
 Eval with v2's harness pins (mteb 2.26.17, sentence-transformers 6.2.0, fp32, 1,024 tokens, batch 64, no prompts).
-Model: private `divakantpandey/code-embed-v2-zeroshot`; results: `code-embed-v3-src/v2-zeroshot/results`.
+Model: [`divakantpandey/code-embed-v2-zeroshot`](https://huggingface.co/divakantpandey/code-embed-v2-zeroshot); raw results: `scripts/zero_shot_retrain/results/` (copied from `code-embed-v3-src/v2-zeroshot/results`).
 UniXcoder-base and the retrain are our runs with this harness; the v2 column is v2's official merged results.
 
 | Benchmark | UniXcoder-base | v2 (trained on CSN) | v2 zero-shot retrain | retrain - v2 | retrain - base |

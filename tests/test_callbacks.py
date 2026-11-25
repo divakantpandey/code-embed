@@ -66,9 +66,7 @@ class TestAlertCallback:
 
         assert trainer.should_stop is True
 
-    def test_alert_callback_grad_norm_warning(
-        self, caplog: pytest.LogCaptureFixture
-    ) -> None:
+    def test_alert_callback_grad_norm_warning(self, caplog: pytest.LogCaptureFixture) -> None:
         """Verify that grad norm exceeding threshold logs a warning."""
         cb = AlertCallback(grad_norm_threshold=5.0)
         trainer = MagicMock()
@@ -78,4 +76,3 @@ class TestAlertCallback:
 
         assert "ALERT: Large gradient norm detected!" in caplog.text
         assert "grad_norm=8.4" in caplog.text or "grad_norm=8.5" in caplog.text
-

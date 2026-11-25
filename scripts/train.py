@@ -406,7 +406,11 @@ def train(
         init_model_path = Path(init_model)
     else:
         # Check if earlier stage has already been completed
-        first_stage = stage if stage else (2 if not cfg.get("training", {}).get("stage1", {}).get("enabled", True) else 1)
+        first_stage = (
+            stage
+            if stage
+            else (2 if not cfg.get("training", {}).get("stage1", {}).get("enabled", True) else 1)
+        )
         if first_stage > 1:
             for prev_s in range(first_stage - 1, 0, -1):
                 prev_dir = checkpoint_dir / f"stage{prev_s}"
@@ -423,7 +427,9 @@ def train(
         )
         model = CodeEncoder.from_pretrained(str(init_model_path))
     else:
-        console.print(f"[bold blue]Initializing CodeEncoder ({base_model}, pooling={pooling})...[/]")
+        console.print(
+            f"[bold blue]Initializing CodeEncoder ({base_model}, pooling={pooling})...[/]"
+        )
         try:
             model = CodeEncoder(
                 base_model_name_or_path=base_model,

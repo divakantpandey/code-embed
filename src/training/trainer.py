@@ -11,6 +11,7 @@ device detection (MPS / CUDA / CPU), periodic evaluation, and callbacks.
 
 from __future__ import annotations
 
+import contextlib
 import json
 import logging
 import random
@@ -469,23 +470,24 @@ class CodeEmbeddingTrainer:
         model_weights = src / "model.pt"
         if model_weights.exists():
             self.model.load_state_dict(torch.load(model_weights, map_location=self.device))
-        elif (
-            (src / "code_embed_config.json").exists()
-            or (src / "pycode_embed_config.json").exists()
-        ):
+        elif (src / "code_embed_config.json").exists() or (
+            src / "pycode_embed_config.json"
+        ).exists():
             target_encoder = (
                 self.model.encoder
                 if hasattr(self.model, "encoder") and hasattr(self.model.encoder, "projection_head")
                 else self.model
             )
             proj_pt = src / "projection_head.pt"
-            if proj_pt.exists() and hasattr(target_encoder, "projection_head") and target_encoder.projection_head is not None:
-                try:
+            if (
+                proj_pt.exists()
+                and hasattr(target_encoder, "projection_head")
+                and target_encoder.projection_head is not None
+            ):
+                with contextlib.suppress(Exception):
                     target_encoder.projection_head.load_state_dict(
                         torch.load(proj_pt, map_location=self.device)
                     )
-                except Exception:
-                    pass
             if (src / "backbone").exists() and hasattr(target_encoder, "backbone"):
                 try:
                     from transformers import AutoModel

@@ -82,7 +82,10 @@ class CodeEncoder(nn.Module):
                     base_model_name_or_path,
                     attn_implementation="sdpa",
                 )
-                logger.info("Loaded backbone '%s' with PyTorch SDPA (Scaled Dot-Product Attention).", base_model_name_or_path)
+                logger.info(
+                    "Loaded backbone '%s' with PyTorch SDPA (Scaled Dot-Product Attention).",
+                    base_model_name_or_path,
+                )
             except Exception as exc:  # noqa: BLE001
                 logger.warning(
                     "Could not load '%s' with SDPA (%s). Falling back to default attention.",
