@@ -84,8 +84,9 @@ class TestHyperparameterTuning:
             ["q1", "q2", "q3", "q4"],
             ["def f1(): pass", "def f2(): pass", "def f3(): pass", "def f4(): pass"],
         )
-        with patch("scripts.tune.create_encoder", return_value=dummy_encoder), patch(
-            "scripts.tune.load_dataset_samples", return_value=mock_samples
+        with (
+            patch("scripts.tune.create_encoder", return_value=dummy_encoder),
+            patch("scripts.tune.load_dataset_samples", return_value=mock_samples),
         ):
             # First invocation: 2 trials
             result1 = runner.invoke(

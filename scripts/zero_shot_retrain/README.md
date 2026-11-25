@@ -18,5 +18,6 @@ instance; nothing else from v3 is used.
 | `watch.sh` | Local status log, with a fallback destroy |
 | `three_way.py` | Builds the UniXcoder-base / v2 / retrain table from `unixcoder_scores.json` and the eval results |
 | `contamination_report.json`, `three_way.json` | Audit output and the per-task scores |
+| `results/unixcoder-base/`, `results/code-embed-v2-zeroshot/` | Raw MTEB result files for the base model and the retrain, copied from [code-embed-v3-src@b3a8737](https://huggingface.co/divakantpandey/code-embed-v3-src/tree/b3a8737180d583f4595428e82efc7cd0bfcf4eb8) (`baselines/unixcoder-base/`, `v2-zeroshot/results/`) |
 
-`python three_way.py unixcoder_scores.json <results dir> three_way.json`
+`python three_way.py unixcoder_scores.json results/code-embed-v2-zeroshot three_way.json`

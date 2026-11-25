@@ -1,6 +1,6 @@
 [project]
 name = "code-embed"
-version = "0.1.0"
+version = "0.2.0"
 description = "Train small embedding models for code that run on a laptop"
 readme = "README.md"
 authors = [

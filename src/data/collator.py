@@ -105,15 +105,18 @@ class PairCollator:
     max_length: int = 512
     padding: str = "longest"
 
-    def __call__(self, examples: list[tuple[str, str] | dict[str, str]]) -> dict[str, torch.Tensor]:
-        """Tokenise and pad query–code *examples*.
+    def __call__(
+        self,
+        examples: list[tuple[str, str] | tuple[str, str, str] | dict[str, str]],
+    ) -> dict[str, torch.Tensor]:
+        """Tokenise and pad query–code *examples* (with optional negative examples).
 
         Returns
         -------
         dict[str, torch.Tensor]
-            Keys prefixed with ``query_`` and ``code_`` for each encoder input.
+            Keys prefixed with ``query_``, ``code_``, and optionally ``neg_`` for each encoder input.
         """
-        queries, codes = self._split_pairs(examples)
+        queries, codes, negatives = self._split_pairs(examples)
 
         query_batch = self.tokenizer(
             queries,
@@ -135,23 +138,50 @@ class PairCollator:
             result[f"query_{key}"] = tensor
         for key, tensor in code_batch.items():
             result[f"code_{key}"] = tensor
+
+        if negatives is not None:
+            neg_batch = self.tokenizer(
+                negatives,
+                padding=self.padding,
+                truncation=True,
+                max_length=self.max_length,
+                return_tensors="pt",
+            )
+            for key, tensor in neg_batch.items():
+                result[f"neg_{key}"] = tensor
+
         return result
 
     # ------------------------------------------------------------------
 
     @staticmethod
     def _split_pairs(
-        examples: list[tuple[str, str] | dict[str, str]],
-    ) -> tuple[list[str], list[str]]:
-        """Split *examples* into separate query and code lists."""
+        examples: list[tuple[str, str] | tuple[str, str, str] | dict[str, str]],
+    ) -> tuple[list[str], list[str], list[str] | None]:
+        """Split *examples* into separate query, code, and optional negative lists."""
         queries: list[str] = []
         codes: list[str] = []
+        negatives: list[str] = []
+        has_neg = False
+
         for ex in examples:
             if isinstance(ex, dict):
                 queries.append(ex.get("query", ""))
                 codes.append(ex.get("code", ""))
+                neg = ex.get("negative") or ex.get("neg_code") or ex.get("neg") or ""
+                negatives.append(neg)
+                if neg:
+                    has_neg = True
+            elif len(ex) >= 3:
+                queries.append(ex[0])
+                codes.append(ex[1])
+                negatives.append(ex[2])
+                if ex[2]:
+                    has_neg = True
             else:
                 # Assume tuple / list of (query, code)
                 queries.append(ex[0])
                 codes.append(ex[1])
-        return queries, codes
+                negatives.append("")
+
+        return queries, codes, negatives if has_neg else None

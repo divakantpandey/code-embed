@@ -1,0 +1,40 @@
+{
+    "loader_kwargs": {},
+    "name": "microsoft/unixcoder-base",
+    "revision": "5604afdc964f6c53782a6813140ade5216b99006",
+    "release_date": null,
+    "languages": null,
+    "n_parameters": null,
+    "n_active_parameters_override": null,
+    "n_embedding_parameters": 39487488,
+    "memory_usage_mb": null,
+    "max_tokens": 1024,
+    "embed_dim": 768,
+    "license": null,
+    "open_weights": null,
+    "public_training_code": null,
+    "public_training_data": null,
+    "framework": [
+        "Sentence Transformers",
+        "PyTorch"
+    ],
+    "reference": null,
+    "similarity_fn_name": "cosine",
+    "use_instructions": null,
+    "training_datasets": null,
+    "adapted_from": "microsoft/unixcoder-base",
+    "superseded_by": null,
+    "modalities": [
+        "text"
+    ],
+    "model_type": [
+        "dense"
+    ],
+    "citation": null,
+    "contacts": null,
+    "experiment_kwargs": null,
+    "output_dtypes": null,
+    "extra_requirements_groups": null,
+    "loader": "SentenceTransformerEncoderWrapper",
+    "is_cross_encoder": false
+}

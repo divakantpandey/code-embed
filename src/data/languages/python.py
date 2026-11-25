@@ -14,6 +14,8 @@ class PythonLanguageHandler(BaseLanguageHandler):
     name = "python"
     tree_sitter_name = "python"
     file_extensions = [".py", ".pyw", ".pyi"]
+    function_node_types = {"function_definition", "async_function_definition"}
+    comment_prefixes = ("#",)
 
     def _fallback_syntax_check(self, code: str) -> bool:
         """Validate syntax via standard library ast.parse."""
@@ -22,6 +24,16 @@ class PythonLanguageHandler(BaseLanguageHandler):
             return True
         except SyntaxError:
             return False
+
+    def _fallback_has_function_definition(self, code: str) -> bool:
+        """Validate function definition via standard library ast.parse."""
+        try:
+            tree = ast.parse(code)
+        except SyntaxError:
+            return False
+        return any(
+            isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)) for node in ast.walk(tree)
+        )
 
     def extract_docstring_and_code(self, item: dict[str, Any]) -> tuple[str, str]:
         """Extract (docstring, code) from CodeSearchNet or generic dataset row."""
@@ -32,9 +44,6 @@ class PythonLanguageHandler(BaseLanguageHandler):
             or ""
         ).strip()
         code = (
-            item.get("func_code_string")
-            or item.get("code")
-            or item.get("function")
-            or ""
+            item.get("func_code_string") or item.get("code") or item.get("function") or ""
         ).strip()
         return docstring, code
